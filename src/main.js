@@ -2,9 +2,9 @@
 
 let config = {
     type: Phaser.AUTO,
-    width: 1280,
-    height: 960,
-    scene: [Menu, Play],
+    width: 420,
+    height: 280,
+    scene: [Menu, Load, Play],
     physics: {
         default: 'arcade',
         arcade: {
@@ -16,4 +16,4 @@ let config = {
 
 let game = new Phaser.Game(config);
 
-let keySPACE;
+let keySPACE, keyLEFT, keyRIGHT, keyUP;

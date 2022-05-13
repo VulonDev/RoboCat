@@ -10,6 +10,7 @@ class Load extends Phaser.Scene {
         // load image assets
         this.load.image('platform_tile', 'platform_tile.png');
         this.load.image('cat', 'cat.png');
+        this.load.image('spikes', 'spikes.png');
 
         // load sound assets (commented out to avoid long load times)
         // this.load.audio('lvl1_music', 'sound/lvl1_music.mp3');

@@ -9,8 +9,8 @@ class Play extends Phaser.Scene {
     create() {
 
         // set bounds of world and camera (this will be changed)
-        this.physics.world.setBounds(0, 0, game.config.width*2, game.config.height);
-        this.cameras.main.setBounds(0, 0, game.config.width*2, game.config.height);
+        this.physics.world.setBounds(0, 0, game.config.width*6, game.config.height+50);
+        this.cameras.main.setBounds(0, 0, game.config.width*6, game.config.height);
 
         // Level 1 music (commented out for now)
         // this.music = this.sound.add('lvl1_music', { loop: true, volume: 0.5 });
@@ -30,18 +30,25 @@ class Play extends Phaser.Scene {
         // we can add that later, this is just temporary)
         this.cameras.main.startFollow(this.cat);
 
-        // this sets up the ground (again, this will change when the obstacles are implimented and we have an actual tile
+        // this sets up the ground (again, this will change when the obstacles are implemented and we have an actual tile
         // sheet to pull these from)
         this.ground = this.add.group();
         this.tileSize = 21;
-        for(let i = 0; i < (game.config.width*2); i += this.tileSize) {
+        for(let i = 0; i < (game.config.width*2 + game.config.width/4); i += this.tileSize) {
+            let groundTile = this.physics.add.sprite(i, game.config.height - this.tileSize, 'platform_tile', 0).setOrigin(0);
+            groundTile.body.immovable = true;
+            groundTile.body.allowGravity = false;
+            this.ground.add(groundTile);
+        }
+        for (let i = (game.config.width*3 - (game.config.width/3)); i < (game.config.width*4); i += this.tileSize) {
             let groundTile = this.physics.add.sprite(i, game.config.height - this.tileSize, 'platform_tile', 0).setOrigin(0);
             groundTile.body.immovable = true;
             groundTile.body.allowGravity = false;
             this.ground.add(groundTile);
         }
 
-        //creates 4 platforms (i just put them in same group as ground which i think is fine)
+        // obstacle set 1
+        // creates 3 platforms (i just put them in same group as ground which i think is fine)
         for(let i = game.config.width / 4; i < (game.config.width); i += game.config.width / 4) {
             for (let j = 2; j < 4; j++) {
                 let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*j), 'platform_tile', 0).setOrigin(0);
@@ -51,23 +58,46 @@ class Play extends Phaser.Scene {
             }
         }
 
-        //creates some spikes
-        this.spikeGroup = this.add.group();
-        for(let i = (game.config.width / 4) + game.config.width; i < game.config.width * 2; i += game.config.width / 4) {
-            let spikeTile = this.physics.add.sprite(i, game.config.height - (this.tileSize), 'spikes', 0).setOrigin(1);
-            spikeTile.body.immovable = true;
-            spikeTile.body.allowGravity = false;
-            this.spikeGroup.add(spikeTile);    
-        }
-
-        //four more platforms to keep the spikes company
+        // obstacle set 2
+        // three obstacles or varying height
+        let jh = 4;
         for(let i = game.config.width + (game.config.width / 4); i < (game.config.width*2); i += game.config.width / 4) {
-            for (let j = 2; j < 4; j++) {
+            for (let j = 2; j < jh; j++) {
                 let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*j), 'platform_tile', 0).setOrigin(0);
                 groundTile.body.immovable = true;
                 groundTile.body.allowGravity = false;
                 this.ground.add(groundTile);
             }
+            jh += 2;
+        }
+
+        // obstacle set three is that initial gap between platforms
+
+        // obstacle set 4
+        // creates some spikes
+        this.spikeGroup = this.add.group();
+        for(let i = (game.config.width / 4) + game.config.width*3; i < game.config.width * 4; i += game.config.width / 4) {
+            // spike before obstacle
+            let spikeTile = this.physics.add.sprite(i, game.config.height - (this.tileSize), 'spikes', 0).setOrigin(1);
+            spikeTile.body.immovable = true;
+            spikeTile.body.allowGravity = false;
+            this.spikeGroup.add(spikeTile);    
+            // spike after obstacle
+            let spikeTile2 = this.physics.add.sprite(i + this.tileSize*2, game.config.height - (this.tileSize), 'spikes', 0).setOrigin(1);
+            spikeTile2.body.immovable = true;
+            spikeTile2.body.allowGravity = false;
+            this.spikeGroup.add(spikeTile2);    
+        }
+        // three obstacles of varying height
+        jh = 4;
+        for(let i = (game.config.width*3 + (game.config.width / 4)); i < (game.config.width*4); i += game.config.width / 4) {
+            for (let j = 2; j < jh; j++) {
+                let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*j), 'platform_tile', 0).setOrigin(0);
+                groundTile.body.immovable = true;
+                groundTile.body.allowGravity = false;
+                this.ground.add(groundTile);
+            }
+            jh += 2;
         }
 
 
@@ -101,7 +131,14 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+
+        // check if player falls through floor, telports them back to begining if they do
+        if (this.cat.y > (game.config.height + this.cat.height)) {
+            this.cat.x = 10;
+            this.cat.y = game.config.height - 44;
+        } 
+
+        // update cat sprite
         this.cat.update();
     }
-    
 }

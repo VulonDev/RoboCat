@@ -6,11 +6,105 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         this.body.setMaxVelocity(300);
         this.body.setDragX(2000); 
         isJumping = false;
+
+        // RoboCat animations
+        // right idle animation
+        this.anims.create({
+            key: 'robo_idle_r',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_idle_r_',
+                start: 1,
+                end: 4,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+            repeatDelay: 5000
+        });
+
+        // left idle animation
+        this.anims.create({
+            key: 'robo_idle_l',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_idle_l_',
+                start: 1,
+                end: 4,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+            repeatDelay: 5000
+        });
+
+        // right running animation
+        this.anims.create({
+            key: 'robo_run_r',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_run_r_',
+                start: 1,
+                end: 6,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 15,
+            repeat: -1,
+        });
+
+        // left running animation
+        this.anims.create({
+            key: 'robo_run_l',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_run_l_',
+                start: 1,
+                end: 6,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 15,
+            repeat: -1,
+        });
+
+        // right jumping animation
+
+        // left jumping animation
+
+        // right propellor jumping animation
+        this.anims.create({
+            key: 'robo_prop_r',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_prop_r_',
+                start: 1,
+                end: 4,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 15,
+            repeat: -1,
+        });
+
+        // left propellor jumping animation
+        this.anims.create({
+            key: 'robo_prop_l',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_run_l_',
+                start: 1,
+                end: 4,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 15,
+            repeat: -1,
+        });
+
+        this.anims.play('robo_idle_r');
+
      }
 
     update() {
-        //player jumping
-        if (keyUP.isDown && this.body.touching.down) {
+        //player jumping (made it so that the player cant jump when stuck to the side of the wall)
+        if (keyUP.isDown && this.body.touching.down && !this.body.touching.left && !this.body.touching.right) {
             isJumping = true;
             this.setVelocityY(-300);
         }
@@ -29,16 +123,21 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.setVelocityX(this.body.velocity.x + 15);
             }
             this.setAccelerationX(400);
-            //changes sprite direction
-            this.flipX = false;
+            this.anims.play('robo_run_r', true);
         }else if (keyLEFT.isDown && !keyRIGHT.isDown) {  
             if (this.body.velocity.x > 0) {
                 this.setVelocityX(this.body.velocity.x - 15);
             }  
             this.setAccelerationX(-400);
-            this.flipX = true;
+            this.anims.play('robo_run_l', true);
         } else {
             this.setAccelerationX(0);
+            if (this.anims.isPlaying && this.anims.currentAnim.key === 'robo_run_r') {
+                this.anims.play('robo_idle_r');
+            }
+            if (this.anims.isPlaying && this.anims.currentAnim.key === 'robo_run_l') {
+                this.anims.play('robo_idle_l');
+            }
         }
         
     }

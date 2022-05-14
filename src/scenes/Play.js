@@ -19,6 +19,9 @@ class Play extends Phaser.Scene {
         // setting the background color (this wont be necessary when we have an actual background image)
         this.cameras.main.setBackgroundColor('#808080');
 
+        this.background = this.add.sprite(0, 0, 'lvl1_background').setOrigin(0, 0);
+        this.background.setScrollFactor(0);
+
         // addin RoboCat to the scene and make it so they can't go OoB
         this.cat = new RoboCat(this, 10, game.config.height - 44, 'cat', 0).setOrigin(0,0);
         this.cat.setCollideWorldBounds(true);

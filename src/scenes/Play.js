@@ -128,27 +128,12 @@ class Play extends Phaser.Scene {
             this.spikeGroup.add(spikeTile);
         }
 
-        for (let i = game.config.width*4 + (game.config.width*(1/16)); i < game.config.width*4 + (game.config.width*(1/8)); i += this.tileSize) {
-            let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*4), 'platform_tile', 0).setOrigin(0);
-            groundTile.body.immovable = true;
-            groundTile.body.allowGravity = false;
-            this.ground.add(groundTile);
-        }
-
         for (let i = game.config.width*4 + (game.config.width*(3/8)); i < game.config.width*4 + (game.config.width*(5/8)); i += this.tileSize) {
-            let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*6), 'platform_tile', 0).setOrigin(0);
-            groundTile.body.immovable = true;
-            groundTile.body.allowGravity = false;
-            this.ground.add(groundTile);
-        }
-
-        for (let i = game.config.width*5 - (game.config.width*(1/8)); i < game.config.width*5 - (game.config.width*(1/16)); i += this.tileSize) {
             let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*4), 'platform_tile', 0).setOrigin(0);
             groundTile.body.immovable = true;
             groundTile.body.allowGravity = false;
             this.ground.add(groundTile);
         }
-
 
         // sets collider between RoboCat and the ground
         this.physics.add.collider(this.cat, this.ground);

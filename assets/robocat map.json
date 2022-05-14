@@ -1,1 +1,574 @@
-[{"name":"robo_run_r_0001","x":4,"y":2,"width":42,"height":18},{"name":"robo_run_r_0002","x":49,"y":2,"width":44,"height":21},{"name":"robo_run_r_0005","x":192,"y":2,"width":42,"height":23},{"name":"robo_run_r_0006","x":238,"y":2,"width":43,"height":20},{"name":"robo_run_r_0003","x":97,"y":3,"width":40,"height":22},{"name":"robo_run_r_0004","x":145,"y":4,"width":40,"height":21},{"name":"robo_run_l_0001","x":2,"y":27,"width":42,"height":18},{"name":"robo_run_l_0002","x":49,"y":27,"width":44,"height":21},{"name":"robo_run_l_0005","x":190,"y":27,"width":42,"height":23},{"name":"robo_run_l_0006","x":237,"y":27,"width":43,"height":20},{"name":"robo_run_l_0003","x":99,"y":28,"width":40,"height":22},{"name":"robo_run_l_0004","x":145,"y":29,"width":40,"height":21},{"name":"robo_idle_r_0001","x":16,"y":54,"width":30,"height":21},{"name":"robo_idle_r_0002","x":58,"y":54,"width":35,"height":21},{"name":"robo_idle_r_0003","x":114,"y":54,"width":26,"height":21},{"name":"robo_idle_r_0004","x":157,"y":54,"width":30,"height":21},{"name":"robo_prop_r_0001","x":210,"y":60,"width":25,"height":30},{"name":"robo_prop_l_0001","x":241,"y":60,"width":25,"height":30},{"name":"robo_idle_l_0001","x":2,"y":79,"width":30,"height":21},{"name":"robo_idle_l_0002","x":49,"y":79,"width":35,"height":21},{"name":"robo_idle_l_0003","x":96,"y":79,"width":26,"height":21},{"name":"robo_idle_l_0004","x":143,"y":79,"width":30,"height":21},{"name":"robo_prop_r_0002","x":210,"y":92,"width":25,"height":30},{"name":"robo_prop_l_0002","x":241,"y":92,"width":25,"height":30},{"name":"robo_prop_r_0003","x":211,"y":124,"width":25,"height":30},{"name":"robo_prop_l_0003","x":240,"y":124,"width":25,"height":30},{"name":"robo_prop_r_0004","x":211,"y":156,"width":25,"height":30},{"name":"robo_prop_l_0004","x":240,"y":156,"width":25,"height":30}]
+{
+    "frames": {
+        "robo_run_r_0001": {
+            "frame": {
+                "x": 4,
+                "y": 2,
+                "w": 42,
+                "h": 18
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 42,
+                "h": 18
+            },
+            "sourceSize": {
+                "w": 42,
+                "h": 18
+            }
+        },
+        "robo_run_right_0002": {
+            "frame": {
+                "x": 49,
+                "y": 2,
+                "w": 44,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 44,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 44,
+                "h": 21
+            }
+        },
+        "robo_run_r_0005": {
+            "frame": {
+                "x": 192,
+                "y": 2,
+                "w": 42,
+                "h": 23
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 42,
+                "h": 23
+            },
+            "sourceSize": {
+                "w": 42,
+                "h": 23
+            }
+        },
+        "robo_run_r_0006": {
+            "frame": {
+                "x": 238,
+                "y": 2,
+                "w": 43,
+                "h": 20
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 43,
+                "h": 20
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 20
+            }
+        },
+        "robo_run_r_0003": {
+            "frame": {
+                "x": 97,
+                "y": 3,
+                "w": 40,
+                "h": 22
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 40,
+                "h": 22
+            },
+            "sourceSize": {
+                "w": 40,
+                "h": 22
+            }
+        },
+        "robo_run_r_0004": {
+            "frame": {
+                "x": 145,
+                "y": 4,
+                "w": 40,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 40,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 40,
+                "h": 21
+            }
+        },
+        "robo_run_l_0001": {
+            "frame": {
+                "x": 2,
+                "y": 27,
+                "w": 42,
+                "h": 18
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 42,
+                "h": 18
+            },
+            "sourceSize": {
+                "w": 42,
+                "h": 18
+            }
+        },
+        "robo_run_l_0002": {
+            "frame": {
+                "x": 49,
+                "y": 27,
+                "w": 44,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 44,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 44,
+                "h": 21
+            }
+        },
+        "robo_run_l_0005": {
+            "frame": {
+                "x": 190,
+                "y": 27,
+                "w": 42,
+                "h": 23
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 42,
+                "h": 23
+            },
+            "sourceSize": {
+                "w": 42,
+                "h": 23
+            }
+        },
+        "robo_run_l_0006": {
+            "frame": {
+                "x": 237,
+                "y": 27,
+                "w": 43,
+                "h": 20
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 43,
+                "h": 20
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 20
+            }
+        },
+        "robo_run_l_0003": {
+            "frame": {
+                "x": 99,
+                "y": 28,
+                "w": 40,
+                "h": 22
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 40,
+                "h": 22
+            },
+            "sourceSize": {
+                "w": 40,
+                "h": 22
+            }
+        },
+        "robo_run_l_0004": {
+            "frame": {
+                "x": 145,
+                "y": 29,
+                "w": 40,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 40,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 40,
+                "h": 21
+            }
+        },
+        "robo_idle_r_0001": {
+            "frame": {
+                "x": 16,
+                "y": 54,
+                "w": 30,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 30,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 30,
+                "h": 21
+            }
+        },
+        "robo_idle_r_0002": {
+            "frame": {
+                "x": 58,
+                "y": 54,
+                "w": 35,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 35,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 35,
+                "h": 21
+            }
+        },
+        "robo_idle_r_0003": {
+            "frame": {
+                "x": 114,
+                "y": 54,
+                "w": 26,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 26,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 26,
+                "h": 21
+            }
+        },
+        "robo_idle_r_0004": {
+            "frame": {
+                "x": 157,
+                "y": 54,
+                "w": 30,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 30,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 30,
+                "h": 21
+            }
+        },
+        "robo_prop_r_0001": {
+            "frame": {
+                "x": 210,
+                "y": 60,
+                "w": 25,
+                "h": 30
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 25,
+                "h": 30
+            },
+            "sourceSize": {
+                "w": 25,
+                "h": 30
+            }
+        },
+        "robo_prop_l_0001": {
+            "frame": {
+                "x": 241,
+                "y": 60,
+                "w": 25,
+                "h": 30
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 25,
+                "h": 30
+            },
+            "sourceSize": {
+                "w": 25,
+                "h": 30
+            }
+        },
+        "robo_idle_l_0001": {
+            "frame": {
+                "x": 2,
+                "y": 79,
+                "w": 30,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 30,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 30,
+                "h": 21
+            }
+        },
+        "robo_idle_l_0002": {
+            "frame": {
+                "x": 49,
+                "y": 79,
+                "w": 35,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 35,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 35,
+                "h": 21
+            }
+        },
+        "robo_idle_l_0003": {
+            "frame": {
+                "x": 96,
+                "y": 79,
+                "w": 26,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 26,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 26,
+                "h": 21
+            }
+        },
+        "robo_idle_l_0004": {
+            "frame": {
+                "x": 143,
+                "y": 79,
+                "w": 30,
+                "h": 21
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 30,
+                "h": 21
+            },
+            "sourceSize": {
+                "w": 30,
+                "h": 21
+            }
+        },
+        "robo_prop_r_0002": {
+            "frame": {
+                "x": 210,
+                "y": 92,
+                "w": 25,
+                "h": 30
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 25,
+                "h": 30
+            },
+            "sourceSize": {
+                "w": 25,
+                "h": 30
+            }
+        },
+        "robo_prop_l_0002": {
+            "frame": {
+                "x": 241,
+                "y": 92,
+                "w": 25,
+                "h": 30
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 25,
+                "h": 30
+            },
+            "sourceSize": {
+                "w": 25,
+                "h": 30
+            }
+        },
+        "robo_prop_r_0003": {
+            "frame": {
+                "x": 211,
+                "y": 124,
+                "w": 25,
+                "h": 30
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 25,
+                "h": 30
+            },
+            "sourceSize": {
+                "w": 25,
+                "h": 30
+            }
+        },
+        "robo_prop_l_0003": {
+            "frame": {
+                "x": 240,
+                "y": 124,
+                "w": 25,
+                "h": 30
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 25,
+                "h": 30
+            },
+            "sourceSize": {
+                "w": 25,
+                "h": 30
+            }
+        },
+        "robo_prop_r_0004": {
+            "frame": {
+                "x": 211,
+                "y": 156,
+                "w": 25,
+                "h": 30
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 25,
+                "h": 30
+            },
+            "sourceSize": {
+                "w": 25,
+                "h": 30
+            }
+        },
+        "robo_prop_l_0004": {
+            "frame": {
+                "x": 240,
+                "y": 156,
+                "w": 25,
+                "h": 30
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 25,
+                "h": 30
+            },
+            "sourceSize": {
+                "w": 25,
+                "h": 30
+            }
+        }
+    },
+    "meta": {
+        "app": "https://www.leshylabs.com/apps/sstool/",
+        "version": "Leshy SpriteSheet Tool v0.8.4",
+        "image": "spritesheet.png",
+        "size": {
+            "w": 284,
+            "h": 200
+        },
+        "scale": 1
+    }
+}

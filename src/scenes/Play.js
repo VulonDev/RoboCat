@@ -49,6 +49,18 @@ class Play extends Phaser.Scene {
             groundTile.body.allowGravity = false;
             this.ground.add(groundTile);
         }
+        for (let i = game.config.width*4 + (game.config.width*(1/4)); i < (game.config.width*4 + (game.config.width*(3/4))); i += this.tileSize) {
+            let groundTile = this.physics.add.sprite(i, game.config.height - this.tileSize, 'platform_tile', 0).setOrigin(0);
+            groundTile.body.immovable = true;
+            groundTile.body.allowGravity = false;
+            this.ground.add(groundTile);
+        }
+        for (let i = game.config.width*5; i < game.config.width*6; i += this.tileSize) {
+            let groundTile = this.physics.add.sprite(i, game.config.height - this.tileSize, 'platform_tile', 0).setOrigin(0);
+            groundTile.body.immovable = true;
+            groundTile.body.allowGravity = false;
+            this.ground.add(groundTile);
+        }
 
         // obstacle set 1
         // creates 3 platforms (i just put them in same group as ground which i think is fine)
@@ -99,18 +111,42 @@ class Play extends Phaser.Scene {
         // three obstacles of varying height
         jh = 4;
         for(let i = (game.config.width*3 + (game.config.width / 4)); i < (game.config.width*4); i += game.config.width / 4) {
-            if (i == game.config.width*3 + ((game.config.width / 4)*2)) {
-                jh = 6;
-            }
-            else {
-                jh = 4;
-            }
             for (let j = 2; j < jh; j++) {
                 let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*j), 'platform_tile', 0).setOrigin(0);
                 groundTile.body.immovable = true;
                 groundTile.body.allowGravity = false;
                 this.ground.add(groundTile);
             }
+            jh += 2;
+        }
+
+        // obstacle set 5
+        for (let i = game.config.width*4 + (game.config.width*(1/4)); i < (game.config.width*4 + (game.config.width*(3/4))); i += this.tileSize) {
+            let spikeTile = this.physics.add.sprite(i, game.config.height - (this.tileSize), 'spikes', 0).setOrigin(0, 1);
+            spikeTile.body.immovable = true;
+            spikeTile.body.allowGravity = false;
+            this.spikeGroup.add(spikeTile);
+        }
+
+        for (let i = game.config.width*4 + (game.config.width*(1/16)); i < game.config.width*4 + (game.config.width*(1/8)); i += this.tileSize) {
+            let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*4), 'platform_tile', 0).setOrigin(0);
+            groundTile.body.immovable = true;
+            groundTile.body.allowGravity = false;
+            this.ground.add(groundTile);
+        }
+
+        for (let i = game.config.width*4 + (game.config.width*(3/8)); i < game.config.width*4 + (game.config.width*(5/8)); i += this.tileSize) {
+            let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*6), 'platform_tile', 0).setOrigin(0);
+            groundTile.body.immovable = true;
+            groundTile.body.allowGravity = false;
+            this.ground.add(groundTile);
+        }
+
+        for (let i = game.config.width*5 - (game.config.width*(1/8)); i < game.config.width*5 - (game.config.width*(1/16)); i += this.tileSize) {
+            let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*4), 'platform_tile', 0).setOrigin(0);
+            groundTile.body.immovable = true;
+            groundTile.body.allowGravity = false;
+            this.ground.add(groundTile);
         }
 
 

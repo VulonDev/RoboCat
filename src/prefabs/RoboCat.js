@@ -67,8 +67,12 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         });
 
         // right jumping animation
+
+        // left jumping animation
+
+        // right propellor jumping animation
         this.anims.create({
-            key: 'robo_jump_r',
+            key: 'robo_prop_r',
             frames: this.anims.generateFrameNames('robo_atlas', {
                 prefix: 'robo_prop_r_',
                 start: 1,
@@ -80,9 +84,9 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             repeat: -1,
         });
 
-        // left jumping animation
+        // left propellor jumping animation
         this.anims.create({
-            key: 'robo_jump_l',
+            key: 'robo_prop_l',
             frames: this.anims.generateFrameNames('robo_atlas', {
                 prefix: 'robo_run_l_',
                 start: 1,

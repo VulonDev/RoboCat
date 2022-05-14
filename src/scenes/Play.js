@@ -65,13 +65,18 @@ class Play extends Phaser.Scene {
         // three obstacles or varying height
         let jh = 4;
         for(let i = game.config.width + (game.config.width / 4); i < (game.config.width*2); i += game.config.width / 4) {
+            if (i == game.config.width + ((game.config.width / 4)*2)) {
+                jh = 6;
+            }
+            else {
+                jh = 4;
+            }
             for (let j = 2; j < jh; j++) {
                 let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*j), 'platform_tile', 0).setOrigin(0);
                 groundTile.body.immovable = true;
                 groundTile.body.allowGravity = false;
                 this.ground.add(groundTile);
             }
-            jh += 2;
         }
 
         // obstacle set three is that initial gap between platforms
@@ -94,13 +99,18 @@ class Play extends Phaser.Scene {
         // three obstacles of varying height
         jh = 4;
         for(let i = (game.config.width*3 + (game.config.width / 4)); i < (game.config.width*4); i += game.config.width / 4) {
+            if (i == game.config.width*3 + ((game.config.width / 4)*2)) {
+                jh = 6;
+            }
+            else {
+                jh = 4;
+            }
             for (let j = 2; j < jh; j++) {
                 let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*j), 'platform_tile', 0).setOrigin(0);
                 groundTile.body.immovable = true;
                 groundTile.body.allowGravity = false;
                 this.ground.add(groundTile);
             }
-            jh += 2;
         }
 
 

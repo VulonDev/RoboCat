@@ -5,25 +5,41 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
         this.body.setMaxVelocity(300);
         this.body.setDragX(2000); 
+        isJumping = false;
      }
 
     update() {
         //player jumping
         if (keyUP.isDown && this.body.touching.down) {
+            isJumping = true;
             this.setVelocityY(-300);
+        }
+        if (isJumping && !(keyUP.isDown)) {
+            this.setVelocityY(this.body.velocity.y + 8);
+            if (this.body.velocity.y > 0 ) {
+                isJumping = false;
+            }
         }
 
         //player movement, player doesnt move if both left and right are held down   
         if (keyRIGHT.isDown && !keyLEFT.isDown) {
-            this.setAccelerationX(600);
+            //this helps make the player feel less icy when changing direction
+            if (this.body.velocity.x < 0) {
+                this.setVelocityX(this.body.velocity.x + 15);
+            }
+            this.setAccelerationX(400);
             //changes sprite direction
             this.flipX = false;
-        }else if (keyLEFT.isDown && !keyRIGHT.isDown) {
-            this.setAccelerationX(-600);
+        }else if (keyLEFT.isDown && !keyRIGHT.isDown) {  
+            if (this.body.velocity.x > 0) {
+                this.setVelocityX(this.body.velocity.x - 15);
+            }  
+            this.setAccelerationX(-400);
             this.flipX = true;
         } else {
             this.setAccelerationX(0);
         }
         
     }
+
 }

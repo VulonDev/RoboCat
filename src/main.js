@@ -28,5 +28,5 @@ let config = {
 
 let game = new Phaser.Game(config);
 
-
+let isJumping;
 let keySPACE, keyLEFT, keyRIGHT, keyUP;

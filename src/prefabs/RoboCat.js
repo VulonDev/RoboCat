@@ -14,6 +14,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             isJumping = true;
             this.setVelocityY(-300);
         }
+        //slow down jump velocity once player lets go of jump
         if (isJumping && !(keyUP.isDown)) {
             this.setVelocityY(this.body.velocity.y + 8);
             if (this.body.velocity.y > 0 ) {

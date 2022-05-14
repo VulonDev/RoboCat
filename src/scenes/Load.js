@@ -9,7 +9,6 @@ class Load extends Phaser.Scene {
 
         // load image assets
         this.load.image('platform_tile', 'platform_tile.png');
-        this.load.image('cat', 'cat.png');
         this.load.image('spikes', 'spikes.png');
         this.load.image('lvl1_background', 'background_lvl1.png');
 

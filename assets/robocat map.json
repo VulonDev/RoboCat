@@ -20,7 +20,7 @@
                 "h": 18
             }
         },
-        "robo_run_right_0002": {
+        "robo_run_r_0002": {
             "frame": {
                 "x": 49,
                 "y": 2,
@@ -242,9 +242,9 @@
         },
         "robo_idle_r_0001": {
             "frame": {
-                "x": 16,
+                "x": 11,
                 "y": 54,
-                "w": 30,
+                "w": 35,
                 "h": 21
             },
             "rotated": false,
@@ -252,11 +252,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 30,
+                "w": 35,
                 "h": 21
             },
             "sourceSize": {
-                "w": 30,
+                "w": 35,
                 "h": 21
             }
         },
@@ -282,9 +282,9 @@
         },
         "robo_idle_r_0003": {
             "frame": {
-                "x": 114,
+                "x": 105,
                 "y": 54,
-                "w": 26,
+                "w": 35,
                 "h": 21
             },
             "rotated": false,
@@ -292,19 +292,19 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 26,
+                "w": 35,
                 "h": 21
             },
             "sourceSize": {
-                "w": 26,
+                "w": 35,
                 "h": 21
             }
         },
         "robo_idle_r_0004": {
             "frame": {
-                "x": 157,
+                "x": 152,
                 "y": 54,
-                "w": 30,
+                "w": 35,
                 "h": 21
             },
             "rotated": false,
@@ -312,11 +312,11 @@
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 30,
+                "w": 35,
                 "h": 21
             },
             "sourceSize": {
-                "w": 30,
+                "w": 35,
                 "h": 21
             }
         },

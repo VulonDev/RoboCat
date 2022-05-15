@@ -13,8 +13,8 @@ class Play extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, game.config.width*7, game.config.height);
 
         // Level 1 music (commented out for now)
-        // this.music = this.sound.add('lvl1_music', { loop: true, volume: 0.5 });
-        // this.music.play();
+        this.music = this.sound.add('lvl1_music', { loop: true, volume: 0.5 });
+        this.music.play();
 
         // setting the background color (this wont be necessary when we have an actual background image)
         this.cameras.main.setBackgroundColor('#808080');

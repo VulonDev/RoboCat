@@ -9,8 +9,8 @@ class Play extends Phaser.Scene {
     create() {
 
         // set bounds of world and camera (this will be changed)
-        this.physics.world.setBounds(0, 0, game.config.width*6, game.config.height+50);
-        this.cameras.main.setBounds(0, 0, game.config.width*6, game.config.height);
+        this.physics.world.setBounds(0, 0, game.config.width*7, game.config.height+50);
+        this.cameras.main.setBounds(0, 0, game.config.width*7, game.config.height);
 
         // Level 1 music (commented out for now)
         // this.music = this.sound.add('lvl1_music', { loop: true, volume: 0.5 });
@@ -23,7 +23,7 @@ class Play extends Phaser.Scene {
         this.background.setScrollFactor(0);
 
         // addin RoboCat to the scene and make it so they can't go OoB
-        this.cat = new RoboCat(this, 10, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
+        this.cat = new RoboCat(this, game.config.width * 5, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
         this.cat.setCollideWorldBounds(true);
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);
@@ -55,7 +55,13 @@ class Play extends Phaser.Scene {
             groundTile.body.allowGravity = false;
             this.ground.add(groundTile);
         }
-        for (let i = game.config.width*5; i < game.config.width*6; i += this.tileSize) {
+        for (let i = game.config.width*5; i < game.config.width*5.25; i += this.tileSize) {
+            let groundTile = this.physics.add.sprite(i, game.config.height - this.tileSize, 'platform_tile', 0).setOrigin(0);
+            groundTile.body.immovable = true;
+            groundTile.body.allowGravity = false;
+            this.ground.add(groundTile);
+        }
+        for (let i = game.config.width*6; i < game.config.width*6.25; i += this.tileSize) {
             let groundTile = this.physics.add.sprite(i, game.config.height - this.tileSize, 'platform_tile', 0).setOrigin(0);
             groundTile.body.immovable = true;
             groundTile.body.allowGravity = false;
@@ -135,6 +141,30 @@ class Play extends Phaser.Scene {
             this.ground.add(groundTile);
         }
 
+        // obstacle set 6
+        let placeSpikes = true; 
+        jh = 4;
+        for(let i = (game.config.width*5.1 + (game.config.width / 4)); i < (game.config.width*5.8); i += game.config.width / 6) {
+            for (let j = 1; j < jh; j++) {
+                let groundTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*(j-1)), 'platform_tile', 0).setOrigin(0);
+                groundTile.body.immovable = true;
+                groundTile.body.allowGravity = false;
+                this.ground.add(groundTile);
+                if (j == jh - 1) {
+                    if (placeSpikes) {
+                        let spikeTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*(j-1)), 'spikes', 0).setOrigin(0, 1);
+                        spikeTile.body.immovable = true;
+                        spikeTile.body.allowGravity = false;
+                        this.spikeGroup.add(spikeTile);
+                        placeSpikes = false;
+                    } else {
+                        placeSpikes = true;
+                    }
+                }
+            }
+            jh += 1;
+        }
+    
         // sets collider between RoboCat and the ground
         this.physics.add.collider(this.cat, this.ground);
 

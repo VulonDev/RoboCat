@@ -23,7 +23,7 @@ class Play extends Phaser.Scene {
         this.background.setScrollFactor(0);
 
         // addin RoboCat to the scene and make it so they can't go OoB
-        this.cat = new RoboCat(this, game.config.width * 5, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
+        this.cat = new RoboCat(this, 10, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
         this.cat.setCollideWorldBounds(true);
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);
@@ -61,7 +61,7 @@ class Play extends Phaser.Scene {
             groundTile.body.allowGravity = false;
             this.ground.add(groundTile);
         }
-        for (let i = game.config.width*6; i < game.config.width*6.25; i += this.tileSize) {
+        for (let i = game.config.width*6; i < game.config.width*7; i += this.tileSize) {
             let groundTile = this.physics.add.sprite(i, game.config.height - this.tileSize, 'platform_tile', 0).setOrigin(0);
             groundTile.body.immovable = true;
             groundTile.body.allowGravity = false;
@@ -150,6 +150,7 @@ class Play extends Phaser.Scene {
                 groundTile.body.immovable = true;
                 groundTile.body.allowGravity = false;
                 this.ground.add(groundTile);
+                //places the spikes on top of every other obstacle
                 if (j == jh - 1) {
                     if (placeSpikes) {
                         let spikeTile = this.physics.add.sprite(i, game.config.height - (this.tileSize*(j-1)), 'spikes', 0).setOrigin(0, 1);
@@ -164,6 +165,7 @@ class Play extends Phaser.Scene {
             }
             jh += 1;
         }
+        
     
         // sets collider between RoboCat and the ground
         this.physics.add.collider(this.cat, this.ground);
@@ -177,8 +179,8 @@ class Play extends Phaser.Scene {
         let textConfig = {
             fontFamily: 'Trebuchet MS',
             fontSize: '18px',
-            color: '#888888',
-            backgroundColor: '#DDDDDD',
+            color: '#ffffff',
+            backgroundColor: '#AAAAAA',
             align: 'center',
             padding: {
             top: 5,
@@ -186,6 +188,7 @@ class Play extends Phaser.Scene {
             },
         }
         this.controlsText = this.add.text(game.config.width/2, game.config.height / 2, 'left/right to move\nup to jump', textConfig).setOrigin(0.5);
+        this.catText = this.add.text(game.config.width * 6.5, game.config.height - 40, 'missing cat ;3 *meow*', textConfig).setOrigin(0.5);
 
         //key inputs
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);

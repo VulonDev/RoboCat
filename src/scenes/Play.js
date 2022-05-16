@@ -13,8 +13,8 @@ class Play extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, game.config.width*7, game.config.height);
 
         // Level 1 music (commented out for now)
-        // this.music = this.sound.add('lvl1_music', { loop: true, volume: 0.5 });
-        // this.music.play();
+        this.music = this.sound.add('lvl1_music', { loop: true, volume: 0.5 });
+        this.music.play();
 
         // setting the background color (this wont be necessary when we have an actual background image)
         this.cameras.main.setBackgroundColor('#808080');
@@ -189,6 +189,7 @@ class Play extends Phaser.Scene {
         }
         this.controlsText = this.add.text(game.config.width/2, game.config.height / 2, 'left/right to move\nup to jump', textConfig).setOrigin(0.5);
         this.catText = this.add.text(game.config.width * 6.5, game.config.height - 40, 'missing cat ;3 *meow*', textConfig).setOrigin(0.5);
+        this.prototypeText = this.add.text(game.config.width * 6.5, game.config.height / 2, 'END OF PROTOTYPE', textConfig).setOrigin(0.5);
 
         //key inputs
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);

@@ -16,7 +16,7 @@ class Load extends Phaser.Scene {
         this.load.atlas('robo_atlas', 'robocat spritesheet.png', 'robocat map.json');
 
         // load sound assets (commented out to avoid long load times)
-        // this.load.audio('lvl1_music', 'sound/lvl1_music.mp3');
+        this.load.audio('lvl1_music', 'sound/lvl1_music.mp3');
     }
 
     create() {

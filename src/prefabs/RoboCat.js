@@ -3,7 +3,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         scene.physics.add.existing(this);
-        this.body.setMaxVelocity(300);
+        this.body.setMaxVelocityX(300);
         this.body.setDragX(2000); 
         isJumping = false;
 

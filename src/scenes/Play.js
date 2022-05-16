@@ -9,7 +9,7 @@ class Play extends Phaser.Scene {
     create() {
 
         // set bounds of world and camera (this will be changed)
-        this.physics.world.setBounds(0, 0, game.config.width*7, game.config.height+50);
+        this.physics.world.setBounds(0, 0, game.config.width*7, game.config.height+100);
         this.cameras.main.setBounds(0, 0, game.config.width*7, game.config.height);
 
         // Level 1 music (commented out for now)
@@ -201,6 +201,8 @@ class Play extends Phaser.Scene {
     update() {
 
         // check if player falls through floor, telports them back to begining if they do
+        console.log(this.cat.y);
+        console.log("(game.config.height + this.cat.height): "+(game.config.height + this.cat.height));
         if (this.cat.y > (game.config.height + this.cat.height)) {
             this.cat.x = 10;
             this.cat.y = game.config.height - 44;

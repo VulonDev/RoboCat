@@ -13,6 +13,8 @@ class Load extends Phaser.Scene {
         this.load.image('spikes', 'lvl1/spikes.png');
         this.load.image('lvl1_background', 'lvl1/background_lvl1.png');
         // level 2 image assets
+        this.load.image('tree_tile_v', 'lvl2/tree_tile_v.png');
+        this.load.image('tree_tile_h', 'lvl2/tree_tile_h.png');
 
         // load spritesheets
         // RoboCat spritesheet
@@ -22,6 +24,7 @@ class Load extends Phaser.Scene {
         // level 1 music
         this.load.audio('lvl1_music', 'sound/lvl1_music.mp3');
         // level 2 music
+        // this.load.audio('lvl2_music', 'sound/lvl2_music.mp3');
 
     }
 

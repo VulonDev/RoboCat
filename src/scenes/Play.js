@@ -172,8 +172,9 @@ class Play extends Phaser.Scene {
 
         //checks if player touches spikes, teleports them back to beginning if they do
         this.physics.add.collider(this.cat, this.spikeGroup, function(player) {
+            this.cat.setVelocity(0);
             player.x = 10;
-            player.y = game.config.height - 44;
+            player.y = game.config.height - 60;
         });
 
         let textConfig = {
@@ -204,8 +205,9 @@ class Play extends Phaser.Scene {
         console.log(this.cat.y);
         console.log("(game.config.height + this.cat.height): "+(game.config.height + this.cat.height));
         if (this.cat.y > (game.config.height + this.cat.height)) {
+            this.cat.setVelocity(0);
             this.cat.x = 10;
-            this.cat.y = game.config.height - 44;
+            this.cat.y = game.config.height - 60;
         } 
 
         // update cat sprite

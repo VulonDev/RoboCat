@@ -172,7 +172,7 @@ class Level1 extends Phaser.Scene {
 
         //checks if player touches spikes, teleports them back to beginning if they do
         this.physics.add.collider(this.cat, this.spikeGroup, function(player) {
-            this.cat.setVelocity(0);
+            player.setVelocity(0);
             player.x = 10;
             player.y = game.config.height - 60;
         });

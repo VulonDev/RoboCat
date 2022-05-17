@@ -27,6 +27,6 @@ class Load extends Phaser.Scene {
 
     create() {
         // go straight to the next Scene after loading
-        this.scene.start('playScene');
+        this.scene.start('Level1Scene');
     }
 }

@@ -16,7 +16,7 @@ let config = {
     },
     width: 420,
     height: 280,
-    scene: [Menu, Load, Play],
+    scene: [Menu, Load, Level1, Level2],
     physics: {
         default: 'arcade',
         arcade: {

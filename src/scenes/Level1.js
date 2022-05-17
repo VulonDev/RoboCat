@@ -8,7 +8,7 @@ class Level1 extends Phaser.Scene {
 
     create() {
 
-        // set bounds of world and camera (this will be changed)
+        // set bounds of world and camera
         this.physics.world.setBounds(0, 0, game.config.width*7, game.config.height+100);
         this.cameras.main.setBounds(0, 0, game.config.width*7, game.config.height);
 
@@ -16,7 +16,7 @@ class Level1 extends Phaser.Scene {
         this.music = this.sound.add('lvl1_music', { loop: true, volume: 0.5 });
         this.music.play();
 
-        // setting the background color (this wont be necessary when we have an actual background image)
+        // setting the background color
         this.cameras.main.setBackgroundColor('#808080');
 
         this.background = this.add.sprite(0, 0, 'lvl1_background').setOrigin(0, 0);
@@ -172,7 +172,7 @@ class Level1 extends Phaser.Scene {
 
         //checks if player touches spikes, teleports them back to beginning if they do
         this.physics.add.collider(this.cat, this.spikeGroup, function(player) {
-            this.cat.setVelocity(0);
+            player.setVelocity(0);
             player.x = 10;
             player.y = game.config.height - 60;
         });

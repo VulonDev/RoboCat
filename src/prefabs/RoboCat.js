@@ -7,6 +7,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         this.body.setDragX(2000); 
         isJumping = false;
         this.lastDirection = 'r';
+        this.canDubJump = false;
 
         // RoboCat animations
         // right idle animation
@@ -106,18 +107,38 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
     update() {
 
         //player jumping (made it so that the player cant jump when stuck to the side of the wall)
-        if (keyUP.isDown && this.body.touching.down && !this.body.touching.left && !this.body.touching.right) {
-            isJumping = true;
-            this.setVelocityY(-300);
-        }
-        //slow down jump velocity once player lets go of jump
-        if (isJumping && !(keyUP.isDown)) {
-            this.setVelocityY(this.body.velocity.y + 8);
-            if (this.body.velocity.y > 0 ) {
-                isJumping = false;
+        if (Phaser.Input.Keyboard.JustDown(keyUP)) {
+            this.setGravityY(0);
+            //normal jump
+            if (this.body.touching.down && !this.body.touching.left && !this.body.touching.right) {
+                isJumping = true;
+                this.setVelocityY(-300);
+                this.canDubJump = true;
+            //double jump
+            } else if (!(this.body.touching.down) && this.canDubJump) {
+                this.setVelocityY(-300);
+                this.canDubJump = false;
+                isJumping = true;
             }
         }
-        
+           
+        //slow down jump velocity once player lets go of jump
+        if (isJumping && !(keyUP.isDown)) {
+            this.setGravityY(0);
+            if (this.body.velocity.y > 0 ) {
+                isJumping = false;
+                
+            } else {
+                this.setVelocityY(this.body.velocity.y + 8);
+            }
+        } 
+
+        //slow fall effect after double jumping if jump is held
+        if (isJumping && !(this.body.touching.down) && keyUP.isDown && !(this.canDubJump) && this.body.velocity.y > 0) {
+            console.log(1); 
+            this.setGravityY(-500);
+        }
+
         //player movement, player doesnt move if both left and right are held down   
         if (keyRIGHT.isDown && !keyLEFT.isDown) {
             this.lastDirection = 'r';

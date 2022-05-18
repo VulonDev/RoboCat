@@ -202,8 +202,6 @@ class Level1 extends Phaser.Scene {
     update() {
 
         // check if player falls through floor, telports them back to begining if they do
-        console.log(this.cat.y);
-        console.log("(game.config.height + this.cat.height): "+(game.config.height + this.cat.height));
         if (this.cat.y > (game.config.height + this.cat.height)) {
             this.cat.setVelocity(0);
             this.cat.x = 10;

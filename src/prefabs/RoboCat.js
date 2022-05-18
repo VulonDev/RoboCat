@@ -8,6 +8,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         isJumping = false;
         this.lastDirection = 'r';
         this.canDubJump = false;
+        this.isDoubJumping = false;
 
         // RoboCat animations
         // right idle animation
@@ -171,6 +172,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.setVelocityY(-300);
                 this.canDubJump = false;
                 isJumping = true;
+                this.isDoubJumping = true;
             }
         }
            
@@ -179,6 +181,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             this.setGravityY(0);
             if (this.body.velocity.y > 0 ) {
                 isJumping = false;
+                this.isDoubJumping = false;
                 
             } else {
                 this.setVelocityY(this.body.velocity.y + 8);
@@ -187,6 +190,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
 
         //slow fall effect after double jumping if jump is held
         if (isJumping && !(this.body.touching.down) && keyUP.isDown && !(this.canDubJump) && this.body.velocity.y > 0) {
+            this.isDoubJumping == true;
             console.log(1); 
             this.setGravityY(-500);
         }
@@ -208,8 +212,13 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.texture = 'robo_cling_r';
             }
             else if (!this.body.touching.down && !this.body.touching.right){
-                // replace with regular jump animation
-                this.anims.play('robo_jump_r', true);
+                // jump animation
+                if (!this.isDoubJumping) {
+                    this.anims.play('robo_jump_r', true);
+                }
+                else {
+                    this.anims.play('robo_prop_r', true);
+                }
             }
         }else if (keyLEFT.isDown && !keyRIGHT.isDown) {  
             this.lastDirection = 'l';
@@ -225,8 +234,12 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.anims.play('robo_cling_l', true);
             }
             else if (!this.body.touching.down && !this.body.touching.left){
-                // replace with regular jump animation
-                this.anims.play('robo_jump_l', true);
+                if (!this.isDoubJumping) {
+                    this.anims.play('robo_jump_l', true);
+                }
+                else {
+                    this.anims.play('robo_prop_l', true);
+                }
             }
         } else {
             this.setAccelerationX(0);
@@ -235,8 +248,12 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('robo_idle_r', true);
                 }
                 else if (!this.body.touching.down) {
-                    // replace with regular jump animation
-                    this.anims.play('robo_jump_r', true);
+                    if (!this.isDoubJumping) {
+                        this.anims.play('robo_jump_r', true);
+                    }
+                    else {
+                        this.anims.play('robo_prop_r', true);
+                    }
                 }
             }
             if (this.lastDirection == 'l') {
@@ -244,8 +261,12 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('robo_idle_l', true);
                 }
                 else if (!this.body.touching.down){
-                    // replace with regular jump animation
-                    this.anims.play('robo_jump_l', true);
+                    if (!this.isDoubJumping) {
+                        this.anims.play('robo_jump_l', true);
+                    }
+                    else {
+                        this.anims.play('robo_prop_l', true);
+                    }
                 }
             }
         }

@@ -15,7 +15,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     width: 420,
-    height: 280,
+    height: 294,
     scene: [Menu, Load, Level1, Level2],
     physics: {
         default: 'arcade',

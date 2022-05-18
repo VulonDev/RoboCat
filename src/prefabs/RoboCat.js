@@ -164,12 +164,12 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         if (Phaser.Input.Keyboard.JustDown(keyUP)) {
             this.setGravityY(0);
             //normal jump
-            if (this.body.touching.down && !this.body.touching.left && !this.body.touching.right) {
+            if (this.body.blocked.down && !this.body.blocked.left && !this.body.blocked.right) {
                 isJumping = true;
                 this.setVelocityY(-300);
                 this.canDubJump = true;
             //double jump
-            } else if (hasPropeller && !(this.body.touching.down) && this.canDubJump) {
+            } else if (hasPropeller && !(this.body.blocked.down) && this.canDubJump) {
                 this.setVelocityY(-300);
                 this.canDubJump = false;
                 isJumping = true;
@@ -191,7 +191,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         } 
 
         //slow fall effect after double jumping if jump is held
-        if (!(this.isSlowFalling) && !(this.body.touching.down) && keyUP.isDown && !(this.canDubJump) && this.body.velocity.y > 0) {
+        if (!(this.isSlowFalling) && !(this.body.blocked.down) && keyUP.isDown && !(this.canDubJump) && this.body.velocity.y > 0) {
             this.body.velocity.y = this.body.velocity.y / 2;
             this.isSlowFalling = true;
             this.isDoubJumping = true;
@@ -207,15 +207,15 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.setVelocityX(this.body.velocity.x + 15);
             }
             this.setAccelerationX(400);
-            if (this.body.touching.down && !this.body.touching.right) {
+            if (this.body.blocked.down && !this.body.blocked.right) {
                 this.anims.play('robo_run_r', true);
             }
-            else if (!this.body.touching.down && this.body.touching.right) {
+            else if (!this.body.blocked.down && this.body.blocked.right) {
                 // play (right) wall cling animation
                 this.anims.play('robo_cling_r', true);
                 this.texture = 'robo_cling_r';
             }
-            else if (!this.body.touching.down && !this.body.touching.right){
+            else if (!this.body.blocked.down && !this.body.blocked.right){
                 // jump animation
                 if (!this.isDoubJumping) {
                     this.anims.play('robo_jump_r', true);
@@ -230,14 +230,14 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.setVelocityX(this.body.velocity.x - 15);
             }  
             this.setAccelerationX(-400);
-            if (this.body.touching.down && !this.body.touching.left) {
+            if (this.body.blocked.down && !this.body.blocked.left) {
                 this.anims.play('robo_run_l', true);
             }
-            else if (!this.body.touching.down && this.body.touching.left) {
+            else if (!this.body.blocked.down && this.body.blocked.left) {
                 // play (right) wall cling animation
                 this.anims.play('robo_cling_l', true);
             }
-            else if (!this.body.touching.down && !this.body.touching.left){
+            else if (!this.body.blocked.down && !this.body.blocked.left){
                 if (!this.isDoubJumping) {
                     this.anims.play('robo_jump_l', true);
                 }
@@ -248,10 +248,10 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         } else {
             this.setAccelerationX(0);
             if (this.lastDirection == 'r') {
-                if (this.body.touching.down) {
+                if (this.body.blocked.down) {
                     this.anims.play('robo_idle_r', true);
                 }
-                else if (!this.body.touching.down) {
+                else if (!this.body.blocked.down) {
                     if (!this.isDoubJumping) {
                         this.anims.play('robo_jump_r', true);
                     }
@@ -261,10 +261,10 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 }
             }
             if (this.lastDirection == 'l') {
-                if (this.body.touching.down) {
+                if (this.body.blocked.down) {
                     this.anims.play('robo_idle_l', true);
                 }
-                else if (!this.body.touching.down){
+                else if (!this.body.blocked.down){
                     if (!this.isDoubJumping) {
                         this.anims.play('robo_jump_l', true);
                     }

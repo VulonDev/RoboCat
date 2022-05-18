@@ -420,7 +420,7 @@
                 "h": 21
             }
         },
-        "robo_idle_l_0004": {
+        "robo_idle__0004": {
             "frame": {
                 "x": 143,
                 "y": 79,
@@ -438,6 +438,26 @@
             "sourceSize": {
                 "w": 30,
                 "h": 21
+            }
+        },
+        "robo_cling_l_0001": {
+            "frame": {
+                "x": 183,
+                "y": 86,
+                "w": 15,
+                "h": 42
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 42
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 42
             }
         },
         "robo_prop_r_0002": {
@@ -480,6 +500,66 @@
                 "h": 30
             }
         },
+        "robo_jump_r_0002": {
+            "frame": {
+                "x": 49,
+                "y": 104,
+                "w": 44,
+                "h": 20
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 44,
+                "h": 20
+            },
+            "sourceSize": {
+                "w": 44,
+                "h": 20
+            }
+        },
+        "robo_jump_r_0003": {
+            "frame": {
+                "x": 96,
+                "y": 104,
+                "w": 44,
+                "h": 20
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 44,
+                "h": 20
+            },
+            "sourceSize": {
+                "w": 44,
+                "h": 20
+            }
+        },
+        "robo_jump_r_0001": {
+            "frame": {
+                "x": 3,
+                "y": 105,
+                "w": 43,
+                "h": 20
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 43,
+                "h": 20
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 20
+            }
+        },
         "robo_prop_r_0003": {
             "frame": {
                 "x": 211,
@@ -518,6 +598,86 @@
             "sourceSize": {
                 "w": 25,
                 "h": 30
+            }
+        },
+        "robo_jump_l_0001": {
+            "frame": {
+                "x": 6,
+                "y": 126,
+                "w": 44,
+                "h": 20
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 44,
+                "h": 20
+            },
+            "sourceSize": {
+                "w": 44,
+                "h": 20
+            }
+        },
+        "robo_jump_l_0002": {
+            "frame": {
+                "x": 53,
+                "y": 126,
+                "w": 44,
+                "h": 20
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 44,
+                "h": 20
+            },
+            "sourceSize": {
+                "w": 44,
+                "h": 20
+            }
+        },
+        "robo_jump_l_0003": {
+            "frame": {
+                "x": 100,
+                "y": 127,
+                "w": 43,
+                "h": 20
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 43,
+                "h": 20
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 20
+            }
+        },
+        "robo_cling_r_0001": {
+            "frame": {
+                "x": 161,
+                "y": 130,
+                "w": 35,
+                "h": 42
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 35,
+                "h": 42
+            },
+            "sourceSize": {
+                "w": 35,
+                "h": 42
             }
         },
         "robo_prop_r_0004": {

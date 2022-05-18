@@ -40,6 +40,34 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             repeatDelay: 5000
         });
 
+        // right wall cling animation
+        this.anims.create({
+            key: 'robo_cling_r',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_cling_r_',
+                start: 1,
+                end: 1,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // left wall cling animation
+        this.anims.create({
+            key: 'robo_cling_l',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_cling_l_',
+                start: 1,
+                end: 1,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
         // right running animation
         this.anims.create({
             key: 'robo_run_r',
@@ -69,8 +97,32 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         });
 
         // right jumping animation
+        this.anims.create({
+            key: 'robo_jump_r',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_jump_r_',
+                start: 1,
+                end: 3,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
 
         // left jumping animation
+        this.anims.create({
+            key: 'robo_jump_l',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_jump_l_',
+                start: 1,
+                end: 3,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
 
         // right propellor jumping animation
         this.anims.create({
@@ -152,11 +204,12 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
             else if (!this.body.touching.down && this.body.touching.right) {
                 // play (right) wall cling animation
-                this.anims.play('robo_idle_r', true);
+                this.anims.play('robo_cling_r', true);
+                this.texture = 'robo_cling_r';
             }
             else if (!this.body.touching.down && !this.body.touching.right){
                 // replace with regular jump animation
-                this.anims.play('robo_prop_r', true);
+                this.anims.play('robo_jump_r', true);
             }
         }else if (keyLEFT.isDown && !keyRIGHT.isDown) {  
             this.lastDirection = 'l';
@@ -169,11 +222,11 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
             else if (!this.body.touching.down && this.body.touching.left) {
                 // play (right) wall cling animation
-                this.anims.play('robo_idle_l', true);
+                this.anims.play('robo_cling_l', true);
             }
             else if (!this.body.touching.down && !this.body.touching.left){
                 // replace with regular jump animation
-                this.anims.play('robo_prop_l', true);
+                this.anims.play('robo_jump_l', true);
             }
         } else {
             this.setAccelerationX(0);
@@ -183,7 +236,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 }
                 else if (!this.body.touching.down) {
                     // replace with regular jump animation
-                    this.anims.play('robo_prop_r', true);
+                    this.anims.play('robo_jump_r', true);
                 }
             }
             if (this.lastDirection == 'l') {
@@ -192,7 +245,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 }
                 else if (!this.body.touching.down){
                     // replace with regular jump animation
-                    this.anims.play('robo_prop_l', true);
+                    this.anims.play('robo_jump_l', true);
                 }
             }
         }

@@ -9,6 +9,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         this.lastDirection = 'r';
         this.canDubJump = false;
         this.isDoubJumping = false;
+        this.isSlowFalling = false;
 
         // RoboCat animations
         // right idle animation
@@ -168,7 +169,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.setVelocityY(-300);
                 this.canDubJump = true;
             //double jump
-            } else if (!(this.body.touching.down) && this.canDubJump) {
+            } else if (hasPropeller && !(this.body.touching.down) && this.canDubJump) {
                 this.setVelocityY(-300);
                 this.canDubJump = false;
                 isJumping = true;
@@ -178,6 +179,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
            
         //slow down jump velocity once player lets go of jump
         if (isJumping && !(keyUP.isDown)) {
+            this.isSlowFalling = false;
             this.setGravityY(0);
             if (this.body.velocity.y > 0 ) {
                 isJumping = false;
@@ -189,9 +191,11 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         } 
 
         //slow fall effect after double jumping if jump is held
-        if (isJumping && !(this.body.touching.down) && keyUP.isDown && !(this.canDubJump) && this.body.velocity.y > 0) {
-            this.isDoubJumping == true;
-            console.log(1); 
+        if (!(this.isSlowFalling) && !(this.body.touching.down) && keyUP.isDown && !(this.canDubJump) && this.body.velocity.y > 0) {
+            this.body.velocity.y = this.body.velocity.y / 2;
+            this.isSlowFalling = true;
+            this.isDoubJumping = true;
+            isJumping = true; 
             this.setGravityY(-500);
         }
 

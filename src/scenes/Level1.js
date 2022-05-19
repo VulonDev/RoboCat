@@ -44,6 +44,7 @@ class Level1 extends Phaser.Scene {
         // creating tilemap layers
         this.groundLayer = map.createStaticLayer('Ground', tileset, 0, 0);
         this.spikesLayer = map.createStaticLayer('Spikes', tileset, 0, 0);
+        // enabling collisons on tilemap layers
         this.groundLayer.setCollisionByExclusion([-1]);
         this.spikesLayer.setCollisionByExclusion([-1]);
         // enabling collisions with player

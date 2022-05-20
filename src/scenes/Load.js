@@ -28,7 +28,15 @@ class Load extends Phaser.Scene {
     }
 
     create() {
-        // go straight to the next Scene after loading
-        this.scene.start('Level1Scene');
+        // if opening cutscene hasnt been played yet, go to opening cutscene
+        //otherwise go to level 1
+
+        if(!openingPlayed) {
+            this.scene.start("openingScene");
+        }
+        else {
+            this.scene.start('Level1Scene');
+        }
+       
     }
 }

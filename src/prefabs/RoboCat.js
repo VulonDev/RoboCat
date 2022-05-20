@@ -295,11 +295,16 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         this.isExploding = true;
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
+        if (this.y > (game.config.height + this.height)) {
+            this.y = (game.config.height - this.height - 10);
+        }
+        this.body.setAllowGravity(false);
         this.anims.play('robo_explosion', true);
         this.on('animationcomplete', () => { 
             this.x = x;
             this.y = y;
             this.isExploding = false;
+            this.body.setAllowGravity(true);
         });
     }
 

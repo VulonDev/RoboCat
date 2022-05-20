@@ -33,4 +33,4 @@ let hasPropeller;
 let keySPACE, keyLEFT, keyRIGHT, keyUP;
 
 //checks if the player has already seen the opening cutscene
-let openingPlayed = true;
+let openingPlayed = false;

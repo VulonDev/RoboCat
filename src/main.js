@@ -16,7 +16,7 @@ let config = {
     },
     width: 420,
     height: 294,
-    scene: [Menu, Load, Level1, Level2],
+    scene: [Menu, Load, Level1, Level2, OpeningCutscene],
     physics: {
         default: 'arcade',
         arcade: {
@@ -31,3 +31,6 @@ let game = new Phaser.Game(config);
 let isJumping;
 let hasPropeller;
 let keySPACE, keyLEFT, keyRIGHT, keyUP;
+
+//checks if the player has already seen the opening cutscene
+let openingPlayed = true;

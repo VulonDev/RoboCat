@@ -10,6 +10,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         this.canDubJump = false;
         this.isDoubJumping = false;
         this.isSlowFalling = false;
+        this.isExploding = false;
 
         // RoboCat animations
         // right idle animation
@@ -154,6 +155,19 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             repeat: -1,
         });
 
+        // explosion animation
+        this.anims.create({
+            key: 'robo_explosion',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'explosion_',
+                start: 1,
+                end: 6,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 15
+        });
+
         this.anims.play('robo_idle_r');
 
      }
@@ -161,7 +175,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
     update() {
 
         //player jumping (made it so that the player cant jump when stuck to the side of the wall)
-        if (Phaser.Input.Keyboard.JustDown(keyUP)) {
+        if (Phaser.Input.Keyboard.JustDown(keyUP) && !this.isExploding) {
             this.setGravityY(0);
             //normal jump
             if (this.body.blocked.down && !this.body.blocked.left && !this.body.blocked.right) {
@@ -178,7 +192,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         }
            
         //slow down jump velocity once player lets go of jump
-        if (isJumping && !(keyUP.isDown)) {
+        if (isJumping && !(keyUP.isDown) && !this.isExploding) {
             this.isSlowFalling = false;
             this.setGravityY(0);
             if (this.body.velocity.y > 0 ) {
@@ -200,7 +214,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         }
 
         //player movement, player doesnt move if both left and right are held down   
-        if (keyRIGHT.isDown && !keyLEFT.isDown) {
+        if (keyRIGHT.isDown && !keyLEFT.isDown && !this.isExploding) {
             this.lastDirection = 'r';
             //this helps make the player feel less icy when changing direction
             if (this.body.velocity.x < 0) {
@@ -224,7 +238,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('robo_prop_r', true);
                 }
             }
-        }else if (keyLEFT.isDown && !keyRIGHT.isDown) {  
+        }else if (keyLEFT.isDown && !keyRIGHT.isDown && !this.isExploding) {  
             this.lastDirection = 'l';
             if (this.body.velocity.x > 0) {
                 this.setVelocityX(this.body.velocity.x - 15);
@@ -245,7 +259,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('robo_prop_l', true);
                 }
             }
-        } else {
+        } else if (!this.isExploding) {
             this.setAccelerationX(0);
             if (this.lastDirection == 'r') {
                 if (this.body.blocked.down) {
@@ -275,6 +289,18 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
         }
         
+    }
+
+    resetPosition(x, y) {
+        this.isExploding = true;
+        this.body.setVelocityX(0);
+        this.body.setVelocityY(0);
+        this.anims.play('robo_explosion', true);
+        this.on('animationcomplete', () => { 
+            this.x = x;
+            this.y = y;
+            this.isExploding = false;
+        });
     }
 
 }

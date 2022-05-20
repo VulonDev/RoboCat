@@ -51,8 +51,7 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(this.cat, this.groundLayer);
         this.physics.add.collider(this.cat, this.spikesLayer, function(player) {
             player.setVelocity(0);
-            player.x = 10;
-            player.y = game.config.height - 60;
+            player.resetPosition(10, game.config.height - 60);
         });
 
         let textConfig = {
@@ -82,8 +81,7 @@ class Level1 extends Phaser.Scene {
         // check if player falls through floor, telports them back to begining if they do
         if (this.cat.y > (game.config.height + this.cat.height)) {
             this.cat.setVelocity(0);
-            this.cat.x = 10;
-            this.cat.y = game.config.height - 60;
+            this.cat.resetPosition(10, game.config.height - 60);
         } 
 
         // update cat sprite

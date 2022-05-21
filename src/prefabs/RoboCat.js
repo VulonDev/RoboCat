@@ -169,23 +169,37 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         });
 
         this.anims.play('robo_idle_r');
+        
+        //allows for pressing space right before you land
+        scene.input.keyboard.on('keydown-UP', () => {
+            pressedJump = true;
+            jumpEvent = new Phaser.Time.TimerEvent({ delay: 110, callback: this.togglePressedJump});
+            scene.time.addEvent(jumpEvent);
+        }, this);
 
+        pressedJump = false;
      }
 
     update() {
 
         //player jumping (made it so that the player cant jump when stuck to the side of the wall)
-        if (Phaser.Input.Keyboard.JustDown(keyUP) && !this.isExploding) {
-            this.setGravityY(0);
+        if (pressedJump && !this.isExploding) {
             //normal jump
             if (this.body.blocked.down && !this.body.blocked.left && !this.body.blocked.right) {
+                this.setGravityY(0);
+                pressedJump = false;
                 isJumping = true;
+                jumpEvent.remove();
                 this.setVelocityY(-300);
                 this.canDubJump = true;
+                this.isDoubJumping = false;
             //double jump
             } else if (hasPropeller && !(this.body.blocked.down) && this.canDubJump) {
+                this.setGravityY(0);
+                pressedJump = false;
                 this.setVelocityY(-300);
                 this.canDubJump = false;
+                jumpEvent.remove();
                 isJumping = true;
                 this.isDoubJumping = true;
             }
@@ -306,6 +320,10 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             this.isExploding = false;
             this.body.setAllowGravity(true);
         });
+    }
+
+    togglePressedJump() {
+        pressedJump = false;
     }
 
 }

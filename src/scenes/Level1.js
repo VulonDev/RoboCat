@@ -74,6 +74,7 @@ class Level1 extends Phaser.Scene {
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+
     }
 
     update() {
@@ -93,4 +94,5 @@ class Level1 extends Phaser.Scene {
         // update cat sprite
         this.cat.update();
     }
+
 }

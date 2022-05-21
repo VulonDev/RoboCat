@@ -9,7 +9,7 @@ class Level1 extends Phaser.Scene {
     create() {
 
         // set bounds of world and camera
-        this.physics.world.setBounds(0, 0, game.config.width*7, game.config.height+100);
+        this.physics.world.setBounds(0, 0, game.config.width*8, game.config.height+100);
         this.cameras.main.setBounds(0, 0, game.config.width*7, game.config.height);
 
         // Level 1 music (commented out for now)
@@ -83,6 +83,12 @@ class Level1 extends Phaser.Scene {
             this.cat.setVelocity(0);
             this.cat.resetPosition(10, game.config.height - 60);
         } 
+
+        // check if player walks through to the end of the scene, moves them on to level 2 if so
+        if (this.cat.x > game.config.width*7 + this.cat.width) {
+            this.music.stop();
+            this.scene.start('Level2Scene');
+        }
 
         // update cat sprite
         this.cat.update();

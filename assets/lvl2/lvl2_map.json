@@ -1,12 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "format":"json",
-         "target":"lvl2_map.json"
-        }
-    },
  "height":70,
  "infinite":false,
  "layers":[

@@ -9,7 +9,7 @@ class Level1 extends Phaser.Scene {
     create() {
 
         // set bounds of world and camera
-        this.physics.world.setBounds(0, 0, game.config.width*7, game.config.height+100);
+        this.physics.world.setBounds(0, 0, game.config.width*8, game.config.height+100);
         this.cameras.main.setBounds(0, 0, game.config.width*7, game.config.height);
 
         // Level 1 music (commented out for now)
@@ -51,7 +51,7 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(this.cat, this.groundLayer);
         this.physics.add.collider(this.cat, this.spikesLayer, function(player) {
             player.setVelocity(0);
-            player.resetPosition(10, game.config.height - 60);
+            player.resetPosition(10, game.config.height - 60, false);
         });
 
         let textConfig = {
@@ -74,6 +74,7 @@ class Level1 extends Phaser.Scene {
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+
     }
 
     update() {
@@ -81,10 +82,17 @@ class Level1 extends Phaser.Scene {
         // check if player falls through floor, telports them back to begining if they do
         if (this.cat.y > (game.config.height + this.cat.height)) {
             this.cat.setVelocity(0);
-            this.cat.resetPosition(10, game.config.height - 60);
+            this.cat.resetPosition(10, game.config.height - 60, true);
         } 
+
+        // check if player walks through to the end of the scene, moves them on to level 2 if so
+        if (this.cat.x > game.config.width*7 + this.cat.width) {
+            this.music.stop();
+            this.scene.switch('Level2Scene');
+        }
 
         // update cat sprite
         this.cat.update();
     }
+
 }

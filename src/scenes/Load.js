@@ -28,6 +28,164 @@ class Load extends Phaser.Scene {
     }
 
     create() {
+
+        //RoboCat Animations
+         // RoboCat animations
+        // right idle animation
+        this.anims.create({
+            key: 'robo_idle_r',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_idle_r_',
+                start: 1,
+                end: 4,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+            repeatDelay: 5000
+        });
+
+        // left idle animation
+        this.anims.create({
+            key: 'robo_idle_l',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_idle_l_',
+                start: 1,
+                end: 4,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+            repeatDelay: 5000
+        });
+
+        // right wall cling animation
+        this.anims.create({
+            key: 'robo_cling_r',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_cling_r_',
+                start: 1,
+                end: 1,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // left wall cling animation
+        this.anims.create({
+            key: 'robo_cling_l',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_cling_l_',
+                start: 1,
+                end: 1,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // right running animation
+        this.anims.create({
+            key: 'robo_run_r',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_run_r_',
+                start: 1,
+                end: 6,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // left running animation
+        this.anims.create({
+            key: 'robo_run_l',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_run_l_',
+                start: 1,
+                end: 6,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // right jumping animation
+        this.anims.create({
+            key: 'robo_jump_r',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_jump_r_',
+                start: 1,
+                end: 3,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // left jumping animation
+        this.anims.create({
+            key: 'robo_jump_l',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_jump_l_',
+                start: 1,
+                end: 3,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // right propellor jumping animation
+        this.anims.create({
+            key: 'robo_prop_r',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_prop_r_',
+                start: 1,
+                end: 4,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 15,
+            repeat: -1,
+        });
+
+        // left propellor jumping animation
+        this.anims.create({
+            key: 'robo_prop_l',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'robo_prop_l_',
+                start: 1,
+                end: 4,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 15,
+            repeat: -1,
+        });
+
+        // explosion animation
+        this.anims.create({
+            key: 'robo_explosion',
+            frames: this.anims.generateFrameNames('robo_atlas', {
+                prefix: 'explosion_',
+                start: 1,
+                end: 6,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 15
+        });
+
         // if opening cutscene hasnt been played yet, go to opening cutscene
         //otherwise go to level 1
 

@@ -23,7 +23,7 @@ class Level1 extends Phaser.Scene {
         this.background.setScrollFactor(0);
 
         // addin RoboCat to the scene and make it so they can't go OoB
-        this.cat = new RoboCat(this, 10, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
+        this.cat = new RoboCat(this, game.config.width*5, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
         this.cat.setCollideWorldBounds(true);
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);
@@ -51,7 +51,7 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(this.cat, this.groundLayer);
         this.physics.add.collider(this.cat, this.spikesLayer, function(player) {
             player.setVelocity(0);
-            player.resetPosition(10, game.config.height - 60);
+            player.resetPosition(10, game.config.height - 60, false);
         });
 
         let textConfig = {
@@ -81,13 +81,13 @@ class Level1 extends Phaser.Scene {
         // check if player falls through floor, telports them back to begining if they do
         if (this.cat.y > (game.config.height + this.cat.height)) {
             this.cat.setVelocity(0);
-            this.cat.resetPosition(10, game.config.height - 60);
+            this.cat.resetPosition(10, game.config.height - 60, true);
         } 
 
         // check if player walks through to the end of the scene, moves them on to level 2 if so
         if (this.cat.x > game.config.width*7 + this.cat.width) {
             this.music.stop();
-            this.scene.start('Level2Scene');
+            this.scene.switch('Level2Scene');
         }
 
         // update cat sprite

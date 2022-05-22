@@ -28,9 +28,10 @@ let config = {
 
 let game = new Phaser.Game(config);
 
-let isJumping;
+let isJumping, pressedJump;
 let hasPropeller;
 let keySPACE, keyLEFT, keyRIGHT, keyUP;
+var jumpEvent;
 
 //checks if the player has already seen the opening cutscene
 let openingPlayed = true;

@@ -25,6 +25,8 @@ class Load extends Phaser.Scene {
         this.load.audio('lvl1_music', 'sound/lvl1_music.mp3');
         // level 2 music
         // this.load.audio('lvl2_music', 'sound/lvl2_music.mp3');
+        this.load.audio('death_explosion', 'sound/death_explosion.mp3');
+        this.load.audio('propeller', 'sound/propeller.mp3');
 
     }
 

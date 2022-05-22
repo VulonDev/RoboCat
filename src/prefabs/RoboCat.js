@@ -26,6 +26,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
     update() {
 
         if (this.body.blocked.down) {
+            propellerSFX.stop();
             this.canDubJump = true;
         }
 
@@ -54,11 +55,12 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
            
         //slow down jump velocity once player lets go of jump
         if (isJumping && !(keyUP.isDown) && !this.isExploding) {
+            propellerSFX.stop();
             this.isSlowFalling = false;
+            this.isDoubJumping = false;
             this.setGravityY(0);
             if (this.body.velocity.y > 0 ) {
                 isJumping = false;
-                this.isDoubJumping = false;
                 
             } else {
                 this.setVelocityY(this.body.velocity.y + 8);
@@ -96,6 +98,10 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('robo_jump_r', true);
                 }
                 else {
+                    //propeller tail audio
+                    if (!propellerSFX.isPlaying) {
+                        propellerSFX.play();
+                    }
                     this.anims.play('robo_prop_r', true);
                 }
             }
@@ -117,6 +123,10 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('robo_jump_l', true);
                 }
                 else {
+                    //propeller tail audio
+                    if (!propellerSFX.isPlaying) {
+                        propellerSFX.play();
+                    }
                     this.anims.play('robo_prop_l', true);
                 }
             }
@@ -131,6 +141,10 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                         this.anims.play('robo_jump_r', true);
                     }
                     else {
+                        //propeller tail audio
+                        if (!propellerSFX.isPlaying) {
+                            propellerSFX.play();
+                        }
                         this.anims.play('robo_prop_r', true);
                     }
                 }
@@ -144,6 +158,10 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                         this.anims.play('robo_jump_l', true);
                     }
                     else {
+                        //propeller tail audio
+                        if (!propellerSFX.isPlaying) {
+                            propellerSFX.play();
+                        }
                         this.anims.play('robo_prop_l', true);
                     }
                 }
@@ -167,6 +185,9 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             this.isExploding = false;
             this.body.setAllowGravity(true);
         });
+        if (!explosionSFX.isPlaying) {
+            explosionSFX.play();
+        }
     }
 
     togglePressedJump() {

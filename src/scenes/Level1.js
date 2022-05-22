@@ -4,6 +4,8 @@ class Level1 extends Phaser.Scene {
     }
 
     preload() {
+        explosionSFX = this.sound.add('death_explosion', {volume: 0.5});
+        propellerSFX = this.sound.add('propeller',  {volume: 0.6});
     }
 
     create() {
@@ -87,6 +89,8 @@ class Level1 extends Phaser.Scene {
 
         // check if player walks through to the end of the scene, moves them on to level 2 if so
         if (this.cat.x > game.config.width*7 + this.cat.width) {
+            propellerSFX.stop();
+            explosionSFX.stop();
             this.music.stop();
             this.scene.switch('Level2Scene');
         }

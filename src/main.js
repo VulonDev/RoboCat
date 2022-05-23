@@ -34,5 +34,7 @@ let keySPACE, keyLEFT, keyRIGHT, keyUP;
 var jumpEvent;
 var explosionSFX, propellerSFX;
 
+let cat1Found;
+
 //checks if the player has already seen the opening cutscene
 let openingPlayed = false;

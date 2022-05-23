@@ -10,8 +10,11 @@ class Level1 extends Phaser.Scene {
 
     create() {
 
+        // variables to determine if lost cat has been found
+        cat1Found = false;
+
         // set bounds of world and camera
-        this.physics.world.setBounds(0, 0, game.config.width*8, game.config.height+100);
+        this.physics.world.setBounds(0, 0, game.config.width*7, game.config.height+100);
         this.cameras.main.setBounds(0, 0, game.config.width*7, game.config.height);
 
         // Level 1 music (commented out for now)
@@ -31,9 +34,9 @@ class Level1 extends Phaser.Scene {
         this.cat.setDepth(1);
 
         //cat doesn't have propeller for lvl 1 SO CHANGE LATER!!!
-        //
+        // (change when we have the tail sprite to add to lvl 2)
         //!!!!!!!!!!!!!!!!!!!
-        hasPropeller = false;
+        hasPropeller = true;
         
 
         // this SHOULD make it so that the camera follows RoboCat as the player moves (this wont do the whole room switching thing, but
@@ -56,6 +59,15 @@ class Level1 extends Phaser.Scene {
             player.resetPosition(10, game.config.height - 60, false);
         });
 
+        this.lost_cat = this.physics.add.staticSprite((game.config.width*7)-(game.config.width/2), game.config.height - 44, 'missing_cat_1').setOrigin(0, 0);
+        this.lost_cat.setDepth(1);
+        // update this later to display text before making the cat disappear
+        this.physics.add.collider(this.cat, this.lost_cat, function(player, cat) {
+            cat1Found = true;
+            cat.destroy()
+        });
+
+
         let textConfig = {
             fontFamily: 'Trebuchet MS',
             fontSize: '18px',
@@ -68,8 +80,6 @@ class Level1 extends Phaser.Scene {
             },
         }
         this.controlsText = this.add.text(game.config.width/2, game.config.height / 2, 'left/right to move\nup to jump', textConfig).setOrigin(0.5);
-        this.catText = this.add.text(game.config.width * 6.5, game.config.height - 40, 'missing cat ;3 *meow*', textConfig).setOrigin(0.5);
-        this.prototypeText = this.add.text(game.config.width * 6.5, game.config.height / 2, 'END OF PROTOTYPE', textConfig).setOrigin(0.5);
 
         //key inputs
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -87,6 +97,11 @@ class Level1 extends Phaser.Scene {
             this.cat.resetPosition(10, game.config.height - 60, true);
         } 
 
+        // update world bounds when lost cat is found
+        if (cat1Found) {
+            this.physics.world.setBounds(0, 0, game.config.width*8, game.config.height+100);
+        }
+
         // check if player walks through to the end of the scene, moves them on to level 2 if so
         if (this.cat.x > game.config.width*7 + this.cat.width) {
             propellerSFX.stop();
@@ -97,6 +112,7 @@ class Level1 extends Phaser.Scene {
 
         // update cat sprite
         this.cat.update();
+
     }
 
 }

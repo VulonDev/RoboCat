@@ -19,6 +19,7 @@ class Load extends Phaser.Scene {
         // load spritesheets
         // RoboCat spritesheet
         this.load.atlas('robo_atlas', 'robocat spritesheet.png', 'robocat map.json');
+        this.load.atlas('robo_atlas_notail', 'robocat spritesheet notail.png', 'robocat map.json');
 
         // load sound assets
         // level 1 music
@@ -33,7 +34,124 @@ class Load extends Phaser.Scene {
     create() {
 
         //RoboCat Animations
-         // RoboCat animations
+        // RoboCat animation without tail
+        // right idle
+        this.anims.create({
+            key: 'robo_idle_r_notail',
+            frames: this.anims.generateFrameNames('robo_atlas_notail', {
+                prefix: 'robo_idle_r_',
+                start: 1,
+                end: 4,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+            repeatDelay: 3000
+        });
+
+        // left idle
+        this.anims.create({
+            key: 'robo_idle_l_notail',
+            frames: this.anims.generateFrameNames('robo_atlas_notail', {
+                prefix: 'robo_idle_l_',
+                start: 1,
+                end: 4,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+            repeatDelay: 3000
+        });
+
+        // right wall cling 
+        this.anims.create({
+            key: 'robo_cling_r_notail',
+            frames: this.anims.generateFrameNames('robo_atlas_notail', {
+                prefix: 'robo_cling_r_',
+                start: 1,
+                end: 1,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // left wall cling 
+        this.anims.create({
+            key: 'robo_cling_l_notail',
+            frames: this.anims.generateFrameNames('robo_atlas_notail', {
+                prefix: 'robo_cling_l_',
+                start: 1,
+                end: 1,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // right running
+        this.anims.create({
+            key: 'robo_run_r_notail',
+            frames: this.anims.generateFrameNames('robo_atlas_notail', {
+                prefix: 'robo_run_r_',
+                start: 1,
+                end: 6,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // left running 
+        this.anims.create({
+            key: 'robo_run_l_notail',
+            frames: this.anims.generateFrameNames('robo_atlas_notail', {
+                prefix: 'robo_run_l_',
+                start: 1,
+                end: 6,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // right jumping
+        this.anims.create({
+            key: 'robo_jump_r_notail',
+            frames: this.anims.generateFrameNames('robo_atlas_notail', {
+                prefix: 'robo_jump_r_',
+                start: 1,
+                end: 3,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+        // left jumping 
+        this.anims.create({
+            key: 'robo_jump_l_notail',
+            frames: this.anims.generateFrameNames('robo_atlas_notail', {
+                prefix: 'robo_jump_l_',
+                start: 1,
+                end: 3,
+                suffix: '',
+                zeroPad: 4
+            }),
+            frameRate: 10,
+            repeat: -1,
+        });
+
+
+
+        // RoboCat animations with tail
         // right idle animation
         this.anims.create({
             key: 'robo_idle_r',

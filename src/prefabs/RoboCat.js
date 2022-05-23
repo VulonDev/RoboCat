@@ -85,17 +85,31 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
             this.setAccelerationX(400);
             if (this.body.blocked.down && !this.body.blocked.right) {
-                this.anims.play('robo_run_r', true);
+                if (hasPropeller) {
+                    this.anims.play('robo_run_r', true);
+                }
+                else {
+                    this.anims.play('robo_run_r_notail', true);
+                }
             }
             else if (!this.body.blocked.down && this.body.blocked.right) {
                 // play (right) wall cling animation
-                this.anims.play('robo_cling_r', true);
-                this.texture = 'robo_cling_r';
+                if (hasPropeller) {
+                    this.anims.play('robo_cling_r', true);
+                }
+                else {
+                    this.anims.play('robo_cling_r_notail', true);
+                }
             }
             else if (!this.body.blocked.down && !this.body.blocked.right){
                 // jump animation
                 if (!this.isDoubJumping) {
-                    this.anims.play('robo_jump_r', true);
+                    if (hasPropeller) {
+                        this.anims.play('robo_jump_r', true);
+                    }
+                    else {
+                        this.anims.play('robo_jump_r_notail', true);
+                    }
                 }
                 else {
                     //propeller tail audio
@@ -112,15 +126,30 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }  
             this.setAccelerationX(-400);
             if (this.body.blocked.down && !this.body.blocked.left) {
-                this.anims.play('robo_run_l', true);
+                if (hasPropeller) {
+                    this.anims.play('robo_run_l', true);
+                }
+                else {
+                    this.anims.play('robo_run_l_notail', true);
+                }
             }
             else if (!this.body.blocked.down && this.body.blocked.left) {
                 // play (right) wall cling animation
-                this.anims.play('robo_cling_l', true);
+                if (hasPropeller) {
+                    this.anims.play('robo_cling_l', true);
+                }
+                else {
+                    this.anims.play('robo_cling_l_notail', true);
+                }
             }
             else if (!this.body.blocked.down && !this.body.blocked.left){
                 if (!this.isDoubJumping) {
-                    this.anims.play('robo_jump_l', true);
+                    if (hasPropeller) {
+                        this.anims.play('robo_jump_l', true);
+                    }
+                    else {
+                        this.anims.play('robo_jump_l_notail', true);
+                    }
                 }
                 else {
                     //propeller tail audio
@@ -134,11 +163,21 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             this.setAccelerationX(0);
             if (this.lastDirection == 'r') {
                 if (this.body.blocked.down) {
-                    this.anims.play('robo_idle_r', true);
+                    if (hasPropeller) {
+                        this.anims.play('robo_idle_r', true);
+                    }
+                    else {
+                        this.anims.play('robo_idle_r_notail', true);
+                    }
                 }
                 else if (!this.body.blocked.down) {
                     if (!this.isDoubJumping) {
-                        this.anims.play('robo_jump_r', true);
+                        if (hasPropeller) {
+                            this.anims.play('robo_jump_r', true);
+                        }
+                        else {
+                            this.anims.play('robo_jump_r_notail', true);
+                        }
                     }
                     else {
                         //propeller tail audio
@@ -151,11 +190,21 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
             if (this.lastDirection == 'l') {
                 if (this.body.blocked.down) {
-                    this.anims.play('robo_idle_l', true);
+                    if (hasPropeller) {
+                        this.anims.play('robo_idle_l', true);
+                    }
+                    else {
+                        this.anims.play('robo_idle_l_notail', true);
+                    }
                 }
                 else if (!this.body.blocked.down){
                     if (!this.isDoubJumping) {
-                        this.anims.play('robo_jump_l', true);
+                        if (hasPropeller) {
+                            this.anims.play('robo_jump_l', true);
+                        }
+                        else {
+                            this.anims.play('robo_jump_l_notail', true);
+                        }
                     }
                     else {
                         //propeller tail audio

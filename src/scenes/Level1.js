@@ -33,7 +33,7 @@ class Level1 extends Phaser.Scene {
         //cat doesn't have propeller for lvl 1 SO CHANGE LATER!!!
         //
         //!!!!!!!!!!!!!!!!!!!
-        hasPropeller = true;
+        hasPropeller = false;
         
 
         // this SHOULD make it so that the camera follows RoboCat as the player moves (this wont do the whole room switching thing, but

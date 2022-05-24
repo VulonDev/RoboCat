@@ -4,6 +4,9 @@ class Level1 extends Phaser.Scene {
     }
 
     preload() {
+        // level 1 music
+        this.load.audio('lvl1_music', 'assets/sound/lvl1_music.mp3');
+        // define sound effects
         explosionSFX = this.sound.add('death_explosion', {volume: 0.5});
         propellerSFX = this.sound.add('propeller',  {volume: 0.6});
     }
@@ -30,7 +33,7 @@ class Level1 extends Phaser.Scene {
         this.background.setScrollFactor(0);
 
         // addin RoboCat to the scene and make it so they can't go OoB
-        this.cat = new RoboCat(this, game.config.width*6 + 10, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
+        this.cat = new RoboCat(this, 10, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
         this.cat.setCollideWorldBounds(true);
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);
@@ -49,8 +52,8 @@ class Level1 extends Phaser.Scene {
         const map = this.make.tilemap({ key: 'lvl1_tilemap' });
         const tileset = map.addTilesetImage('lvl1_tiles', 'lvl1_tiles');
         // creating tilemap layers
-        this.groundLayer = map.createStaticLayer('Ground', tileset, 0, 0);
-        this.spikesLayer = map.createStaticLayer('Spikes', tileset, 0, 0);
+        this.groundLayer = map.createLayer('Ground', tileset, 0, 0);
+        this.spikesLayer = map.createLayer('Spikes', tileset, 0, 0);
         // enabling collisons on tilemap layers
         this.groundLayer.setCollisionByExclusion([-1]);
         this.spikesLayer.setCollisionByExclusion([-1]);
@@ -128,14 +131,14 @@ class Level1 extends Phaser.Scene {
             // set cat position relative to lost cat sprite
             this.cat.setAccelerationX(0);
             if (this.cat.lastDirection == 'r') {
-                if (this.cat.y < this.lost_cat.height) {
+                if (this.cat.y < (game.config.height - 28 - this.lost_cat.height)) {
                     this.cat.y = game.config.height - 44;
                     this.cat.x = this.lost_cat.x - this.lost_cat.width*2;
                 }
                 this.cat.anims.play('robo_idle_r');
             }
             else if (this.cat.lastDirection == 'l') {
-                if (this.cat.y < this.lost_cat.height) {
+                if (this.cat.y < (game.config.height - 28 - this.lost_cat.height)) {
                     this.cat.y = game.config.height - 44;
                     this.cat.x = this.lost_cat.x + this.lost_cat.width*2;
                 }

@@ -4,6 +4,8 @@ class Level2 extends Phaser.Scene {
     }
 
     preload() {
+        // level 2 music
+        this.load.audio('lvl2_music', 'assets/sound/lvl2_music.mp3');
     }
 
     create() {
@@ -16,9 +18,9 @@ class Level2 extends Phaser.Scene {
         // setting the background color
         this.cameras.main.setBackgroundColor('#808080');
 
-        // level 2 music
-        // this.music = this.sound.add('lvl1_music', { loop: true, volume: 0.5 });
-        // this.music.play();
+        // define level 2 music
+        this.music = this.sound.add('lvl2_music', { loop: true, volume: 0.5 });
+        this.music.play();
 
         // addin RoboCat to the scene and make it so they can't go OoB
         this.cat = new RoboCat(this, 10, game.config.height*5 - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
@@ -32,9 +34,9 @@ class Level2 extends Phaser.Scene {
         const map = this.make.tilemap({ key: 'lvl2_tilemap' });
         const tileset = map.addTilesetImage('lvl2_tiles', 'lvl2_tiles');
         // creating tilemap layers
-        this.groundLayer = map.createStaticLayer('Ground', tileset, 0, 0);
-        this.spikesLayer = map.createStaticLayer('Spikes', tileset, 0, 0);
-        this.leavesLayer = map.createStaticLayer('Leaves', tileset, 0, 0);
+        this.groundLayer = map.createLayer('Ground', tileset, 0, 0);
+        this.spikesLayer = map.createLayer('Spikes', tileset, 0, 0);
+        this.leavesLayer = map.createLayer('Leaves', tileset, 0, 0);
         this.leavesLayer.setDepth(2);
         // enabling collisons on tilemap layers
         this.groundLayer.setCollisionByExclusion([-1]);

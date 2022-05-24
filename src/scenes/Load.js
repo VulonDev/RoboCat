@@ -22,11 +22,7 @@ class Load extends Phaser.Scene {
         this.load.atlas('robo_atlas', 'robocat spritesheet.png', 'robocat map.json');
         this.load.atlas('robo_atlas_notail', 'robocat spritesheet notail.png', 'robocat map.json');
 
-        // load sound assets
-        // level 1 music
-        this.load.audio('lvl1_music', 'sound/lvl1_music.mp3');
-        // level 2 music
-        // this.load.audio('lvl2_music', 'sound/lvl2_music.mp3');
+        // load sound assets (sfx here, but music in the level itself)
         this.load.audio('death_explosion', 'sound/death_explosion.mp3');
         this.load.audio('propeller', 'sound/propeller.mp3');
 
@@ -34,7 +30,7 @@ class Load extends Phaser.Scene {
 
     create() {
 
-        openingPlayed = true; // this is set for debugging purposes, make sure to REMOVE
+        // openingPlayed = true; // this can be set for debugging purposes, make sure to REMOVE
 
         //RoboCat Animations
         // RoboCat animation without tail

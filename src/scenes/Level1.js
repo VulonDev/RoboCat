@@ -6,9 +6,6 @@ class Level1 extends Phaser.Scene {
     preload() {
         // level 1 music
         this.load.audio('lvl1_music', 'assets/sound/lvl1_music.mp3');
-        // define sound effects
-        explosionSFX = this.sound.add('death_explosion', {volume: 0.5});
-        propellerSFX = this.sound.add('propeller',  {volume: 0.6});
     }
 
     create() {
@@ -29,6 +26,7 @@ class Level1 extends Phaser.Scene {
         // setting the background color
         this.cameras.main.setBackgroundColor('#808080');
 
+        // setting level background image
         this.background = this.add.sprite(0, 0, 'lvl1_background').setOrigin(0, 0);
         this.background.setScrollFactor(0);
 

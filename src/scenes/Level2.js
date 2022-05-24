@@ -10,7 +10,8 @@ class Level2 extends Phaser.Scene {
 
     create() {
 
-        console.log("it lvl 2");
+        hasPropeller = true;
+
         // set world and camera bounds (the world bounds are greater than the camera so that the player can move off to
         // the right end of the screen to progress to level 3)
         this.physics.world.setBounds(0, 0, game.config.width*3, game.config.height*5);
@@ -21,6 +22,9 @@ class Level2 extends Phaser.Scene {
         // define level 2 music
         this.music = this.sound.add('lvl2_music', { loop: true, volume: 0.5 });
         this.music.play();
+
+        // setting level background image
+        this.background = this.add.sprite(0, 0, 'lvl2_background').setOrigin(0, 0);
 
         // addin RoboCat to the scene and make it so they can't go OoB
         this.cat = new RoboCat(this, 10, game.config.height*5 - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);

@@ -71,6 +71,7 @@ class Level2 extends Phaser.Scene {
             },
         }
         
+        // tutorial text for propellor
         this.controlsText = this.add.text((game.config.width*2)-(game.config.width/2)-25, (game.config.height*5)-(game.config.height/2), 'up to double jump\nhold up to slow fall', textConfig).setOrigin(0.5);
         this.controlsText.setVisible(false);
 
@@ -82,6 +83,15 @@ class Level2 extends Phaser.Scene {
     }
 
     update() {
+        // check if player walks through to the end of the scene, moves them on to level 2 if so
+        if (this.cat.x > game.config.width*2 + this.cat.width) {
+            propellerSFX.stop();
+            explosionSFX.stop();
+            this.music.stop();
+            this.scene.switch('Level3Scene');
+        }
+
+        // displays tutorial text if player has the tail
         if (hasPropeller) {
             this.controlsText.setVisible(true);
         }

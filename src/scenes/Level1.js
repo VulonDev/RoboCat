@@ -19,7 +19,7 @@ class Level1 extends Phaser.Scene {
         this.physics.world.setBounds(0, 0, game.config.width*7, game.config.height+100);
         this.cameras.main.setBounds(0, 0, game.config.width*7, game.config.height);
 
-        // Level 1 music (commented out for now)
+        // Level 1 music
         this.music = this.sound.add('lvl1_music', { loop: true, volume: 0.5 });
         this.music.play();
 

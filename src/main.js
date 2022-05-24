@@ -21,7 +21,7 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 600 },
-            debug: false
+            debug: true
         }
     },
 }
@@ -34,7 +34,7 @@ let keySPACE, keyLEFT, keyRIGHT, keyUP;
 var jumpEvent;
 var explosionSFX, propellerSFX;
 
-let cat1Found;
+let cat1Speaking, cat1Found, cat2Speaking, cat2Found;
 
 //checks if the player has already seen the opening cutscene
 let openingPlayed = false;

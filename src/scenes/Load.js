@@ -34,6 +34,8 @@ class Load extends Phaser.Scene {
 
     create() {
 
+        openingPlayed = true; // this is set for debugging purposes, make sure to REMOVE
+
         //RoboCat Animations
         // RoboCat animation without tail
         // right idle

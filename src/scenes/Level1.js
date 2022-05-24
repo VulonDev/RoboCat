@@ -10,8 +10,10 @@ class Level1 extends Phaser.Scene {
 
     create() {
 
-        // variables to determine if lost cat has been found
+        // variables to determine if lost cat has been found and/or are being spoken to
         cat1Found = false;
+        cat1Speaking = false;
+        this.dialougeCount = 0;
 
         // set bounds of world and camera
         this.physics.world.setBounds(0, 0, game.config.width*7, game.config.height+100);
@@ -28,7 +30,7 @@ class Level1 extends Phaser.Scene {
         this.background.setScrollFactor(0);
 
         // addin RoboCat to the scene and make it so they can't go OoB
-        this.cat = new RoboCat(this, 10, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
+        this.cat = new RoboCat(this, game.config.width*6 + 10, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
         this.cat.setCollideWorldBounds(true);
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);
@@ -59,12 +61,11 @@ class Level1 extends Phaser.Scene {
             player.resetPosition(10, game.config.height - 60, false);
         });
 
-        this.lost_cat = this.physics.add.staticSprite((game.config.width*7)-(game.config.width/2), game.config.height - 44, 'missing_cat_1').setOrigin(0, 0);
+        this.lost_cat = this.physics.add.staticSprite((game.config.width*7)-(game.config.width/2), game.config.height - 28, 'missing_cat_1');
         this.lost_cat.setDepth(1);
         // update this later to display text before making the cat disappear
         this.physics.add.collider(this.cat, this.lost_cat, function(player, cat) {
-            cat1Found = true;
-            cat.destroy()
+            cat1Speaking = true;
         });
 
 
@@ -80,6 +81,15 @@ class Level1 extends Phaser.Scene {
             },
         }
         this.controlsText = this.add.text(game.config.width/2, game.config.height / 2, 'left/right to move\nup to jump', textConfig).setOrigin(0.5);
+
+        // add and hide cat dialouge text
+        textConfig.fontSize = '10px';
+        this.dialougePrompt = this.add.text((game.config.width*7)-(game.config.width/2), 20, "Press SPACE to Continue...", textConfig).setOrigin(0.5);
+        this.dialougePrompt.setVisible(false);
+        textConfig.fontSize = '15px';
+        this.dialougeText = this.add.text((game.config.width*7)-(game.config.width/2), game.config.height/2, "Oh! Its RoboCat!", textConfig).setOrigin(0.5);
+        this.dialougeText.setVisible(false);
+        this.dialougeText.setDepth(2);
 
         //key inputs
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -110,8 +120,56 @@ class Level1 extends Phaser.Scene {
             this.scene.switch('Level2Scene');
         }
 
-        // update cat sprite
-        this.cat.update();
+        // update cat sprite (only while not speaking to cat)
+        if (!cat1Speaking) {
+            this.cat.update();
+        }
+        else {
+            // set cat position relative to lost cat sprite
+            this.cat.setAccelerationX(0);
+            if (this.cat.lastDirection == 'r') {
+                if (this.cat.y < this.lost_cat.height) {
+                    this.cat.y = game.config.height - 44;
+                    this.cat.x = this.lost_cat.x - this.lost_cat.width*2;
+                }
+                this.cat.anims.play('robo_idle_r');
+            }
+            else if (this.cat.lastDirection == 'l') {
+                if (this.cat.y < this.lost_cat.height) {
+                    this.cat.y = game.config.height - 44;
+                    this.cat.x = this.lost_cat.x + this.lost_cat.width*2;
+                }
+                this.cat.anims.play('robo_idle_l');
+            }
+
+            // check for user input to advance dialouge
+            if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+                this.dialougeCount += 1;
+            }
+            this.dialougePrompt.setVisible(true);
+            this.dialougeText.setVisible(true);
+
+            // display/change dialouge
+            if (this.dialougeCount == 1) {
+                this.dialougeText.text = 'Thank you so much for finding me!';
+            }
+            if (this.dialougeCount == 2) {
+                this.dialougeText.text = 'I heard about the accident...';
+            }
+            if (this.dialougeCount == 3) {
+                this.dialougeText.text = 'I hope you get better soon!';
+            }
+            if (this.dialougeCount == 4) {
+                this.dialougeText.text = "Well, I'll be going now!\nThanks again!";
+            }
+            if (this.dialougeCount == 5) {
+                cat1Found = true;
+                cat1Speaking = false;
+                this.lost_cat.destroy();
+                this.dialougePrompt.setVisible(false);
+                this.dialougeText.setVisible(false);
+            }
+        }
 
     }
 

@@ -36,12 +36,6 @@ class Level1 extends Phaser.Scene {
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);
 
-        //cat doesn't have propeller for lvl 1 SO CHANGE LATER!!!
-        // (change when we have the tail sprite to add to lvl 2)
-        //!!!!!!!!!!!!!!!!!!!
-        hasPropeller = true;
-        
-
         // this SHOULD make it so that the camera follows RoboCat as the player moves (this wont do the whole room switching thing, but
         // we can add that later, this is just temporary)
         this.cameras.main.startFollow(this.cat);

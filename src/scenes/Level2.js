@@ -10,8 +10,6 @@ class Level2 extends Phaser.Scene {
 
     create() {
 
-        hasPropeller = true;
-
         // set world and camera bounds (the world bounds are greater than the camera so that the player can move off to
         // the right end of the screen to progress to level 3)
         this.physics.world.setBounds(0, 0, game.config.width*3, game.config.height*5);
@@ -52,6 +50,30 @@ class Level2 extends Phaser.Scene {
             player.resetPosition(10, game.config.height*5 - 60, false);
         });
 
+        // add propellor to level 2 map
+        this.cat_tail = this.physics.add.staticSprite((game.config.width*2)-(game.config.width/2), game.config.height*5 - 25, 'cat_tail');
+        this.cat_tail.setDepth(1);
+        // add collision between cat and tail sprite
+        this.physics.add.collider(this.cat, this.cat_tail, function(player, tail) {
+            hasPropeller = true;
+            tail.destroy();
+        });
+
+        let textConfig = {
+            fontFamily: 'Trebuchet MS',
+            fontSize: '18px',
+            color: '#ffffff',
+            backgroundColor: '#AAAAAA',
+            align: 'center',
+            padding: {
+            top: 5,
+            bottom: 5,
+            },
+        }
+        
+        this.controlsText = this.add.text((game.config.width*2)-(game.config.width/2)-25, (game.config.height*5)-(game.config.height/2), 'up to double jump\nhold up to slow fall', textConfig).setOrigin(0.5);
+        this.controlsText.setVisible(false);
+
         //key inputs
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -60,6 +82,10 @@ class Level2 extends Phaser.Scene {
     }
 
     update() {
+        if (hasPropeller) {
+            this.controlsText.setVisible(true);
+        }
+
         this.cat.update();
     }
 }

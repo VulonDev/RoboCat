@@ -17,6 +17,7 @@ class Load extends Phaser.Scene {
         this.load.image('lvl2_tiles', 'lvl2/lvl2_tiles.png');
         this.load.tilemapTiledJSON('lvl2_tilemap', 'lvl2/lvl2_map.json');
         this.load.image('lvl2_background', 'lvl2/background_lvl2.png');
+        this.load.image('cat_tail', 'robocat_tail.png');
 
         // load spritesheets
         // RoboCat spritesheet
@@ -31,11 +32,14 @@ class Load extends Phaser.Scene {
 
     create() {
 
-        //openingPlayed = true; // this can be set for debugging purposes, make sure to REMOVE
+        openingPlayed = true; // this can be set for debugging purposes, make sure to REMOVE
 
         // define sound effects
         explosionSFX = this.sound.add('death_explosion', {volume: 0.5});
         propellerSFX = this.sound.add('propeller',  {volume: 0.6});
+
+        // initialize hasPropellor to false for the first level
+        hasPropeller = false;
 
         //RoboCat Animations
         // RoboCat animation without tail

@@ -30,7 +30,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             this.canDubJump = true;
         }
 
-        //player jumping (made it so that the player cant jump when stuck to the side of the wall)
+        //player jumping (player cant jump when stuck to the side of the wall)
         if (pressedJump && !this.isExploding) {
             //normal jump
             if (this.body.blocked.down && !this.body.blocked.left && !this.body.blocked.right) {
@@ -42,7 +42,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.canDubJump = true;
                 this.isDoubJumping = false;
             //double jump
-            } else if (hasPropeller && !(this.body.blocked.down) && this.canDubJump) {
+            } else if (hasPropeller && !(this.body.blocked.down) && !this.body.blocked.left && !this.body.blocked.right && this.canDubJump) {
                 this.setGravityY(0);
                 pressedJump = false;
                 this.setVelocityY(-300);

@@ -35,11 +35,11 @@ class Level3 extends Phaser.Scene {
         const map = this.make.tilemap({ key: 'lvl3_tilemap' });
         const tileset = map.addTilesetImage('lvl3_tiles', 'lvl3_tiles');
         // creating tilemap layers
-        this.sidewalkLayer = map.createLayer('Sidewalk', tileset, 0, 0);
+        this.backLayer = map.createLayer('Decorative (Back)', tileset, 0, 0);
         this.collisionLayer = map.createLayer('Collision', tileset, 0, 0);
         this.spikesLayer = map.createLayer('Spikes', tileset, 0, 0);
-        this.decorativeLayer = map.createLayer('Decorative', tileset, 0, 0);
-        this.decorativeLayer.setDepth(2);
+        this.frontLayer = map.createLayer('Decorative (Front)', tileset, 0, 0);
+        this.frontLayer.setDepth(2);
         // enabling collisons on tilemap layers
         this.collisionLayer.setCollisionByExclusion([-1]);
         this.spikesLayer.setCollisionByExclusion([-1]);

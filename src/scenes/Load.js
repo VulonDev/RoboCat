@@ -18,6 +18,9 @@ class Load extends Phaser.Scene {
         this.load.tilemapTiledJSON('lvl2_tilemap', 'lvl2/lvl2_map.json');
         this.load.image('lvl2_background', 'lvl2/background_lvl2.png');
         this.load.image('cat_tail', 'robocat_tail.png');
+        // level 3 image assets and tilemap
+        this.load.image('lvl3_tiles', 'lvl3/lvl3_tiles.png');
+        this.load.tilemapTiledJSON('lvl3_tilemap', 'lvl3/lvl3_map.json');
 
         // load spritesheets
         // RoboCat spritesheet
@@ -322,7 +325,7 @@ class Load extends Phaser.Scene {
             this.scene.start("openingScene");
         }
         else {
-            this.scene.start('Level1Scene');
+            this.scene.start('Level3Scene');
         }
        
     }

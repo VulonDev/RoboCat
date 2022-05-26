@@ -45,9 +45,10 @@ class Level2 extends Phaser.Scene {
         this.spikesLayer.setCollisionByExclusion([-1]);
         // enabling collisions with player
         this.physics.add.collider(this.cat, this.groundLayer);
-        this.physics.add.collider(this.cat, this.spikesLayer, function(player) {
-            player.setVelocity(0);
-            player.resetPosition(10, game.config.height*5 - 60, false);
+        this.physics.add.collider(this.cat, this.spikesLayer, () => {
+            this.cat.setVelocity(0);
+            this.cameras.main.shake(40);
+            this.cat.resetPosition(10, game.config.height*5 - 60, false);
         });
 
         // add propellor to level 2 map

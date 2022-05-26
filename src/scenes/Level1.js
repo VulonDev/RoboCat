@@ -51,9 +51,10 @@ class Level1 extends Phaser.Scene {
         this.spikesLayer.setCollisionByExclusion([-1]);
         // enabling collisions with player
         this.physics.add.collider(this.cat, this.groundLayer);
-        this.physics.add.collider(this.cat, this.spikesLayer, function(player) {
-            player.setVelocity(0);
-            player.resetPosition(10, game.config.height - 60, false);
+        this.physics.add.collider(this.cat, this.spikesLayer, () => {
+            this.cat.setVelocity(0);
+            this.cameras.main.shake(40);
+            this.cat.resetPosition(10, game.config.height - 60, false);
         });
 
         this.lost_cat = this.physics.add.staticSprite((game.config.width*7)-(game.config.width/2), game.config.height - 28, 'missing_cat_1');
@@ -99,6 +100,7 @@ class Level1 extends Phaser.Scene {
         // check if player falls through floor, telports them back to begining if they do
         if (this.cat.y > (game.config.height + this.cat.height)) {
             this.cat.setVelocity(0);
+            this.cameras.main.shake(40);
             this.cat.resetPosition(10, game.config.height - 60, true);
         } 
 

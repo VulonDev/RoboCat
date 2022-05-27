@@ -12,12 +12,13 @@ class Load extends Phaser.Scene {
         this.load.image('lvl1_tiles', 'lvl1/lvl1_tiles.png');
         this.load.tilemapTiledJSON('lvl1_tilemap', 'lvl1/lvl1_map.json');
         this.load.image('lvl1_background', 'lvl1/background_lvl1.png');
-        this.load.image('missing_cat_1', 'missing cat.png');
+        this.load.image('missing_cat_1', 'missing white.png');
         // level 2 image assets and tilemap
         this.load.image('lvl2_tiles', 'lvl2/lvl2_tiles.png');
         this.load.tilemapTiledJSON('lvl2_tilemap', 'lvl2/lvl2_map.json');
         this.load.image('lvl2_background', 'lvl2/background_lvl2.png');
         this.load.image('cat_tail', 'robocat_tail.png');
+        this.load.image('missing_cat_2', 'missing orange.png')
         // level 3 image assets and tilemap
         this.load.image('lvl3_tiles', 'lvl3/lvl3_tiles.png');
         this.load.tilemapTiledJSON('lvl3_tilemap', 'lvl3/lvl3_map.json');
@@ -325,7 +326,7 @@ class Load extends Phaser.Scene {
             this.scene.start("openingScene");
         }
         else {
-            this.scene.start('Level3Scene');
+            this.scene.start('Level1Scene');
         }
        
     }

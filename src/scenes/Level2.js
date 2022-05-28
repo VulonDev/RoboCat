@@ -111,7 +111,7 @@ class Level2 extends Phaser.Scene {
             this.physics.world.setBounds(0, 0, game.config.width*3, game.config.height*5);
         }
 
-        // check if player walks through to the end of the scene, moves them on to level 2 if so
+        // check if player walks through to the end of the scene, moves them on to level 3 if so
         if (this.cat.x > game.config.width*2 + this.cat.width) {
             propellerSFX.stop();
             explosionSFX.stop();

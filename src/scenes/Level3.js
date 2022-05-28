@@ -82,7 +82,15 @@ class Level3 extends Phaser.Scene {
     }
 
     update() {
-        console.log(this.cat.x+", "+this.cat.y);
+
+        // check if player walks through to the end of the scene, moves them on to level 4 if so
+        if (this.cat.x > game.config.width*7 + this.cat.width) {
+            propellerSFX.stop();
+            explosionSFX.stop();
+            this.music.stop();
+            this.scene.switch('Level4Scene');
+        }
+
         this.cat.update();
 
         // change spawn position

@@ -2,7 +2,7 @@ class OpeningCutscene extends Phaser.Scene {
     constructor() {
         super("openingScene");
         //total length of the scene
-        this.duration = 5000;
+        this.duration = 3000;
     }
 
     preload() {
@@ -18,10 +18,11 @@ class OpeningCutscene extends Phaser.Scene {
         this.background = this.add.sprite(0, 0, 'fallbg').setOrigin(0, 0);
         this.background.setScrollFactor(0);
 
-        this.catFallPath = new Phaser.Curves.Path(0,50);
-        this.catFallPath.lineTo(165, 50);
-        this.catFallPath.lineTo(165, 275);
-        this.cat = this.add.follower(this.catFallPath, 50, 50, 'robo_atlas', 'robo_idle_r_0001');
+        this.catFallPath = new Phaser.Curves.Path(0,40);
+        this.catFallPath.lineTo(230, 40);
+        this.catFallPath.splineTo([290, 180]);
+        this.catFallPath.lineTo(290, 275);
+        this.cat = this.add.follower(this.catFallPath, 50, 40, 'robo_atlas', 'robo_idle_r_0001');
 
         this.catTweenConfig = {
             targets: 'catFallPath',
@@ -39,9 +40,7 @@ class OpeningCutscene extends Phaser.Scene {
                 this.cat.anims.play('robo_run_r');
             },
             onUpdate: function() {
-                console.log(this.cat.angle);
-                if(this.cat.angle == 90 && this.cat.anims.isPlaying 
-                    && this.cat.anims.currentAnim.key == 'robo_run_r') {
+                if(this.cat.x >= 190 && this.cat.anims.currentAnim.key == 'robo_run_r') {
                     this.cat.anims.play('robo_jump_r');
                 }
             },

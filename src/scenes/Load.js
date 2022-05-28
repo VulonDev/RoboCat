@@ -37,7 +37,7 @@ class Load extends Phaser.Scene {
 
     create() {
 
-        openingPlayed = true; // this can be set for debugging purposes, make sure to REMOVE
+        //openingPlayed is a global variable in main.js
 
         // define sound effects
         explosionSFX = this.sound.add('death_explosion', {volume: 0.5});

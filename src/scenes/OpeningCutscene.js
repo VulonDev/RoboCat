@@ -2,21 +2,26 @@ class OpeningCutscene extends Phaser.Scene {
     constructor() {
         super("openingScene");
         //total length of the scene
-        this.duration = 2000;
+        this.duration = 5000;
     }
 
     preload() {
         this.load.path = 'assets/';
         this.load.image('cat', 'cutscene/cat.png' );
+        this.load.image('fallbg', 'cutscene/cutscene roof.png');
     }
     
     create() {
         this.cameras.main.setBackgroundColor('#2d2d2d');
 
-        this.catFallPath = new Phaser.Curves.Path(100,100);
-        this.catFallPath.lineTo(200, 100);
-        this.catFallPath.lineTo(200, 200);
-        this.cat = this.add.follower(this.catFallPath, 100, 100, 'robo_atlas', 'robo_idle_r_0001');
+        // setting level background image
+        this.background = this.add.sprite(0, 0, 'fallbg').setOrigin(0, 0);
+        this.background.setScrollFactor(0);
+
+        this.catFallPath = new Phaser.Curves.Path(0,50);
+        this.catFallPath.lineTo(165, 50);
+        this.catFallPath.lineTo(165, 275);
+        this.cat = this.add.follower(this.catFallPath, 50, 50, 'robo_atlas', 'robo_idle_r_0001');
 
         this.catTweenConfig = {
             targets: 'catFallPath',
@@ -52,10 +57,10 @@ class OpeningCutscene extends Phaser.Scene {
         
 
 
-        //transition to level 1 at the end of the cutscene
+       /* //transition to level 1 at the end of the cutscene
         this.time.delayedCall(this.duration + 1000, () => {
             this.scene.start('Level1Scene');
-        });
+        });*/
     }
 
     update() {

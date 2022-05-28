@@ -29,7 +29,7 @@ let config = {
 let game = new Phaser.Game(config);
 
 let isJumping, pressedJump;
-let hasPropeller;
+let hasPropeller, hasWallJump;
 let keySPACE, keyLEFT, keyRIGHT, keyUP;
 var jumpEvent;
 var explosionSFX, propellerSFX;

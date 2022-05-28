@@ -29,6 +29,9 @@ class Level3 extends Phaser.Scene {
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);
 
+        //ADDS WALL JUMP/CLING
+        hasWallJump = true;
+
         // makes it so that the camera follows RoboCat as the player moves
         this.cameras.main.startFollow(this.cat);
 

@@ -51,7 +51,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 jumpEvent.remove();
                 isJumping = true;
                 this.isDoubJumping = true;
-            } else if ((this.body.blocked.right || this.body.blocked.left) && !this.body.blocked.down) {
+            } else if (hasWallJump && (this.body.blocked.right || this.body.blocked.left) && !this.body.blocked.down) {
                 this.setGravityY(0);
                 jumpEvent.remove();
                 pressedJump = false;
@@ -88,13 +88,13 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         }
 
         //clinging stuff
-        if (keyRIGHT.isDown && !keyLEFT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.right) {
+        if (hasWallJump && keyRIGHT.isDown && !keyLEFT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.right) {
             if (!this.isClinging) {
                 this.isClinging = true;
                 this.body.velocity.y = 0;
                 this.setGravityY(-600);
             }
-        } else if (keyLEFT.isDown && !keyRIGHT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.left) {
+        } else if (hasWallJump && keyLEFT.isDown && !keyRIGHT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.left) {
             if (!this.isClinging) {
                 this.isClinging = true;
                 this.body.velocity.y = 0;

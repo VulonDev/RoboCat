@@ -92,10 +92,16 @@ class Level3 extends Phaser.Scene {
                 respawnY = 740;
             }
         }
-        if (this.cat.x > 1585) {
-            if (respawnX <= 1585) {
-                respawnX = 1585;
+        if (this.cat.x > 1610) {
+            if (respawnX <= 1650) {
+                respawnX = 1650;
                 respawnY = game.config.height*3 - 44;
+            }
+        }
+        if (this.cat.x > 2225) {
+            if (respawnX <= 2300) {
+                respawnX = 2300;
+                respawnY = 420;
             }
         }
     }

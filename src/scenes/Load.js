@@ -21,6 +21,7 @@ class Load extends Phaser.Scene {
         // level 3 image assets and tilemap
         this.load.image('lvl3_tiles', 'lvl3/lvl3_tiles.png');
         this.load.tilemapTiledJSON('lvl3_tilemap', 'lvl3/lvl3_map.json');
+        this.load.image('balcony', 'balcony.png')
 
         // load spritesheets
         // RoboCat spritesheet

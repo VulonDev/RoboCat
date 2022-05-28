@@ -11,6 +11,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         this.isDoubJumping = false;
         this.isSlowFalling = false;
         this.isExploding = false;
+        this.isClinging = false;
         this.anims.play('robo_idle_r');
         
         //allows for pressing space right before you land
@@ -50,11 +51,21 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 jumpEvent.remove();
                 isJumping = true;
                 this.isDoubJumping = true;
+            } else if ((this.body.blocked.right || this.body.blocked.left) && !this.body.blocked.down) {
+                this.setGravityY(0);
+                jumpEvent.remove();
+                pressedJump = false;
+                if(this.body.blocked.right) {
+                    this.setVelocityX(-250);
+                } else if (this.body.blocked.left) {
+                    this.setVelocityX(250);
+                }
+                this.setVelocityY(-300);
             }
         }
            
         //slow down jump velocity once player lets go of jump
-        if (isJumping && !(keyUP.isDown) && !this.isExploding) {
+        if (!this.isClinging && isJumping && !(keyUP.isDown) && !this.isExploding) {
             propellerSFX.stop();
             this.isSlowFalling = false;
             this.isDoubJumping = false;
@@ -68,12 +79,32 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         } 
 
         //slow fall effect after double jumping if jump is held
-        if (!(this.isSlowFalling) && !(this.body.blocked.down) && keyUP.isDown && !(this.canDubJump) && this.body.velocity.y > 0) {
+        if (!this.isClinging && !(this.isSlowFalling) && !(this.body.blocked.down) && keyUP.isDown && !(this.canDubJump) && this.body.velocity.y > 0) {
             this.body.velocity.y = this.body.velocity.y / 2;
             this.isSlowFalling = true;
             this.isDoubJumping = true;
             isJumping = true; 
             this.setGravityY(-500);
+        }
+
+        //clinging stuff
+        if (keyRIGHT.isDown && !keyLEFT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.right) {
+            if (!this.isClinging) {
+                this.isClinging = true;
+                this.body.velocity.y = 0;
+                this.setGravityY(-600);
+            }
+        } else if (keyLEFT.isDown && !keyRIGHT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.left) {
+            if (!this.isClinging) {
+                this.isClinging = true;
+                this.body.velocity.y = 0;
+                this.setGravityY(-600);
+            }
+        } else {
+            if (this.isClinging) {
+                this.isClinging = false;
+                this.setGravityY(0);
+            }
         }
 
         //player movement, player doesnt move if both left and right are held down   

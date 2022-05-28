@@ -32,6 +32,8 @@ class Level3 extends Phaser.Scene {
         // makes it so that the camera follows RoboCat as the player moves
         this.cameras.main.startFollow(this.cat);
 
+        this.platformGroup = this.physics.add.staticGroup();
+
         const map = this.make.tilemap({ key: 'lvl3_tilemap' });
         const tileset = map.addTilesetImage('lvl3_tiles', 'lvl3_tiles');
         // creating tilemap layers
@@ -40,10 +42,23 @@ class Level3 extends Phaser.Scene {
         this.spikesLayer = map.createLayer('Spikes', tileset, 0, 0);
         this.frontLayer = map.createLayer('Decorative (Front)', tileset, 0, 0);
         this.frontLayer.setDepth(2);
+
+        this.collisionLayer.forEachTile(tile => {
+            console.log(tile.index)
+            if (tile.index == 37) {
+                var x = tile.getCenterX();
+                var y = tile.getCenterY();
+                const platform = this.platformGroup.create(x, y-9, 'balcony');
+                this.collisionLayer.removeTileAt(tile.x, tile.y);
+            }
+        });
+
+
         // enabling collisons on tilemap layers
         this.collisionLayer.setCollisionByExclusion([-1]);
         this.spikesLayer.setCollisionByExclusion([-1]);
         // enabling collisions with player
+        this.physics.add.collider(this.cat, this.platformGroup);
         this.physics.add.collider(this.cat, this.collisionLayer);
         this.physics.add.collider(this.cat, this.spikesLayer, () =>  {
             this.cat.setVelocity(0);

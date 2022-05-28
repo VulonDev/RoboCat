@@ -327,7 +327,7 @@ class Load extends Phaser.Scene {
             this.scene.start("openingScene");
         }
         else {
-            this.scene.start('Level1Scene');
+            this.scene.start('Level3Scene');
         }
        
     }

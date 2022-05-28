@@ -141,7 +141,7 @@ class Level2 extends Phaser.Scene {
             else if (this.cat.lastDirection == 'l') {
                 if (this.cat.y < (this.lost_cat.y + this.lost_cat.height/2)) {
                     this.cat.y = 105;
-                    this.cat.x = this.lost_cat.x + this.lost_cat.width*2;
+                    this.cat.x = this.lost_cat.x + this.lost_cat.width/2;
                 }
                 this.cat.anims.play('robo_idle_l');
             }

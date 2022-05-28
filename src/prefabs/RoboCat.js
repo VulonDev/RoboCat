@@ -56,9 +56,9 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 jumpEvent.remove();
                 pressedJump = false;
                 if(this.body.blocked.right) {
-                    this.setVelocityX(-250);
+                    this.setVelocityX(-300);
                 } else if (this.body.blocked.left) {
-                    this.setVelocityX(250);
+                    this.setVelocityX(300);
                 }
                 this.setVelocityY(-300);
             }

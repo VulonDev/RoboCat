@@ -33,6 +33,7 @@ let hasPropeller, hasWallJump;
 let keySPACE, keyLEFT, keyRIGHT, keyUP;
 var jumpEvent;
 var explosionSFX, propellerSFX;
+let respawnX, respawnY;
 
 let cat1Speaking, cat1Found, cat2Speaking, cat2Found;
 

@@ -10,6 +10,10 @@ class Level3 extends Phaser.Scene {
 
     create() {
 
+        // initial respawn position
+        respawnX = 60;
+        respawnY = game.config.height*3 - 44;
+
         hasPropeller = true; // this is set for debugging purposes (make sure to remove)
 
         // set world and camera bounds (the world bounds are greater than the camera so that the player can move off to
@@ -66,7 +70,7 @@ class Level3 extends Phaser.Scene {
         this.physics.add.collider(this.cat, this.spikesLayer, () =>  {
             this.cat.setVelocity(0);
             this.cameras.main.shake(40);
-            this.cat.resetPosition(10, game.config.height*3 - 60, false);
+            this.cat.resetPosition(respawnX, respawnY, false);
         });
 
         //key inputs
@@ -78,6 +82,21 @@ class Level3 extends Phaser.Scene {
     }
 
     update() {
+        console.log(this.cat.x+", "+this.cat.y);
         this.cat.update();
+
+        // change spawn position
+        if (this.cat.x > 775) {
+            if (respawnX <= 720) {
+                respawnX = 720;
+                respawnY = 740;
+            }
+        }
+        if (this.cat.x > 1585) {
+            if (respawnX <= 1585) {
+                respawnX = 1585;
+                respawnY = game.config.height*3 - 44;
+            }
+        }
     }
 }

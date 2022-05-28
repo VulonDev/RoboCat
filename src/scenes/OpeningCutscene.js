@@ -56,10 +56,10 @@ class OpeningCutscene extends Phaser.Scene {
         
 
 
-       /* //transition to level 1 at the end of the cutscene
+        //transition to level 1 at the end of the cutscene
         this.time.delayedCall(this.duration + 1000, () => {
             this.scene.start('Level1Scene');
-        });*/
+        });
     }
 
     update() {

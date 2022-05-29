@@ -33,9 +33,6 @@ class Level3 extends Phaser.Scene {
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);
 
-        //ADDS WALL JUMP/CLING
-        hasWallJump = true;
-
         // makes it so that the camera follows RoboCat as the player moves
         this.cameras.main.startFollow(this.cat);
 
@@ -73,6 +70,32 @@ class Level3 extends Phaser.Scene {
             this.cat.resetPosition(respawnX, respawnY, false);
         });
 
+        // add propellor to level 2 map
+        this.cat_claws = this.physics.add.staticSprite((game.config.width)-250, game.config.height*3 - 25, 'cat_claws');
+        this.cat_claws.setDepth(1);
+        // add collision between cat and tail sprite
+        this.physics.add.collider(this.cat, this.cat_claws, function(player, claws) {
+            hasWallJump = true;
+            claws.destroy();
+        });
+
+        let textConfig = {
+            fontFamily: 'Trebuchet MS',
+            fontSize: '16px',
+            color: '#ffffff',
+            backgroundColor: '#AAAAAA',
+            align: 'center',
+            padding: {
+            top: 5,
+            bottom: 5,
+            },
+        }
+        
+        // tutorial text for propellor
+        this.controlsText = this.add.text((game.config.width)-(game.config.width/2), (game.config.height*3)-(game.config.height/2), 'hold left/right to wall cling\npress up while clinging to wall jump', textConfig).setOrigin(0.5);
+        this.controlsText.setVisible(false);
+        this.controlsText.setDepth(2);
+
         //key inputs
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -89,6 +112,10 @@ class Level3 extends Phaser.Scene {
             explosionSFX.stop();
             this.music.stop();
             this.scene.switch('Level4Scene');
+        }
+
+        if (hasWallJump) {
+            this.controlsText.setVisible(true);
         }
 
         this.cat.update();

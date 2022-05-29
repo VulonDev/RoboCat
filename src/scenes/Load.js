@@ -22,7 +22,11 @@ class Load extends Phaser.Scene {
         // level 3 image assets and tilemap
         this.load.image('lvl3_tiles', 'lvl3/lvl3_tiles.png');
         this.load.tilemapTiledJSON('lvl3_tilemap', 'lvl3/lvl3_map.json');
-        this.load.image('balcony', 'balcony.png')
+        this.load.image('balcony', 'balcony.png');
+        this.load.image('missing_cat_3', 'missing black.png');
+        this.load.image('cat_claws', 'robocat_claws.png');
+        // level 4 image assets and tilemap
+
 
         // load spritesheets
         // RoboCat spritesheet
@@ -37,14 +41,13 @@ class Load extends Phaser.Scene {
 
     create() {
 
-        //openingPlayed is a global variable in main.js
-
         // define sound effects
         explosionSFX = this.sound.add('death_explosion', {volume: 0.5});
         propellerSFX = this.sound.add('propeller',  {volume: 0.6});
 
-        // initialize hasPropellor to false for the first level
+        // initialize hasPropellor and hasWallJump to false for the first level
         hasPropeller = false;
+        hasWallJump = false;
 
         //RoboCat Animations
         // RoboCat animation without tail
@@ -164,7 +167,7 @@ class Load extends Phaser.Scene {
 
 
 
-        // RoboCat animations with tail
+        // RoboCat animations (with tail)
         // right idle animation
         this.anims.create({
             key: 'robo_idle_r',
@@ -322,7 +325,7 @@ class Load extends Phaser.Scene {
 
         // if opening cutscene hasnt been played yet, go to opening cutscene
         // otherwise go to level 1
-
+        // Note: openingPlayed is a global variable in main.js
         if(!openingPlayed) {
             this.scene.start("openingScene");
         }

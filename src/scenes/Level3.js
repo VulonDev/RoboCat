@@ -33,7 +33,7 @@ class Level3 extends Phaser.Scene {
         this.music.play();
 
         // addin RoboCat to the scene and make it so they can't go OoB
-        this.cat = new RoboCat(this, 60, game.config.height*3 - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
+        this.cat = new RoboCat(this, 60, game.config.height*3 - 44, 'robo_hitbox').setOrigin(0,0);
         this.cat.setCollideWorldBounds(true);
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);

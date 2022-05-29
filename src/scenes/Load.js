@@ -32,6 +32,7 @@ class Load extends Phaser.Scene {
         // RoboCat spritesheet
         this.load.atlas('robo_atlas', 'robocat spritesheet.png', 'robocat map.json');
         this.load.atlas('robo_atlas_notail', 'robocat spritesheet notail.png', 'robocat map.json');
+        this.load.image('robo_hitbox', 'robocat_hitbox.png');
 
         // load sound assets (sfx here, but music in the level itself)
         this.load.audio('death_explosion', 'sound/death_explosion.mp3');

@@ -29,7 +29,7 @@ class Level2 extends Phaser.Scene {
         this.background = this.add.sprite(0, 0, 'lvl2_background').setOrigin(0, 0);
 
         // addin RoboCat to the scene and make it so they can't go OoB
-        this.cat = new RoboCat(this, 10, (game.config.height*5)-44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
+        this.cat = new RoboCat(this, 10, (game.config.height*5)-44, 'robo_hitbox').setOrigin(0,0);
         this.cat.setCollideWorldBounds(true);
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);

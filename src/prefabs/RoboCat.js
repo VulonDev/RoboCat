@@ -26,6 +26,13 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
 
     update() {
 
+        if (this.lastDirection == 'r' && this.anims.currentAnim.key != 'robo_prop_r') {
+            this.body.setOffset(13, 0);
+        }
+        else {
+            this.body.setOffset(0, 0);
+        }
+
         if (this.body.blocked.down) {
             propellerSFX.stop();
             this.canDubJump = true;

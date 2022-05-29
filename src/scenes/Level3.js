@@ -49,6 +49,7 @@ class Level3 extends Phaser.Scene {
         this.backLayer = map.createLayer('Decorative (Back)', tileset, 0, 0);
         this.collisionLayer = map.createLayer('Collision', tileset, 0, 0);
         this.spikesLayer = map.createLayer('Spikes', tileset, 0, 0);
+        this.windowsLayer = map.createLayer('Windows', tileset, 0, 0);
         this.frontLayer = map.createLayer('Decorative (Front)', tileset, 0, 0);
         this.frontLayer.setDepth(2);
 
@@ -104,9 +105,8 @@ class Level3 extends Phaser.Scene {
         }
         
         // tutorial text for wall jump
-        this.controlsText = this.add.text((game.config.width)-(game.config.width/2), (game.config.height*3)-(game.config.height/2), 'hold left/right to wall cling\npress up while clinging to wall jump', textConfig).setOrigin(0.5);
+        this.controlsText = this.add.text((game.config.width)-(game.config.width/2), (game.config.height*2)+50, 'Hold ← or → to wall cling.\nPress ↑ while clinging to wall jump.\nRelease ← or → after wall jump to \nmore easily switch directions.', textConfig).setOrigin(0.5);
         this.controlsText.setVisible(false);
-        this.controlsText.setDepth(2);
 
         // add and hide cat dialouge text
         textConfig.fontSize = '10px';

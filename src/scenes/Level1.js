@@ -67,7 +67,7 @@ class Level1 extends Phaser.Scene {
 
         let textConfig = {
             fontFamily: 'Trebuchet MS',
-            fontSize: '18px',
+            fontSize: '16px',
             color: '#ffffff',
             backgroundColor: '#AAAAAA',
             align: 'center',
@@ -76,7 +76,7 @@ class Level1 extends Phaser.Scene {
             bottom: 5,
             },
         }
-        this.controlsText = this.add.text(game.config.width/2, game.config.height / 2, 'left/right to move\nup to jump', textConfig).setOrigin(0.5);
+        this.controlsText = this.add.text(game.config.width/2, 50, 'Press ← or → to move.\nPress ↑ to jump.\nHold ↑ for higher jump.\nTap ↑ for shorter jump.', textConfig).setOrigin(0.5);
 
         // add and hide cat dialouge text
         textConfig.fontSize = '10px';

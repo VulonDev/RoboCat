@@ -26,6 +26,8 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
 
     update() {
 
+        // this offsets the cat's hitbox depending upon which direction it is currently facing so that
+        // the hitbox is always more centered towards the cat's face, rather than its tail
         if (this.lastDirection == 'r' && this.anims.currentAnim.key != 'robo_prop_r') {
             this.body.setOffset(13, 0);
         }
@@ -74,7 +76,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
         }
            
-        //slow down jump velocity once player lets go of jump
+        // slow down jump velocity once player lets go of jump
         if (!this.isClinging && isJumping && !(keyUP.isDown) && !this.isExploding) {
             propellerSFX.stop();
             this.isSlowFalling = false;
@@ -135,6 +137,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
             this.setAccelerationX(400);
             if (this.body.blocked.down && !this.body.blocked.right) {
+                // plays running animation
                 if (hasPropeller) {
                     this.anims.play('robo_run_r', true);
                 }
@@ -143,7 +146,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 }
             }
             else if (!this.body.blocked.down && this.body.blocked.right) {
-                // play (right) wall cling animation
+                // plays (right) wall cling animation
                 if (hasPropeller) {
                     this.anims.play('robo_cling_r', true);
                 }
@@ -152,7 +155,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 }
             }
             else if (!this.body.blocked.down && !this.body.blocked.right){
-                // jump animation
+                // plays jump animation
                 if (!this.isDoubJumping) {
                     if (hasPropeller) {
                         this.anims.play('robo_jump_r', true);
@@ -161,6 +164,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                         this.anims.play('robo_jump_r_notail', true);
                     }
                 }
+                // plays propeller animation if double jumping
                 else {
                     //propeller tail audio
                     if (!propellerSFX.isPlaying) {
@@ -184,6 +188,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }  
             this.setAccelerationX(-400);
             if (this.body.blocked.down && !this.body.blocked.left) {
+                // plays running animation
                 if (hasPropeller) {
                     this.anims.play('robo_run_l', true);
                 }
@@ -201,6 +206,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 }
             }
             else if (!this.body.blocked.down && !this.body.blocked.left){
+                // plays jumping animation
                 if (!this.isDoubJumping) {
                     if (hasPropeller) {
                         this.anims.play('robo_jump_l', true);
@@ -209,6 +215,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                         this.anims.play('robo_jump_l_notail', true);
                     }
                 }
+                // plays propeller animation if double jumping
                 else {
                     //propeller tail audio
                     if (!propellerSFX.isPlaying) {
@@ -225,6 +232,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             this.setAccelerationX(0);
             if (this.lastDirection == 'r') {
                 if (this.body.blocked.down) {
+                    // plays the idle animation if player is not moving or jumping
                     if (hasPropeller) {
                         this.anims.play('robo_idle_r', true);
                     }
@@ -234,6 +242,8 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 }
                 else if (!this.body.blocked.down) {
                     if (!this.isDoubJumping) {
+                        // plays the jump animation if player is jumping (this deals with the case if the
+                        // player is not moving left or right with jumping)
                         if (hasPropeller) {
                             this.anims.play('robo_jump_r', true);
                         }
@@ -241,6 +251,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                             this.anims.play('robo_jump_r_notail', true);
                         }
                     }
+                    // plays the propeller animation if double jumping
                     else {
                         //propeller tail audio
                         if (!propellerSFX.isPlaying) {
@@ -252,6 +263,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
             if (this.lastDirection == 'l') {
                 if (this.body.blocked.down) {
+                    // plays the idle animation if player is not moving or jumping
                     if (hasPropeller) {
                         this.anims.play('robo_idle_l', true);
                     }
@@ -260,6 +272,8 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     }
                 }
                 else if (!this.body.blocked.down){
+                    // plays the jump animation if player is jumping (this deals with the case if the
+                    // player is not moving left or right while jumping)
                     if (!this.isDoubJumping) {
                         if (hasPropeller) {
                             this.anims.play('robo_jump_l', true);
@@ -268,6 +282,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                             this.anims.play('robo_jump_l_notail', true);
                         }
                     }
+                    // plays the propeller animation if double jumping
                     else {
                         //propeller tail audio
                         if (!propellerSFX.isPlaying) {
@@ -281,6 +296,8 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         
     }
 
+    // this plays the cat's explosion animation and sound effect, then resets the cat
+    // back to the indicated x, y position in the particular level
     resetPosition(x, y, fall) {
         this.isExploding = true;
         this.body.setVelocityX(0);

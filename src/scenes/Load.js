@@ -32,6 +32,7 @@ class Load extends Phaser.Scene {
         // load sound assets (sfx here, but music in the level itself)
         this.load.audio('death_explosion', 'sound/death_explosion.mp3');
         this.load.audio('propeller', 'sound/propeller.mp3');
+        this.load.audio('runSFX', 'sound/run.mp3');
 
     }
 
@@ -42,6 +43,8 @@ class Load extends Phaser.Scene {
         // define sound effects
         explosionSFX = this.sound.add('death_explosion', {volume: 0.5});
         propellerSFX = this.sound.add('propeller',  {volume: 0.6});
+        runSFX = this.sound.add('runSFX',{volume: 1.8});
+
 
         // initialize hasPropellor to false for the first level
         hasPropeller = false;

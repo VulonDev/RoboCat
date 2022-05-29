@@ -42,6 +42,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.setVelocityY(-300);
                 this.canDubJump = true;
                 this.isDoubJumping = false;
+                runSFX.stop();
             //double jump
             } else if (hasPropeller && !(this.body.blocked.down) && !this.body.blocked.left && !this.body.blocked.right && this.canDubJump) {
                 this.setGravityY(0);
@@ -51,6 +52,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 jumpEvent.remove();
                 isJumping = true;
                 this.isDoubJumping = true;
+                runSFX.stop();
             } else if (hasWallJump && (this.body.blocked.right || this.body.blocked.left) && !this.body.blocked.down) {
                 this.setGravityY(0);
                 jumpEvent.remove();
@@ -61,6 +63,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.setVelocityX(300);
                 }
                 this.setVelocityY(-300);
+                runSFX.stop();
             }
         }
            
@@ -90,12 +93,14 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         //clinging stuff
         if (hasWallJump && keyRIGHT.isDown && !keyLEFT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.right) {
             if (!this.isClinging) {
+                propellerSFX.stop();
                 this.isClinging = true;
                 this.body.velocity.y = 0;
                 this.setGravityY(-600);
             }
         } else if (hasWallJump && keyLEFT.isDown && !keyRIGHT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.left) {
             if (!this.isClinging) {
+                propellerSFX.stop();
                 this.isClinging = true;
                 this.body.velocity.y = 0;
                 this.setGravityY(-600);
@@ -110,6 +115,13 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         //player movement, player doesnt move if both left and right are held down   
         if (keyRIGHT.isDown && !keyLEFT.isDown && !this.isExploding) {
             this.lastDirection = 'r';
+            //run SFX
+            if (!runSFX.isPlaying && this.body.blocked.down) {
+                runSFX.play();
+            }
+            if (runSFX.isPlaying && !this.body.blocked.down) {
+                runSFX.stop();
+            }
             //this helps make the player feel less icy when changing direction
             if (this.body.velocity.x < 0) {
                 this.setVelocityX(this.body.velocity.x + 15);
@@ -152,6 +164,14 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
         }else if (keyLEFT.isDown && !keyRIGHT.isDown && !this.isExploding) {  
             this.lastDirection = 'l';
+            //run SFX
+            if (!runSFX.isPlaying && this.body.blocked.down) {
+                runSFX.play();
+            }
+            if (runSFX.isPlaying && !this.body.blocked.down) {
+                runSFX.stop();
+            }
+            //easing
             if (this.body.velocity.x > 0) {
                 this.setVelocityX(this.body.velocity.x - 15);
             }  
@@ -191,6 +211,10 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 }
             }
         } else if (!this.isExploding) {
+            //run SFX
+            if (runSFX.isPlaying) {
+                runSFX.stop();
+            }
             this.setAccelerationX(0);
             if (this.lastDirection == 'r') {
                 if (this.body.blocked.down) {

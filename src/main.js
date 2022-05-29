@@ -33,7 +33,7 @@ let isJumping, pressedJump;
 let hasPropeller, hasWallJump;
 let keySPACE, keyLEFT, keyRIGHT, keyUP;
 var jumpEvent;
-var explosionSFX, propellerSFX;
+var explosionSFX, propellerSFX, runSFX;
 let respawnX, respawnY;
 
 // global variable to deal with lost cat dialouge 

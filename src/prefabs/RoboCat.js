@@ -12,7 +12,11 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         this.isSlowFalling = false;
         this.isExploding = false;
         this.isClinging = false;
+        //0 = not clinging, 1 = clinging left, 2 = clinging right
+        this.clingingDir = 0;
         this.anims.play('robo_idle_r');
+        wasClinging = false;
+        this.lastClingDir = 'r';
         
         //allows for pressing space right before you land
         scene.input.keyboard.on('keydown-UP', () => {
@@ -21,6 +25,22 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             scene.time.addEvent(jumpEvent);
         }, this);
 
+        //these two keydown events create timers to allow players to wall jump a tiny bit after leaving wall
+        scene.input.keyboard.on('keydown-RIGHT', () => {
+            if (this.clingingDir == 1) {
+                wasClinging = true;
+                this.clingEvent = new Phaser.Time.TimerEvent({ delay: 90, callback: this.toggleWasClinging});
+                scene.time.addEvent(this.clingEvent);
+            }
+        }, this);
+
+        scene.input.keyboard.on('keydown-LEFT', () => {
+            if (this.clingingDir == 2) {
+                wasClinging = true;
+                this.clingEvent = new Phaser.Time.TimerEvent({ delay: 90, callback: this.toggleWasClinging});
+                scene.time.addEvent(this.clingEvent);
+            }
+        }, this);
         pressedJump = false;
      }
 
@@ -35,9 +55,12 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             this.body.setOffset(0, 0);
         }
 
+
         if (this.body.blocked.down) {
             propellerSFX.stop();
             this.canDubJump = true;
+            this.isClinging = false;
+            this.clingingDir = 0;
         }
 
         //player jumping (player cant jump when stuck to the side of the wall)
@@ -62,15 +85,24 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 isJumping = true;
                 this.isDoubJumping = true;
                 runSFX.stop();
-            } else if (hasWallJump && (this.body.blocked.right || this.body.blocked.left) && !this.body.blocked.down) {
+            } else if (hasWallJump && ((this.body.blocked.right || this.body.blocked.left) || wasClinging) && !this.body.blocked.down) {
+                this.wasClinging = false;
                 this.setGravityY(0);
+                this.clingingDir = 0;
                 jumpEvent.remove();
-                pressedJump = false;
+                //left right movement after wall jumping
                 if(this.body.blocked.right) {
-                    this.setVelocityX(-300);
+                    this.setVelocityX(-150);
                 } else if (this.body.blocked.left) {
-                    this.setVelocityX(300);
-                }
+                    this.setVelocityX(150);
+                } else {
+                    if (this.lastClingDir == 'l') {
+                        this.setVelocityX(150);
+                    } else {
+                        this.setVelocityX(-150);
+                    }
+                }   
+                pressedJump = false;
                 this.setVelocityY(-300);
                 runSFX.stop();
             }
@@ -98,28 +130,43 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             isJumping = true; 
             this.setGravityY(-500);
         }
+        
+        //makes character always move towards wall when clinging so they dont have to hold the button
+        if (this.clingingDir == 2) {
+            this.anims.play('robo_cling_r', true);
+            this.setVelocityX(50);
+        } else if (this.clingingDir == 1) {
+            this.anims.play('robo_cling_l', true);
+            this.setVelocityX(-50);
+        }
 
-        //clinging stuff
-        if (hasWallJump && keyRIGHT.isDown && !keyLEFT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.right) {
+        //wall clinging stuffs
+        if (hasWallJump && !keyLEFT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.right) {
             if (!this.isClinging) {
+                this.lastClingDir = 'r'
                 propellerSFX.stop();
                 this.isClinging = true;
                 this.body.velocity.y = 0;
                 this.setGravityY(-600);
+                this.clingingDir = 2;
             }
-        } else if (hasWallJump && keyLEFT.isDown && !keyRIGHT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.left) {
+        } else if (hasWallJump && !keyRIGHT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.left) {
             if (!this.isClinging) {
+                this.lastClingDir = 'l';
                 propellerSFX.stop();
                 this.isClinging = true;
                 this.body.velocity.y = 0;
+                this.clingingDir = 1;
                 this.setGravityY(-600);
             }
         } else {
             if (this.isClinging) {
                 this.isClinging = false;
+                this.clingingDir = 0;
                 this.setGravityY(0);
             }
         }
+
 
         //player movement, player doesnt move if both left and right are held down   
         if (keyRIGHT.isDown && !keyLEFT.isDown && !this.isExploding) {
@@ -131,6 +178,8 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             if (runSFX.isPlaying && !this.body.blocked.down) {
                 runSFX.stop();
             }
+
+            
             //this helps make the player feel less icy when changing direction
             if (this.body.velocity.x < 0) {
                 this.setVelocityX(this.body.velocity.x + 15);
@@ -145,7 +194,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('robo_run_r_notail', true);
                 }
             }
-            else if (!this.body.blocked.down && this.body.blocked.right) {
+            else if (this.clingingDir == 2) {
                 // plays (right) wall cling animation
                 if (hasPropeller) {
                     this.anims.play('robo_cling_r', true);
@@ -156,7 +205,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
             else if (!this.body.blocked.down && !this.body.blocked.right){
                 // plays jump animation
-                if (!this.isDoubJumping) {
+                if (!this.isDoubJumping && !this.isClinging) {
                     if (hasPropeller) {
                         this.anims.play('robo_jump_r', true);
                     }
@@ -173,7 +222,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('robo_prop_r', true);
                 }
             }
-        }else if (keyLEFT.isDown && !keyRIGHT.isDown && !this.isExploding) {  
+        } else if (keyLEFT.isDown && !keyRIGHT.isDown && !this.isExploding) {  
             this.lastDirection = 'l';
             //run SFX
             if (!runSFX.isPlaying && this.body.blocked.down) {
@@ -196,7 +245,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('robo_run_l_notail', true);
                 }
             }
-            else if (!this.body.blocked.down && this.body.blocked.left) {
+            else if (this.clingingDir == 1) {
                 // play (right) wall cling animation
                 if (hasPropeller) {
                     this.anims.play('robo_cling_l', true);
@@ -207,7 +256,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             }
             else if (!this.body.blocked.down && !this.body.blocked.left){
                 // plays jumping animation
-                if (!this.isDoubJumping) {
+                if (!this.isDoubJumping  && !this.isClinging) {
                     if (hasPropeller) {
                         this.anims.play('robo_jump_l', true);
                     }
@@ -224,7 +273,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('robo_prop_l', true);
                 }
             }
-        } else if (!this.isExploding) {
+        } else if (!this.isExploding && !this.isClinging) {
             //run SFX
             if (runSFX.isPlaying) {
                 runSFX.stop();
@@ -241,7 +290,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                     }
                 }
                 else if (!this.body.blocked.down) {
-                    if (!this.isDoubJumping) {
+                    if (!this.isDoubJumping && !this.isClinging) {
                         // plays the jump animation if player is jumping (this deals with the case if the
                         // player is not moving left or right with jumping)
                         if (hasPropeller) {
@@ -322,5 +371,11 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
     togglePressedJump() {
         pressedJump = false;
     }
+
+    toggleWasClinging() {
+        wasClinging = false;
+    }
+
+    
 
 }

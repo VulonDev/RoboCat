@@ -35,6 +35,7 @@ let keySPACE, keyLEFT, keyRIGHT, keyUP;
 var jumpEvent;
 var explosionSFX, propellerSFX, runSFX;
 let respawnX, respawnY;
+let wasClinging;
 
 // global variable to deal with lost cat dialouge 
 let cat1Speaking, cat1Found, cat2Speaking, cat2Found, cat3Speaking, cat3Found, cat4Speaking, cat4Found;

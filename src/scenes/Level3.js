@@ -54,7 +54,6 @@ class Level3 extends Phaser.Scene {
         this.frontLayer.setDepth(2);
 
         this.collisionLayer.forEachTile(tile => {
-            console.log(tile.index)
             if (tile.index == 37) {
                 var x = tile.getCenterX();
                 var y = tile.getCenterY();

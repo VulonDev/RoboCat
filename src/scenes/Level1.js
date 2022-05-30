@@ -83,7 +83,7 @@ class Level1 extends Phaser.Scene {
         this.dialougePrompt = this.add.text((game.config.width*7)-(game.config.width/2), 20, "Press SPACE to Continue...", textConfig).setOrigin(0.5);
         this.dialougePrompt.setVisible(false);
         textConfig.fontSize = '15px';
-        this.dialougeText = this.add.text((game.config.width*7)-(game.config.width/2), game.config.height/2, "Oh! Its RoboCat!", textConfig).setOrigin(0.5);
+        this.dialougeText = this.add.text((game.config.width*7)-(game.config.width/2), this.lost_cat.y-50, "Oh! Its RoboCat!", textConfig).setOrigin(0.5);
         this.dialougeText.setVisible(false);
         this.dialougeText.setDepth(2);
 
@@ -129,14 +129,14 @@ class Level1 extends Phaser.Scene {
                     this.cat.y = game.config.height - 44;
                     this.cat.x = this.lost_cat.x - this.lost_cat.width*2;
                 }
-                this.cat.anims.play('robo_idle_r');
+                this.cat.anims.play('robo_idle_r_notail');
             }
             else if (this.cat.lastDirection == 'l') {
                 if (this.cat.y < (game.config.height - 28 - this.lost_cat.height)) {
                     this.cat.y = game.config.height - 44;
                     this.cat.x = this.lost_cat.x + this.lost_cat.width/2;
                 }
-                this.cat.anims.play('robo_idle_l');
+                this.cat.anims.play('robo_idle_l_notail');
             }
 
             // check for user input to advance dialouge

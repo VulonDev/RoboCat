@@ -22,7 +22,8 @@ class Load extends Phaser.Scene {
         // level 3 image assets and tilemap
         this.load.image('lvl3_tiles', 'lvl3/lvl3_tiles.png');
         this.load.tilemapTiledJSON('lvl3_tilemap', 'lvl3/lvl3_map.json');
-        this.load.image('balcony', 'balcony.png');
+        this.load.image('balcony', 'lvl3/balcony.png');
+        this.load.image('lvl3_background', 'lvl3/background_lvl3.png')
         this.load.image('missing_cat_3', 'missing black.png');
         this.load.image('cat_claws', 'robocat_claws.png');
         // level 4 image assets and tilemap

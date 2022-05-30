@@ -28,6 +28,9 @@ class Level3 extends Phaser.Scene {
         // setting the background color
         this.cameras.main.setBackgroundColor('#808080');
 
+        // setting level background image
+        this.background = this.add.sprite(0, 0, 'lvl3_background').setOrigin(0, 0);
+
         // Level 3 music
         this.music = this.sound.add('lvl3_music', { loop: true, volume: 0.5 });
         this.music.play();

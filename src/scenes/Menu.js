@@ -38,7 +38,12 @@ class Menu extends Phaser.Scene {
     update() {
         //start game when spacebar pressed
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            this.scene.start("loadScene");
+            if (!gameLoaded) {
+                this.scene.start("loadScene");
+            }
+            else {
+                this.scene.start("Level1Scene");
+            }
         }
     }
     

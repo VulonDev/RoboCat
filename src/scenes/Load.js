@@ -44,6 +44,9 @@ class Load extends Phaser.Scene {
 
     create() {
 
+        // set game loaded to true, so game does not reload when it is restarted
+        gameLoaded = true;
+
         // define sound effects
         explosionSFX = this.sound.add('death_explosion', {volume: 0.5});
         propellerSFX = this.sound.add('propeller',  {volume: 0.6});

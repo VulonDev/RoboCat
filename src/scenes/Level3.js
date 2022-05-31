@@ -140,7 +140,8 @@ class Level3 extends Phaser.Scene {
             propellerSFX.stop();
             explosionSFX.stop();
             this.music.stop();
-            this.scene.switch('creditsScene');
+            this.scene.stop();
+            this.scene.start('creditsScene');
         }
 
         if (hasWallJump) {

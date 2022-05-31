@@ -46,11 +46,13 @@ class Credits extends Phaser.Scene {
     update() {
         //go to menu when spacebar pressed
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.scene.stop();
             this.scene.start("menuScene");
         }
 
         // go back to level 1 when up arrow is pressed
         if (Phaser.Input.Keyboard.JustDown(keyUP)) {
+            this.scene.stop();
             this.scene.start("Level1Scene");
         }
     }

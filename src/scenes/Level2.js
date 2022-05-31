@@ -116,7 +116,8 @@ class Level2 extends Phaser.Scene {
             propellerSFX.stop();
             explosionSFX.stop();
             this.music.stop();
-            this.scene.switch('Level3Scene');
+            this.scene.stop();
+            this.scene.start('Level3Scene');
         }
 
         // displays tutorial text if player has the tail

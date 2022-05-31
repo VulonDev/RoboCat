@@ -44,9 +44,6 @@ class Load extends Phaser.Scene {
 
     create() {
 
-        // set game loaded to true, so game does not reload when it is restarted
-        gameLoaded = true;
-
         // define sound effects
         explosionSFX = this.sound.add('death_explosion', {volume: 0.5});
         propellerSFX = this.sound.add('propeller',  {volume: 0.6});
@@ -335,9 +332,11 @@ class Load extends Phaser.Scene {
         // otherwise go to level 1
         // Note: openingPlayed is a global variable in main.js
         if(!openingPlayed) {
+            this.scene.stop();
             this.scene.start("openingScene");
         }
         else {
+            this.scene.stop();
             this.scene.start('Level1Scene');
         }
        

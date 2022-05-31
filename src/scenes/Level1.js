@@ -117,7 +117,8 @@ class Level1 extends Phaser.Scene {
             propellerSFX.stop();
             explosionSFX.stop();
             this.music.stop();
-            this.scene.switch('Level2Scene');
+            this.scene.stop();
+            this.scene.start('Level2Scene');
         }
 
         // update cat sprite (only while not speaking to cat)

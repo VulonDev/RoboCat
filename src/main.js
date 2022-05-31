@@ -16,7 +16,7 @@ let config = {
     },
     width: 420,
     height: 294,
-    scene: [Menu, Load, Level1, Level2, Level3, Level4, OpeningCutscene],
+    scene: [Menu, Load, Level1, Level2, Level3, Level4, Credits, OpeningCutscene],
     physics: {
         default: 'arcade',
         arcade: {

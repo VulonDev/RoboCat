@@ -16,8 +16,8 @@ class Menu extends Phaser.Scene {
             repeat: -1,
         });
 
-        this.red_anim = this.add.sprite(0, 0, 'menu_anim').setOrigin(0, 0);
-        this.red_anim.play('menu_anim');
+        this.menu_screen_anim = this.add.sprite(0, 0, 'menu_anim').setOrigin(0, 0);
+        this.menu_screen_anim.play('menu_anim');
 
         let menuConfig = {
             fontFamily: 'Trebuchet MS',

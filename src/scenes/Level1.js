@@ -9,6 +9,9 @@ class Level1 extends Phaser.Scene {
     }
 
     create() {
+        // set global variables
+        hasPropeller = false;
+        hasWallJump = false;
 
         // variables to determine if lost cat has been found and/or are being spoken to
         cat1Found = false;
@@ -31,7 +34,7 @@ class Level1 extends Phaser.Scene {
         this.background.setScrollFactor(0);
 
         // addin RoboCat to the scene and make it so they can't go OoB
-        this.cat = new RoboCat(this, 10, game.config.height - 44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
+        this.cat = new RoboCat(this, 10, game.config.height - 44, 'robo_hitbox').setOrigin(0,0);
         this.cat.setCollideWorldBounds(true);
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);
@@ -67,7 +70,7 @@ class Level1 extends Phaser.Scene {
 
         let textConfig = {
             fontFamily: 'Trebuchet MS',
-            fontSize: '18px',
+            fontSize: '16px',
             color: '#ffffff',
             backgroundColor: '#AAAAAA',
             align: 'center',
@@ -76,14 +79,14 @@ class Level1 extends Phaser.Scene {
             bottom: 5,
             },
         }
-        this.controlsText = this.add.text(game.config.width/2, game.config.height / 2, 'left/right to move\nup to jump', textConfig).setOrigin(0.5);
+        this.controlsText = this.add.text(game.config.width/2, 50, 'Press ← or → to move.\nPress ↑ to jump.\nHold ↑ for higher jump.\nTap ↑ for shorter jump.', textConfig).setOrigin(0.5);
 
         // add and hide cat dialouge text
         textConfig.fontSize = '10px';
         this.dialougePrompt = this.add.text((game.config.width*7)-(game.config.width/2), 20, "Press SPACE to Continue...", textConfig).setOrigin(0.5);
         this.dialougePrompt.setVisible(false);
         textConfig.fontSize = '15px';
-        this.dialougeText = this.add.text((game.config.width*7)-(game.config.width/2), game.config.height/2, "Oh! Its RoboCat!", textConfig).setOrigin(0.5);
+        this.dialougeText = this.add.text((game.config.width*7)-(game.config.width/2), this.lost_cat.y-50, "Oh! Its RoboCat!", textConfig).setOrigin(0.5);
         this.dialougeText.setVisible(false);
         this.dialougeText.setDepth(2);
 
@@ -114,7 +117,8 @@ class Level1 extends Phaser.Scene {
             propellerSFX.stop();
             explosionSFX.stop();
             this.music.stop();
-            this.scene.switch('Level2Scene');
+            this.scene.stop();
+            this.scene.start('Level2Scene');
         }
 
         // update cat sprite (only while not speaking to cat)
@@ -129,14 +133,14 @@ class Level1 extends Phaser.Scene {
                     this.cat.y = game.config.height - 44;
                     this.cat.x = this.lost_cat.x - this.lost_cat.width*2;
                 }
-                this.cat.anims.play('robo_idle_r');
+                this.cat.anims.play('robo_idle_r_notail');
             }
             else if (this.cat.lastDirection == 'l') {
                 if (this.cat.y < (game.config.height - 28 - this.lost_cat.height)) {
                     this.cat.y = game.config.height - 44;
                     this.cat.x = this.lost_cat.x + this.lost_cat.width/2;
                 }
-                this.cat.anims.play('robo_idle_l');
+                this.cat.anims.play('robo_idle_l_notail');
             }
 
             // check for user input to advance dialouge

@@ -4,9 +4,20 @@ class Menu extends Phaser.Scene {
     }
 
     preload() {
+        this.load.spritesheet('menu', './assets/menu spritesheet.png', {frameWidth: 420, frameHeight: 294, startFrame: 0, endFrame: 4});
     }
 
     create() {
+
+        this.anims.create({
+            key: 'menu_anim',
+            frames: this.anims.generateFrameNumbers('menu', {start: 0, end: 4, first: 0}),
+            frameRate: 8,
+            repeat: -1,
+        });
+
+        this.menu_screen_anim = this.add.sprite(0, 0, 'menu_anim').setOrigin(0, 0);
+        this.menu_screen_anim.play('menu_anim');
 
         let menuConfig = {
             fontFamily: 'Trebuchet MS',
@@ -27,6 +38,7 @@ class Menu extends Phaser.Scene {
     update() {
         //start game when spacebar pressed
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.scene.stop();
             this.scene.start("loadScene");
         }
     }

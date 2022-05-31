@@ -29,7 +29,7 @@ class Level2 extends Phaser.Scene {
         this.background = this.add.sprite(0, 0, 'lvl2_background').setOrigin(0, 0);
 
         // addin RoboCat to the scene and make it so they can't go OoB
-        this.cat = new RoboCat(this, 10, (game.config.height*5)-44, 'robo_atlas', 'robo_idle_r_0001').setOrigin(0,0);
+        this.cat = new RoboCat(this, 10, (game.config.height*5)-44, 'robo_hitbox').setOrigin(0,0);
         this.cat.setCollideWorldBounds(true);
         //makes it so the cat goes in front of controls text
         this.cat.setDepth(1);
@@ -73,7 +73,7 @@ class Level2 extends Phaser.Scene {
 
         let textConfig = {
             fontFamily: 'Trebuchet MS',
-            fontSize: '18px',
+            fontSize: '16px',
             color: '#ffffff',
             backgroundColor: '#AAAAAA',
             align: 'center',
@@ -84,7 +84,7 @@ class Level2 extends Phaser.Scene {
         }
         
         // tutorial text for propellor
-        this.controlsText = this.add.text((game.config.width*2)-(game.config.width/2)-25, (game.config.height*5)-(game.config.height/2), 'up to double jump\nhold up to slow fall', textConfig).setOrigin(0.5);
+        this.controlsText = this.add.text((game.config.width*2)-(game.config.width/2)-25, (game.config.height*5)-(game.config.height/2), 'Press ↑ while jumping to double jump.\nContinue holding ↑ to slow fall.', textConfig).setOrigin(0.5);
         this.controlsText.setVisible(false);
 
         // add and hide cat dialouge text
@@ -93,7 +93,7 @@ class Level2 extends Phaser.Scene {
         this.dialougePrompt.setDepth(3);
         this.dialougePrompt.setVisible(false);
         textConfig.fontSize = '15px';
-        this.dialougeText = this.add.text((game.config.width*2)-(game.config.width/2), this.lost_cat.y-50, "Oh! Its RoboCat!", textConfig).setOrigin(0.5);
+        this.dialougeText = this.add.text((game.config.width*2)-(game.config.width/2), this.lost_cat.y-50, "Wait, is that...?", textConfig).setOrigin(0.5);
         this.dialougeText.setVisible(false);
         this.dialougeText.setDepth(2);
 
@@ -116,7 +116,8 @@ class Level2 extends Phaser.Scene {
             propellerSFX.stop();
             explosionSFX.stop();
             this.music.stop();
-            this.scene.switch('Level3Scene');
+            this.scene.stop();
+            this.scene.start('Level3Scene');
         }
 
         // displays tutorial text if player has the tail

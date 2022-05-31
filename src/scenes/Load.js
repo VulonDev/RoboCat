@@ -22,29 +22,37 @@ class Load extends Phaser.Scene {
         // level 3 image assets and tilemap
         this.load.image('lvl3_tiles', 'lvl3/lvl3_tiles.png');
         this.load.tilemapTiledJSON('lvl3_tilemap', 'lvl3/lvl3_map.json');
-        this.load.image('balcony', 'balcony.png')
+        this.load.image('balcony', 'lvl3/balcony.png');
+        this.load.image('lvl3_background', 'lvl3/background_lvl3.png')
+        this.load.image('missing_cat_3', 'missing black.png');
+        this.load.image('cat_claws', 'robocat_claws.png');
+        // level 4 image assets and tilemap
+
 
         // load spritesheets
         // RoboCat spritesheet
         this.load.atlas('robo_atlas', 'robocat spritesheet.png', 'robocat map.json');
         this.load.atlas('robo_atlas_notail', 'robocat spritesheet notail.png', 'robocat map.json');
+        this.load.image('robo_hitbox', 'robocat_hitbox.png');
 
         // load sound assets (sfx here, but music in the level itself)
         this.load.audio('death_explosion', 'sound/death_explosion.mp3');
         this.load.audio('propeller', 'sound/propeller.mp3');
+        this.load.audio('runSFX', 'sound/run.mp3');
 
     }
 
     create() {
 
-        //openingPlayed is a global variable in main.js
-
         // define sound effects
         explosionSFX = this.sound.add('death_explosion', {volume: 0.5});
         propellerSFX = this.sound.add('propeller',  {volume: 0.6});
+        runSFX = this.sound.add('runSFX',{volume: 1.8});
 
-        // initialize hasPropellor to false for the first level
+
+        // initialize hasPropellor and hasWallJump to false for the first level
         hasPropeller = false;
+        hasWallJump = false;
 
         //RoboCat Animations
         // RoboCat animation without tail
@@ -164,7 +172,7 @@ class Load extends Phaser.Scene {
 
 
 
-        // RoboCat animations with tail
+        // RoboCat animations (with tail)
         // right idle animation
         this.anims.create({
             key: 'robo_idle_r',
@@ -322,11 +330,13 @@ class Load extends Phaser.Scene {
 
         // if opening cutscene hasnt been played yet, go to opening cutscene
         // otherwise go to level 1
-
+        // Note: openingPlayed is a global variable in main.js
         if(!openingPlayed) {
+            this.scene.stop();
             this.scene.start("openingScene");
         }
         else {
+            this.scene.stop();
             this.scene.start('Level1Scene');
         }
        

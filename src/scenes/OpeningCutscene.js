@@ -46,6 +46,7 @@ class OpeningCutscene extends Phaser.Scene {
             },
             onComplete: function() {
                 this.cat.anims.play('robo_explosion');
+                explosionSFX.play();
                 this.cat.on('animationcomplete', () => {
                     this.cat.destroy();
                 });

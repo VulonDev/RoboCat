@@ -20,94 +20,114 @@ class OpeningCutscene extends Phaser.Scene {
     
     create() {
         this.cameras.main.setBackgroundColor('#2d2d2d');
-        this.rainNoise = this.sound.add('rainnoise', {loop: true, volume: 0.8});
-        this.music = this.sound.add('music', {loop:true, volume:0.8});
-        this.lightningNoise = this.sound.add('lightningnoise', {volume:0.8});
+        this.rainNoise = this.sound.add('rainnoise', {loop: true, volume: 0.4});
+        this.music = this.sound.add('music', {loop:true, volume:1});
+        this.lightningNoise = this.sound.add('lightningnoise', {volume:0.5});
         this.music.play();
-        this.rainNoise.play();
-        runSFX.play();
-        // setting level background image
-        this.background = this.add.sprite(0, 0, 'fallbg').setOrigin(0, 0);
-        this.background.setScrollFactor(0);
-        //rain
-        this.anims.create({
-            key: 'rainanim',
-            frames: this.anims.generateFrameNumbers('rain', {start: 0, end: 1, first:0}),
-            frameRate: 15,
-            repeat: -1
-        });
-        this.rain = this.add.sprite(0,0, 'rain').setOrigin(0,0);
-        this.rain.anims.play('rainanim');
-
-        //lightning
-        this.lightning = this.add.sprite(0,0, 'lightning').setOrigin(0,0);
-        this.lightning.setAlpha(0);
-
-
-        this.catFallPath = new Phaser.Curves.Path(0,40);
-        this.catFallPath.lineTo(230, 40);
-        this.catFallPath.splineTo([290, 180]);
-        this.catFallPath.lineTo(290, 275);
-        this.cat = this.add.follower(this.catFallPath, 50, 40, 'robo_atlas', 'robo_idle_r_0001');
-        this.lightningplayed = false;
-
-        this.catTweenConfig = {
-            targets: 'catFallPath',
-            props: {},
-            from: 0,
-            to: 1,
-            delay: 0,
-            duration: this.duration,
-            ease: "linear",
-            hold: 0,
-            yoyo: false,
-            rotateToPath: true,
-            callbackScope: this,
-           onStart: function() {
-                this.cat.anims.play('robo_run_r');
+        let menuConfig = {
+            fontFamily: 'Trebuchet MS',
+            fontSize: '18px',
+            color: '#888888',
+            backgroundColor: '#DDDDDD',
+            align: 'center',
+            padding: {
+            top: 5,
+            bottom: 5,
             },
-            onUpdate: function() {
-                if(this.cat.x >= 190 && this.cat.anims.currentAnim.key == 'robo_run_r') {
-                    this.cat.anims.play('robo_jump_r');
-                    runSFX.stop();
-                }
-                if(this.cat.x >=265 && this.cat.x < 280 && !this.lightningplayed) {
-                    this.lightningplayed = true;
-                    this.cameras.main.flash(175);
-                    this.lightningNoise.play();
-                }
-                if(this.cat.x >= 283 && this.lightningplayed) {
-                    this.lightningplayed = false;
-                }
-            },
-            onComplete: function() {
-                this.cat.anims.play('robo_explosion');
-                explosionSFX.play();
-                this.cat.on('animationcomplete', () => {
-                    this.cat.destroy();
-                });
-            }
-        } 
+        }
+        this.add.text(game.config.width/2, game.config.height / 2
+        , 'Cats get lost in the city all the time...\n'+
+        'To save them the city created a hero:\n' +
+        'ROBOCAT!!!\n'+
+        'A high tech cat-shaped cat-finding AI!\n' +
+        'ROBOCAT served faithfully for many months.\n'+
+        'But one day, the unthinkable occured...', menuConfig).setOrigin(0.5);
+        this.time.delayedCall(10000, () => {
+            this.rainNoise.play();
+            runSFX.play();
+            // setting level background image
+            this.background = this.add.sprite(0, 0, 'fallbg').setOrigin(0, 0);
+            this.background.setScrollFactor(0);
+            //rain
+            this.anims.create({
+                key: 'rainanim',
+                frames: this.anims.generateFrameNumbers('rain', {start: 0, end: 1, first:0}),
+                frameRate: 15,
+                repeat: -1
+            });
+            this.rain = this.add.sprite(0,0, 'rain').setOrigin(0,0);
+            this.rain.anims.play('rainanim');
 
-        this.cat.startFollow(this.catTweenConfig);
-        
+            //lightning
+            this.lightning = this.add.sprite(0,0, 'lightning').setOrigin(0,0);
+            this.lightning.setAlpha(0);
 
 
-        //transition to level 1 at the end of the cutscene
-       this.time.delayedCall(this.duration + 1000, () => {
-           this.rainNoise.stop();
-           this.music.stop();
-            this.scene.stop();
-            this.scene.start('Level1Scene');
-        });
+            this.catFallPath = new Phaser.Curves.Path(0,40);
+            this.catFallPath.lineTo(230, 40);
+            this.catFallPath.splineTo([290, 180]);
+            this.catFallPath.lineTo(290, 275);
+            this.cat = this.add.follower(this.catFallPath, 50, 40, 'robo_atlas', 'robo_idle_r_0001');
+            this.lightningplayed = false;
+
+            this.catTweenConfig = {
+                targets: 'catFallPath',
+                props: {},
+                from: 0,
+                to: 1,
+                delay: 0,
+                duration: this.duration,
+                ease: "linear",
+                hold: 0,
+                yoyo: false,
+                rotateToPath: true,
+                callbackScope: this,
+            onStart: function() {
+                    this.cat.anims.play('robo_run_r');
+                },
+                onUpdate: function() {
+                    if(this.cat.x >= 190 && this.cat.anims.currentAnim.key == 'robo_run_r') {
+                        this.cat.anims.play('robo_jump_r');
+                        runSFX.stop();
+                    }
+                    if(this.cat.x >=265 && this.cat.x < 280 && !this.lightningplayed) {
+                        this.lightningplayed = true;
+                        this.cameras.main.flash(175);
+                        this.lightningNoise.play();
+                    }
+                    if(this.cat.x >= 283 && this.lightningplayed) {
+                        this.lightningplayed = false;
+                    }
+                    if(this.lightningplayed) {
+                        this.lightning.setAlpha(1);
+                    }
+                    else {
+                        this.lightning.setAlpha(0);
+                    }
+                },
+                onComplete: function() {
+                    this.cat.anims.play('robo_explosion');
+                    explosionSFX.play();
+                    this.cat.on('animationcomplete', () => {
+                        this.cat.destroy();
+                    });
+                }
+            } 
+
+            this.cat.startFollow(this.catTweenConfig);
+            
+
+
+            //transition to level 1 at the end of the cutscene
+        this.time.delayedCall(this.duration + 1000, () => {
+            this.rainNoise.stop();
+            this.music.stop();
+                this.scene.stop();
+                this.scene.start('Level1Scene');
+            }, [], this);
+        }, [], this);
     }
 
     update() {
-        if(this.lightningplayed) {
-            this.lightning.setAlpha(1);
-        }
-        else{
-            this.lightning.setAlpha(0);
-        }
     }
 }

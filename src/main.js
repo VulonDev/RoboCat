@@ -16,7 +16,7 @@ let config = {
     },
     width: 420,
     height: 294,
-    scene: [Menu, Load, Level1, Level2, Level3, Level4, Credits, OpeningCutscene],
+    scene: [Menu, Load, Level1, Level2, Level3, Credits, OpeningCutscene],
     physics: {
         default: 'arcade',
         arcade: {
@@ -38,7 +38,7 @@ let respawnX, respawnY;
 let wasClinging;
 
 // global variable to deal with lost cat dialouge 
-let cat1Speaking, cat1Found, cat2Speaking, cat2Found, cat3Speaking, cat3Found, cat4Speaking, cat4Found;
+let cat1Speaking, cat1Found, cat2Speaking, cat2Found, cat3Speaking, cat3Found;
 
 //checks if the player has already seen the opening cutscene
 let openingPlayed = false;

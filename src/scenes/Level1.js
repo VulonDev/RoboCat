@@ -29,6 +29,9 @@ class Level1 extends Phaser.Scene {
         // setting the background color
         this.cameras.main.setBackgroundColor('#808080');
 
+        //main camera fade-in
+        this.cameras.main.fadeIn(1000);
+
         // setting level background image
         this.background = this.add.sprite(0, 0, 'lvl1_background').setOrigin(0, 0);
         this.background.setScrollFactor(0);

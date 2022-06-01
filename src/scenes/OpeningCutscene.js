@@ -2,7 +2,6 @@ class OpeningCutscene extends Phaser.Scene {
     constructor() {
         super("openingScene");
         //total length of the scene
-        this.duration = 3000;
     }
 
     preload() {
@@ -10,6 +9,7 @@ class OpeningCutscene extends Phaser.Scene {
         this.load.image('cat', 'cutscene/cat.png' );
         this.load.image('fallbg', 'cutscene/cutscene roof.png');
         this.load.image('lightning', 'cutscene/cutscene lightning.png');
+        this.load.image('endbg', 'cutscene/cutscene end.png');
         //load spritesheet
         this.load.spritesheet('rain', 'cutscene/cutscene rain.png', {frameWidth: 420, frameHeight: 294, startFrame: 0, endFrame: 1});
         //load audio
@@ -24,6 +24,8 @@ class OpeningCutscene extends Phaser.Scene {
         this.music = this.sound.add('music', {loop:true, volume:1});
         this.lightningNoise = this.sound.add('lightningnoise', {volume:0.5});
         this.music.play();
+
+
         let menuConfig = {
             fontFamily: 'Trebuchet MS',
             fontSize: '18px',
@@ -42,9 +44,11 @@ class OpeningCutscene extends Phaser.Scene {
         'A high tech cat-shaped cat-finding AI!\n' +
         'ROBOCAT served faithfully for many months.\n'+
         'But one day, the unthinkable occured...', menuConfig).setOrigin(0.5);
-        this.time.delayedCall(9000, () => {
-            this.cameras.main.fadeOut(1000);
+        this.time.delayedCall(8500, () => {
+            this.cameras.main.fadeOut(1500);
         },[], this);
+
+        //cat running scene
         this.time.delayedCall(10000, () => {
             this.cameras.main.fadeIn(250);
             this.rainNoise.play();
@@ -80,7 +84,7 @@ class OpeningCutscene extends Phaser.Scene {
                 from: 0,
                 to: 1,
                 delay: 0,
-                duration: this.duration,
+                duration: 3000,
                 ease: "linear",
                 hold: 0,
                 yoyo: false,
@@ -119,15 +123,29 @@ class OpeningCutscene extends Phaser.Scene {
             } 
 
             this.cat.startFollow(this.catTweenConfig);
-            
 
-
-            //transition to level 1 at the end of the cutscene
-        this.time.delayedCall(this.duration + 1000, () => {
-            this.rainNoise.stop();
-            this.music.stop();
-                this.scene.stop();
-                this.scene.start('Level1Scene');
+            //transition to cat dumpster image
+            this.time.delayedCall(4500, () => {
+                this.rainNoise.stop();
+                this.background.destroy();
+                this.lightning.destroy();
+                this.rain.destroy();
+                this.endbackground = this.add.sprite(0,0, 'endbg').setOrigin(0,0);
+                this.cameras.main.zoomTo(3,100000);
+                this.time.delayedCall(6750, () => {
+                    this.tweens.add({
+                        targets: this.music,
+                        volume: 0,
+                        duration: 1000
+                    });
+                    this.cameras.main.fadeOut(1000);
+                }, [], this);
+    
+                this.time.delayedCall(7750, () => {
+                    this.music.stop();
+                    this.scene.stop();
+                    this.scene.start('Level1Scene');
+                }, [], this);
             }, [], this);
         }, [], this);
     }

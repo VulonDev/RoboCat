@@ -42,7 +42,11 @@ class OpeningCutscene extends Phaser.Scene {
         'A high tech cat-shaped cat-finding AI!\n' +
         'ROBOCAT served faithfully for many months.\n'+
         'But one day, the unthinkable occured...', menuConfig).setOrigin(0.5);
+        this.time.delayedCall(9000, () => {
+            this.cameras.main.fadeOut(1000);
+        },[], this);
         this.time.delayedCall(10000, () => {
+            this.cameras.main.fadeIn(250);
             this.rainNoise.play();
             runSFX.play();
             // setting level background image

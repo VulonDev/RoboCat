@@ -7,6 +7,10 @@ class Credits extends Phaser.Scene {
     }
 
     create() {
+        
+        //main camera fade-in
+        this.cameras.main.fadeIn(1000);
+
         let creditsConfig = {
             fontFamily: 'Trebuchet MS',
             fontSize: '20px',

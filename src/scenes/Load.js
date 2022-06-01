@@ -49,7 +49,6 @@ class Load extends Phaser.Scene {
         propellerSFX = this.sound.add('propeller',  {volume: 0.6});
         runSFX = this.sound.add('runSFX',{volume: 1.8});
 
-
         // initialize hasPropellor and hasWallJump to false for the first level
         hasPropeller = false;
         hasWallJump = false;

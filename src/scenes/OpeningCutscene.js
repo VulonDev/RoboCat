@@ -12,11 +12,20 @@ class OpeningCutscene extends Phaser.Scene {
         this.load.image('lightning', 'cutscene/cutscene lightning.png');
         //load spritesheet
         this.load.spritesheet('rain', 'cutscene/cutscene rain.png', {frameWidth: 420, frameHeight: 294, startFrame: 0, endFrame: 1});
+        //load audio
+        this.load.audio('rainnoise', 'sound/rain noise.mp3');
+        this.load.audio('music', 'sound/cutscene music.mp3');
+        this.load.audio('lightningnoise', 'sound/lightning strike.mp3');
     }
     
     create() {
         this.cameras.main.setBackgroundColor('#2d2d2d');
-
+        this.rainNoise = this.sound.add('rainnoise', {loop: true, volume: 0.8});
+        this.music = this.sound.add('music', {loop:true, volume:0.8});
+        this.lightningNoise = this.sound.add('lightningnoise', {volume:0.8});
+        this.music.play();
+        this.rainNoise.play();
+        runSFX.play();
         // setting level background image
         this.background = this.add.sprite(0, 0, 'fallbg').setOrigin(0, 0);
         this.background.setScrollFactor(0);
@@ -60,10 +69,12 @@ class OpeningCutscene extends Phaser.Scene {
             onUpdate: function() {
                 if(this.cat.x >= 190 && this.cat.anims.currentAnim.key == 'robo_run_r') {
                     this.cat.anims.play('robo_jump_r');
+                    runSFX.stop();
                 }
                 if(this.cat.x >=265 && this.cat.x < 280 && !this.lightningplayed) {
                     this.lightningplayed = true;
                     this.cameras.main.flash(175);
+                    this.lightningNoise.play();
                 }
                 if(this.cat.x >= 283 && this.lightningplayed) {
                     this.lightningplayed = false;
@@ -84,6 +95,8 @@ class OpeningCutscene extends Phaser.Scene {
 
         //transition to level 1 at the end of the cutscene
        this.time.delayedCall(this.duration + 1000, () => {
+           this.rainNoise.stop();
+           this.music.stop();
             this.scene.stop();
             this.scene.start('Level1Scene');
         });

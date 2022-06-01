@@ -21,16 +21,17 @@ class Menu extends Phaser.Scene {
 
         let menuConfig = {
             fontFamily: 'Trebuchet MS',
-            fontSize: '18px',
-            color: '#888888',
-            backgroundColor: '#DDDDDD',
+            fontSize: '30px',
+            color: '#000000',
             align: 'center',
             padding: {
             top: 5,
             bottom: 5,
             },
         }
-        this.add.text(game.config.width/2, game.config.height / 2, 'CAT GAME LETS GOO WOOOOO \n PRESS SPACE TO PLAY!!!', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, (game.config.height/4)+6, 'RoboCat', menuConfig).setOrigin(0.5);
+        menuConfig.fontSize = '18px';
+        this.add.text(game.config.width/2, (game.config.height/2), 'Press SPACE to Play', menuConfig).setOrigin(0.5);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
     }

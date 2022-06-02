@@ -10,6 +10,10 @@ class Level3 extends Phaser.Scene {
 
     create() {
 
+        // set global variables
+        hasPropeller = true;
+        hasWallJump = false;
+
         // variables to determine if lost cat has been found and/or are being spoken to
         cat3Found = false;
         cat3Speaking = false;
@@ -18,8 +22,6 @@ class Level3 extends Phaser.Scene {
         // initial respawn position
         respawnX = 60;
         respawnY = game.config.height*3 - 44;
-
-        hasPropeller = true; // this is set for debugging purposes (make sure to remove)
 
         // set world and camera bounds (the world bounds are greater than the camera so that the player can move off to
         // the right end of the screen to progress to level 3)

@@ -9,6 +9,9 @@ class Level2 extends Phaser.Scene {
     }
 
     create() {
+        // set global variables
+        hasPropeller = false;
+        hasWallJump = false;
 
         // variables to determine if lost cat has been found and/or are being spoken to
         cat2Found = false;

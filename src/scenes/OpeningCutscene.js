@@ -149,7 +149,4 @@ class OpeningCutscene extends Phaser.Scene {
             }, [], this);
         }, [], this);
     }
-
-    update() {
-    }
 }

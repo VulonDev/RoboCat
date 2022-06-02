@@ -8,6 +8,7 @@ class Load extends Phaser.Scene {
         this.load.path = 'assets/';
 
         // load image assets
+        this.load.image('arrow', 'arrow.png');
         // level 1 image assets and tilemap
         this.load.image('lvl1_tiles', 'lvl1/lvl1_tiles.png');
         this.load.tilemapTiledJSON('lvl1_tilemap', 'lvl1/lvl1_map.json');
@@ -27,6 +28,7 @@ class Load extends Phaser.Scene {
         this.load.image('missing_cat_3', 'missing black.png');
         this.load.image('cat_claws', 'robocat_claws.png');
         // level 4 image assets and tilemap
+        //level 4 got cut haha!!!
 
 
         // load spritesheets
@@ -327,17 +329,8 @@ class Load extends Phaser.Scene {
             frameRate: 15
         });
 
-        // if opening cutscene hasnt been played yet, go to opening cutscene
-        // otherwise go to level 1
-        // Note: openingPlayed is a global variable in main.js
-        if(!openingPlayed) {
-            this.scene.stop();
-            this.scene.start("openingScene");
-        }
-        else {
-            this.scene.stop();
-            this.scene.start('Level1Scene');
-        }
-       
+        this.scene.stop();
+
+        this.scene.start('menuScene');
     }
 }

@@ -144,6 +144,7 @@ class OpeningCutscene extends Phaser.Scene {
                 this.time.delayedCall(7750, () => {
                     this.music.stop();
                     this.scene.stop();
+                    openingPlayed = true;
                     this.scene.start('Level1Scene');
                 }, [], this);
             }, [], this);

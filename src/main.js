@@ -16,7 +16,7 @@ let config = {
     },
     width: 420,
     height: 294,
-    scene: [Menu, Load, Level1, Level2, Level3, Credits, OpeningCutscene],
+    scene: [Load, Menu, Level1, Level2, Level3, Credits, OpeningCutscene, Level1End, Level2End, Level3End],
     physics: {
         default: 'arcade',
         arcade: {
@@ -31,7 +31,7 @@ let game = new Phaser.Game(config);
 // global variables
 let isJumping, pressedJump;
 let hasPropeller, hasWallJump;
-let keySPACE, keyLEFT, keyRIGHT, keyUP;
+let keySPACE, keyLEFT, keyRIGHT, keyUP,key1,key2,key3;
 var jumpEvent;
 var explosionSFX, propellerSFX, runSFX;
 let respawnX, respawnY;
@@ -41,7 +41,7 @@ let wasClinging;
 let cat1Speaking, cat1Found, cat2Speaking, cat2Found, cat3Speaking, cat3Found;
 
 //checks if the player has already seen the opening cutscene
-let openingPlayed = false;
+let openingPlayed = true;
 
 // checks if game has already loaded in
 let gameLoaded = false;

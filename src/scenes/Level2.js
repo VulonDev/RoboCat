@@ -70,6 +70,9 @@ class Level2 extends Phaser.Scene {
 
         this.lost_cat = this.physics.add.staticSprite(770, 118, 'missing_cat_2');
         this.lost_cat.setDepth(1);
+
+        this.sign = this.physics.add.staticSprite(770, 65, 'arrow');
+        this.sign.setDepth(1);
         // update this later to display text before making the cat disappear
         this.physics.add.collider(this.cat, this.lost_cat, function(player, cat) {
             cat2Speaking = true;
@@ -122,7 +125,7 @@ class Level2 extends Phaser.Scene {
             this.music.stop();
             this.scene.stop();
             this.cameras.main.fadeOut(1000);
-            this.scene.start('Level3Scene');
+            this.scene.start('Level2End');
         }
 
         // displays tutorial text if player has the tail

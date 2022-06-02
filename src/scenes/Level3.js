@@ -92,6 +92,9 @@ class Level3 extends Phaser.Scene {
 
         this.lost_cat = this.physics.add.staticSprite(2800, 728, 'missing_cat_3');
         this.lost_cat.setDepth(1);
+
+        this.sign = this.physics.add.staticSprite(2900, 705, 'arrow');
+        this.sign.setDepth(1);
         // update this later to display text before making the cat disappear
         this.physics.add.collider(this.cat, this.lost_cat, function(player, cat) {
             cat3Speaking = true;
@@ -145,7 +148,7 @@ class Level3 extends Phaser.Scene {
             this.music.stop();
             this.scene.stop();
             this.cameras.main.fadeOut(1000);
-            this.scene.start('creditsScene');
+            this.scene.start('Level3End');
         }
 
         if (hasWallJump) {

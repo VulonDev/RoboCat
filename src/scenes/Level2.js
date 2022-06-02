@@ -18,8 +18,12 @@ class Level2 extends Phaser.Scene {
         // set world and camera bounds
         this.physics.world.setBounds(0, 0, game.config.width*2, game.config.height*5);
         this.cameras.main.setBounds(0, 0, game.config.width*2, game.config.height*5);
+
         // setting the background color
         this.cameras.main.setBackgroundColor('#808080');
+
+        //main camera fade-in
+        this.cameras.main.fadeIn(1000);
 
         // define level 2 music
         this.music = this.sound.add('lvl2_music', { loop: true, volume: 0.5 });
@@ -117,6 +121,7 @@ class Level2 extends Phaser.Scene {
             explosionSFX.stop();
             this.music.stop();
             this.scene.stop();
+            this.cameras.main.fadeOut(1000);
             this.scene.start('Level3Scene');
         }
 

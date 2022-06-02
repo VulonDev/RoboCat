@@ -121,6 +121,7 @@ class Level1 extends Phaser.Scene {
             explosionSFX.stop();
             this.music.stop();
             this.scene.stop();
+            this.cameras.main.fadeOut(1000);
             this.scene.start('Level2Scene');
         }
 

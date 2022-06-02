@@ -28,6 +28,9 @@ class Level3 extends Phaser.Scene {
         // setting the background color
         this.cameras.main.setBackgroundColor('#808080');
 
+        //main camera fade-in
+        this.cameras.main.fadeIn(1000);
+
         // setting level background image
         this.background = this.add.sprite(0, 0, 'lvl3_background').setOrigin(0, 0);
 
@@ -141,6 +144,7 @@ class Level3 extends Phaser.Scene {
             explosionSFX.stop();
             this.music.stop();
             this.scene.stop();
+            this.cameras.main.fadeOut(1000);
             this.scene.start('creditsScene');
         }
 

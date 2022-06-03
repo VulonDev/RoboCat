@@ -127,7 +127,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
 
         //slow fall effect after double jumping if jump is held
         if (!this.isClinging && !(this.isSlowFalling) && !(this.body.blocked.down) && keyUP.isDown && !(this.canDubJump) && this.body.velocity.y > 0) {
-            this.body.velocity.y = this.body.velocity.y / 2;
+            this.body.velocity.y = this.body.velocity.y / 3;
             this.isSlowFalling = true;
             this.isDoubJumping = true;
             isJumping = true; 
@@ -150,6 +150,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 propellerSFX.stop();
                 this.isSlowFalling = false;
                 this.isClinging = true;
+                this.isDoubJumping = false;
                 this.body.velocity.y = 0;
                 this.setGravityY(-550);
                 this.clingingDir = 2;
@@ -159,6 +160,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.lastClingDir = 'l';
                 propellerSFX.stop();
                 this.isSlowFalling = false;
+                this.isDoubJumping = false;
                 this.isClinging = true;
                 this.body.velocity.y = 0;
                 this.clingingDir = 1;
@@ -351,7 +353,6 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 }
             }
         }
-        
     }
 
     // this plays the cat's explosion animation and sound effect, then resets the cat

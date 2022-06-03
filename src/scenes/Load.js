@@ -42,7 +42,7 @@ class Load extends Phaser.Scene {
         this.load.audio('propeller', 'sound/propeller.mp3');
         this.load.audio('runSFX', 'sound/run.mp3');
         this.load.audio('itemSFX', 'sound/item_pickup.mp3');
-        this.load.audio('menuSFX', 'sound/menu_sfx.mp3');
+        this.load.audio('menuSFX', 'sound/menu_select_sfx.mp3');
 
     }
 

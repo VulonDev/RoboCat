@@ -6,6 +6,8 @@ class Menu extends Phaser.Scene {
     preload() {
         this.load.spritesheet('menu', './assets/menu spritesheet.png', {frameWidth: 420, frameHeight: 294, startFrame: 0, endFrame: 4});
         this.load.image('title', './assets/RoboCat_Title.png');
+        // menu music
+        this.load.audio('menu_music', 'assets/sound/menu_music.mp3');
     }
 
     create() {
@@ -19,6 +21,10 @@ class Menu extends Phaser.Scene {
 
         this.menu_screen_anim = this.add.sprite(0, 0, 'menu_anim').setOrigin(0, 0);
         this.menu_screen_anim.play('menu_anim');
+
+        // menu music
+        this.music = this.sound.add('menu_music', { loop: true, volume: 0.5 });
+        this.music.play();
 
         let menuConfig = {
             fontFamily: 'Arial',
@@ -62,10 +68,12 @@ class Menu extends Phaser.Scene {
         //start game when spacebar pressed
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
             menuSFX.play();
+            this.music.stop();
             this.scene.stop();
             this.scene.start("openingScene");
         }
         else if(Phaser.Input.Keyboard.JustDown(key1)) {
+            this.music.stop();
             this.scene.stop();
             if (!openingPlayed) {
                 menuSFX.play();
@@ -78,16 +86,19 @@ class Menu extends Phaser.Scene {
         }
         else if(Phaser.Input.Keyboard.JustDown(key2)) {
             menuSFX.play();
+            this.music.stop();
             this.scene.stop();
             this.scene.start("Level2Scene");
         }
         else if(Phaser.Input.Keyboard.JustDown(key3)) {
             menuSFX.play();
+            this.music.stop();
             this.scene.stop();
             this.scene.start("Level3Scene");
         }
         else if (Phaser.Input.Keyboard.JustDown(key4)) {
             menuSFX.play();
+            this.music.stop();
             this.scene.stop();
             this.scene.start("creditsScene");
         }

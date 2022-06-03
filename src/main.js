@@ -33,7 +33,7 @@ let isJumping, pressedJump;
 let hasPropeller, hasWallJump;
 let keySPACE, keyLEFT, keyRIGHT, keyUP,key1,key2,key3;
 var jumpEvent, clingEvent;
-var explosionSFX, propellerSFX, runSFX;
+var explosionSFX, propellerSFX, runSFX, itemSFX, menuSFX;
 let respawnX, respawnY;
 let wasClinging;
 

@@ -89,6 +89,7 @@ class Level3 extends Phaser.Scene {
         // add collision between cat and tail sprite
         this.physics.add.collider(this.cat, this.cat_claws, function(player, claws) {
             hasWallJump = true;
+            itemSFX.play();
             claws.destroy();
         });
 

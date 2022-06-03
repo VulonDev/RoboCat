@@ -23,7 +23,7 @@ class Level2 extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, game.config.width*2, game.config.height*5);
 
         // setting the background color
-        this.cameras.main.setBackgroundColor('#808080');
+        this.cameras.main.setBackgroundColor('#313131');
 
         //main camera fade-in
         this.cameras.main.fadeIn(1000);
@@ -76,7 +76,6 @@ class Level2 extends Phaser.Scene {
         this.lost_cat.setDepth(1);
 
         this.sign = this.physics.add.staticSprite(770, 65, 'arrow');
-        this.sign.setDepth(1);
         // update this later to display text before making the cat disappear
         this.physics.add.collider(this.cat, this.lost_cat, function(player, cat) {
             cat2Speaking = true;
@@ -105,7 +104,7 @@ class Level2 extends Phaser.Scene {
         this.dialougePrompt.setDepth(3);
         this.dialougePrompt.setVisible(false);
         textConfig.fontSize = '15px';
-        this.dialougeText = this.add.text((game.config.width*2)-(game.config.width/2), this.lost_cat.y-50, "Wait, is that...?", textConfig).setOrigin(0.5);
+        this.dialougeText = this.add.text((game.config.width*2)-(game.config.width/2), this.lost_cat.y-50, "Wait, is that who I think it is?", textConfig).setOrigin(0.5);
         this.dialougeText.setVisible(false);
         this.dialougeText.setDepth(2);
 
@@ -181,18 +180,21 @@ class Level2 extends Phaser.Scene {
 
             // display/change dialouge
             if (this.dialougeCount == 1) {
-                this.dialougeText.text = "RoboCat! Thank goodness you're here!";
+                this.dialougeText.text = "RoboCat, its really you! Thank goodness you're here!";
             }
             if (this.dialougeCount == 2) {
-                this.dialougeText.text = "I got stuck up here and couldn't get down!";
+                this.dialougeText.text = "After that accident, I was worried I'd never hear\n from you again!"
             }
             if (this.dialougeCount == 3) {
-                this.dialougeText.text = "I'm glad you were able to find me!";
+                this.dialougeText.text = "I got stuck all the way up here and couldn't get down!";
             }
             if (this.dialougeCount == 4) {
-                this.dialougeText.text = "I guess I can head on home now. See you later!";
+                this.dialougeText.text = "So I'm glad you were able to find me!";
             }
             if (this.dialougeCount == 5) {
+                this.dialougeText.text = "I can finally head on home now. See you later!";
+            }
+            if (this.dialougeCount == 6) {
                 cat2Found = true;
                 cat2Speaking = false;
                 this.lost_cat.destroy();

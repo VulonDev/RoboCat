@@ -51,7 +51,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
         // this offsets the cat's hitbox depending upon which direction it is currently facing so that
         // the hitbox is always more centered towards the cat's face, rather than its tail
         if (this.lastDirection == 'r' && this.anims.currentAnim.key != 'robo_prop_r') {
-            this.body.setOffset(13, 0);
+            this.body.setOffset(12, 0);
         }
         else {
             this.body.setOffset(0, 0);

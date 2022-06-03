@@ -20,10 +20,13 @@ class Menu extends Phaser.Scene {
         this.menu_screen_anim.play('menu_anim');
 
         let menuConfig = {
-            fontFamily: 'Trebuchet MS',
+            fontFamily: 'Arial',
             fontSize: '30px',
-            color: '#000000',
+            color: '#213442',
             align: 'center',
+            resolution: 2,
+            stroke: '#FFFFFF',
+            strokeThickness: 2,
             padding: {
             top: 5,
             bottom: 5,

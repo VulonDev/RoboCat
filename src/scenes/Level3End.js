@@ -6,11 +6,13 @@ class Level3End extends Phaser.Scene {
     create() {
         this.cameras.main.setBackgroundColor('#2d2d2d');
         let menuConfig = {
-            fontFamily: 'Trebuchet MS',
-            fontSize: '18px',
-            color: '#888888',
+            fontFamily: 'Arial',
+            fontSize: '19px',
+            color: '#676767',
             backgroundColor: '#DDDDDD',
             align: 'center',
+            stroke: '#FFFFFF',
+            strokeThickness: 1,
             padding: {
             top: 5,
             bottom: 5,

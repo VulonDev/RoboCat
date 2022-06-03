@@ -22,7 +22,7 @@ class Menu extends Phaser.Scene {
 
         let menuConfig = {
             fontFamily: 'Arial',
-            fontSize: '30px',
+            fontSize: '16px',
             color: '#213442',
             align: 'center',
             resolution: 2,
@@ -34,23 +34,26 @@ class Menu extends Phaser.Scene {
             },
         }
         this.add.image((game.config.width/2)-5, (game.config.height/4)+6, 'title').setOrigin(0.5);
-        menuConfig.fontSize = '16px';
         this.add.text(game.config.width/2, (game.config.height/2 - 25), 'Press SPACE to Play\n(from the beginning)', menuConfig).setOrigin(0.5);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         
         this.add.text(game.config.width/2, (game.config.height/2 + 5), '--- Level Select (Grader Mode) ---', menuConfig).setOrigin(0.5);
 
-        this.add.text(game.config.width/2, (game.config.height/2 + 25), 'Press [1] to for Level 1', menuConfig).setOrigin(0.5);
+        menuConfig.fontSize = '12px';
+
+        this.add.text(game.config.width/2, (game.config.height/2 + 20), 'Press [1] to for Level 1', menuConfig).setOrigin(0.5);
         key1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
 
-        this.add.text(game.config.width/2, (game.config.height/2 + 45), 'Press [2] to for Level 2', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, (game.config.height/2 + 35), 'Press [2] to for Level 2', menuConfig).setOrigin(0.5);
         key2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
 
-        this.add.text(game.config.width/2, (game.config.height/2 + 65), 'Press [3] to for Level 3', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, (game.config.height/2 + 50), 'Press [3] to for Level 3', menuConfig).setOrigin(0.5);
         key3 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
 
-        menuConfig.fontSize = '12px';
-        this.add.text(game.config.width/2, (game.config.height/2 + 85), 'Press [1] while playing to return to Menu', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, (game.config.height/2 + 65), 'Press [4] to view Credits', menuConfig).setOrigin(0.5);
+        key4 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FOUR);
+
+        this.add.text(game.config.width/2, (game.config.height/2 + 80), 'Press [1] while playing to return to Menu', menuConfig).setOrigin(0.5);
 
         
     }
@@ -77,6 +80,10 @@ class Menu extends Phaser.Scene {
         else if(Phaser.Input.Keyboard.JustDown(key3)) {
             this.scene.stop();
             this.scene.start("Level3Scene");
+        }
+        else if (Phaser.Input.Keyboard.JustDown(key4)) {
+            this.scene.stop();
+            this.scene.start("creditsScene");
         }
     }
     

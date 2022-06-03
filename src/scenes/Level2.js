@@ -85,7 +85,8 @@ class Level2 extends Phaser.Scene {
             fontFamily: 'Trebuchet MS',
             fontSize: '16px',
             color: '#ffffff',
-            backgroundColor: '#AAAAAA',
+            stroke: 'AAAAAA',
+            strokeThickness: 5,
             align: 'center',
             padding: {
             top: 5,

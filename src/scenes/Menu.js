@@ -87,6 +87,7 @@ class Menu extends Phaser.Scene {
             this.scene.start("Level3Scene");
         }
         else if (Phaser.Input.Keyboard.JustDown(key4)) {
+            menuSFX.play();
             this.scene.stop();
             this.scene.start("creditsScene");
         }

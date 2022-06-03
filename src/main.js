@@ -41,7 +41,7 @@ let wasClinging;
 let cat1Speaking, cat1Found, cat2Speaking, cat2Found, cat3Speaking, cat3Found;
 
 //checks if the player has already seen the opening cutscene
-let openingPlayed = true;
+let openingPlayed = false;
 
 // checks if game has already loaded in
 let gameLoaded = false;

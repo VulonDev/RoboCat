@@ -95,7 +95,7 @@ class Level2 extends Phaser.Scene {
         }
         
         // tutorial text for propellor
-        this.controlsText = this.add.text((game.config.width*2)-(game.config.width/2)-25, (game.config.height*5)-(game.config.height/2), 'Press ↑ while jumping to double jump.\nContinue holding ↑ to slow fall.', textConfig).setOrigin(0.5);
+        this.controlsText = this.add.text((game.config.width*2)-(game.config.width/2)-25, (game.config.height*5)-(game.config.height/2), 'Tail restored!\nPress ↑ while jumping to double jump.\nContinue holding ↑ to slow fall.', textConfig).setOrigin(0.5);
         this.controlsText.setVisible(false);
 
         // add and hide cat dialouge text

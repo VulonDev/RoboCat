@@ -133,7 +133,8 @@ class Level3 extends Phaser.Scene {
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-        
+        key1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
+    
     }
 
     update() {
@@ -151,6 +152,16 @@ class Level3 extends Phaser.Scene {
             this.scene.stop();
             this.cameras.main.fadeOut(1000);
             this.scene.start('Level3End');
+        }
+
+        // returns player to menu if 1 is pressed
+        if (Phaser.Input.Keyboard.JustDown(key1)) {
+            propellerSFX.stop();
+            explosionSFX.stop();
+            this.music.stop();
+            this.scene.stop();
+            this.cameras.main.fadeOut(1000);
+            this.scene.start('menuScene');
         }
 
         if (hasWallJump) {

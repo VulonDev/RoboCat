@@ -68,6 +68,7 @@ class Level2 extends Phaser.Scene {
         // add collision between cat and tail sprite
         this.physics.add.collider(this.cat, this.cat_tail, function(player, tail) {
             hasPropeller = true;
+            itemSFX.play();
             tail.destroy();
         });
 

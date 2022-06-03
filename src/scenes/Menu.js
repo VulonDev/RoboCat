@@ -61,23 +61,28 @@ class Menu extends Phaser.Scene {
     update() {
         //start game when spacebar pressed
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            menuSFX.play();
             this.scene.stop();
             this.scene.start("openingScene");
         }
         else if(Phaser.Input.Keyboard.JustDown(key1)) {
             this.scene.stop();
             if (!openingPlayed) {
+                menuSFX.play();
                 this.scene.start("openingScene");
             }
             else {
+                menuSFX.play();
                 this.scene.start("Level1Scene");
             }
         }
         else if(Phaser.Input.Keyboard.JustDown(key2)) {
+            menuSFX.play();
             this.scene.stop();
             this.scene.start("Level2Scene");
         }
         else if(Phaser.Input.Keyboard.JustDown(key3)) {
+            menuSFX.play();
             this.scene.stop();
             this.scene.start("Level3Scene");
         }

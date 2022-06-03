@@ -147,7 +147,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 propellerSFX.stop();
                 this.isClinging = true;
                 this.body.velocity.y = 0;
-                this.setGravityY(-600);
+                this.setGravityY(-550);
                 this.clingingDir = 2;
             }
         } else if (hasWallJump && !keyRIGHT.isDown && !this.isExploding && !this.body.blocked.down && this.body.blocked.left) {
@@ -157,13 +157,17 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.isClinging = true;
                 this.body.velocity.y = 0;
                 this.clingingDir = 1;
-                this.setGravityY(-600);
+                this.setGravityY(-550);
             }
         } else {
             if (this.isClinging) {
                 this.isClinging = false;
                 this.clingingDir = 0;
-                this.setGravityY(0);
+                if (this.isSlowFalling) {
+                    this.setGravityY(-500);
+                } else {
+                    this.setGravityY(0);
+                }
             }
         }
 

@@ -115,7 +115,7 @@ class Level3 extends Phaser.Scene {
         }
         
         // tutorial text for wall jump
-        this.controlsText = this.add.text((game.config.width)-(game.config.width/2), (game.config.height*2)+50, 'Press ← or → against wall to wall cling.\nPress ↑ while clinging to wall jump.', textConfig).setOrigin(0.5);
+        this.controlsText = this.add.text((game.config.width)-(game.config.width/2), (game.config.height*2)+50, 'Press ← or → against wall to wall cling.\nPress ↑ while clinging to wall jump.\nPress ← or → while wall clinging to release.', textConfig).setOrigin(0.5);
         this.controlsText.setVisible(false);
 
         // add and hide cat dialouge text

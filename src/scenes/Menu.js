@@ -5,6 +5,7 @@ class Menu extends Phaser.Scene {
 
     preload() {
         this.load.spritesheet('menu', './assets/menu spritesheet.png', {frameWidth: 420, frameHeight: 294, startFrame: 0, endFrame: 4});
+        this.load.image('title', './assets/RoboCat_Title.png');
     }
 
     create() {
@@ -25,14 +26,14 @@ class Menu extends Phaser.Scene {
             color: '#213442',
             align: 'center',
             resolution: 2,
-            stroke: '#FFFFFF',
-            strokeThickness: 2,
+            stroke: '#213442',
+            strokeThickness: 1,
             padding: {
             top: 5,
             bottom: 5,
             },
         }
-        this.add.text(game.config.width/2, (game.config.height/4)+6, 'RoboCat', menuConfig).setOrigin(0.5);
+        this.add.image((game.config.width/2)-5, (game.config.height/4)+6, 'title').setOrigin(0.5);
         menuConfig.fontSize = '16px';
         this.add.text(game.config.width/2, (game.config.height/2 - 25), 'Press SPACE to Play\n(from the beginning)', menuConfig).setOrigin(0.5);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);

@@ -27,7 +27,7 @@ class Level1 extends Phaser.Scene {
         this.music.play();
 
         // setting the background color
-        this.cameras.main.setBackgroundColor('#808080');
+        this.cameras.main.setBackgroundColor('#313131');
 
         //main camera fade-in
         this.cameras.main.fadeIn(1000);
@@ -67,7 +67,6 @@ class Level1 extends Phaser.Scene {
         this.lost_cat.setDepth(1);
 
         this.sign = this.physics.add.staticSprite((game.config.width*7)-(game.config.width/2) + 115, game.config.height/2 + 60, 'arrow');
-        this.sign.setDepth(1);
         // update this later to display text before making the cat disappear
         this.physics.add.collider(this.cat, this.lost_cat, function(player, cat) {
             cat1Speaking = true;
@@ -174,7 +173,7 @@ class Level1 extends Phaser.Scene {
                 this.dialougeText.text = 'Thank you so much for finding me!';
             }
             if (this.dialougeCount == 2) {
-                this.dialougeText.text = 'I heard about the accident...';
+                this.dialougeText.text = 'I heard about that terrible accident...';
             }
             if (this.dialougeCount == 3) {
                 this.dialougeText.text = 'I hope you get better soon!';

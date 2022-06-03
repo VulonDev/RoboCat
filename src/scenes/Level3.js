@@ -28,7 +28,7 @@ class Level3 extends Phaser.Scene {
         this.physics.world.setBounds(0, 0, game.config.width*7, game.config.height*3);
         this.cameras.main.setBounds(0, 0, game.config.width*7, game.config.height*3);
         // setting the background color
-        this.cameras.main.setBackgroundColor('#808080');
+        this.cameras.main.setBackgroundColor('#313131');
 
         //main camera fade-in
         this.cameras.main.fadeIn(1000);
@@ -96,7 +96,6 @@ class Level3 extends Phaser.Scene {
         this.lost_cat.setDepth(1);
 
         this.sign = this.physics.add.staticSprite(2900, 705, 'arrow');
-        this.sign.setDepth(1);
         // update this later to display text before making the cat disappear
         this.physics.add.collider(this.cat, this.lost_cat, function(player, cat) {
             cat3Speaking = true;
@@ -203,16 +202,16 @@ class Level3 extends Phaser.Scene {
                 this.dialougeText.text = "I'm impressed you were able to find me in here!";
             }
             if (this.dialougeCount == 2) {
-                this.dialougeText.text = "I got so lost in here and I couldn't figure out how to leave!";
+                this.dialougeText.text = "I got so lost in here and I couldn't find a way out!";
             }
             if (this.dialougeCount == 3) {
-                this.dialougeText.text = "And you were able to find me! Thats our RoboCat for you!";
+                this.dialougeText.text = "But you were able to find me! Thats our RoboCat for you!";
             }
             if (this.dialougeCount == 4) {
                 this.dialougeText.text = "Thanks so much for saving me! Now I can go home!";
             }
             if (this.dialougeCount == 5) {
-                this.dialougeText.text = "I hope I can meet you again soon! Bye now!";
+                this.dialougeText.text = "I hope I can meet you again some day! Bye now!";
             }
             if (this.dialougeCount == 6) {
                 cat3Found = true;

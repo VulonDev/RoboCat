@@ -32,7 +32,7 @@ let game = new Phaser.Game(config);
 let isJumping, pressedJump;
 let hasPropeller, hasWallJump;
 let keySPACE, keyLEFT, keyRIGHT, keyUP,key1,key2,key3;
-var jumpEvent;
+var jumpEvent, clingEvent;
 var explosionSFX, propellerSFX, runSFX;
 let respawnX, respawnY;
 let wasClinging;

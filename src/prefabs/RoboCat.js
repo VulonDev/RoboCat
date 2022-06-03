@@ -25,20 +25,22 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             scene.time.addEvent(jumpEvent);
         }, this);
 
+        clingEvent = new Phaser.Time.TimerEvent({ delay: 90, callback: this.toggleWasClinging});
+        scene.time.addEvent(clingEvent);
         //these two keydown events create timers to allow players to wall jump a tiny bit after leaving wall
         scene.input.keyboard.on('keydown-RIGHT', () => {
             if (this.clingingDir == 1) {
                 wasClinging = true;
-                this.clingEvent = new Phaser.Time.TimerEvent({ delay: 90, callback: this.toggleWasClinging});
-                scene.time.addEvent(this.clingEvent);
+                clingEvent = new Phaser.Time.TimerEvent({ delay: 90, callback: this.toggleWasClinging});
+                scene.time.addEvent(clingEvent);
             }
         }, this);
 
         scene.input.keyboard.on('keydown-LEFT', () => {
             if (this.clingingDir == 2) {
                 wasClinging = true;
-                this.clingEvent = new Phaser.Time.TimerEvent({ delay: 90, callback: this.toggleWasClinging});
-                scene.time.addEvent(this.clingEvent);
+                clingEvent = new Phaser.Time.TimerEvent({ delay: 90, callback: this.toggleWasClinging});
+                scene.time.addEvent(clingEvent);
             }
         }, this);
         pressedJump = false;
@@ -86,10 +88,11 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
                 this.isDoubJumping = true;
                 runSFX.stop();
             } else if (hasWallJump && ((this.body.blocked.right || this.body.blocked.left) || wasClinging) && !this.body.blocked.down) {
-                this.wasClinging = false;
+                wasClinging = false;
                 this.setGravityY(0);
                 this.clingingDir = 0;
                 jumpEvent.remove();
+                clingEvent.remove();
                 //left right movement after wall jumping
                 if(this.body.blocked.right) {
                     this.setVelocityX(-150);
@@ -145,6 +148,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             if (!this.isClinging) {
                 this.lastClingDir = 'r'
                 propellerSFX.stop();
+                this.isSlowFalling = false;
                 this.isClinging = true;
                 this.body.velocity.y = 0;
                 this.setGravityY(-550);
@@ -154,6 +158,7 @@ class RoboCat extends Phaser.Physics.Arcade.Sprite {
             if (!this.isClinging) {
                 this.lastClingDir = 'l';
                 propellerSFX.stop();
+                this.isSlowFalling = false;
                 this.isClinging = true;
                 this.body.velocity.y = 0;
                 this.clingingDir = 1;

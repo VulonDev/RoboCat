@@ -12,11 +12,13 @@ class Credits extends Phaser.Scene {
         this.cameras.main.fadeIn(1000);
 
         let creditsConfig = {
-            fontFamily: 'Trebuchet MS',
-            fontSize: '20px',
-            color: '#888888',
+            fontFamily: 'Arial',
+            fontSize: '19px',
+            color: '#676767',
             backgroundColor: '#DDDDDD',
             align: 'center',
+            stroke: '#FFFFFF',
+            strokeThickness: 1,
             padding: {
             top: 5,
             bottom: 5,
@@ -36,7 +38,7 @@ class Credits extends Phaser.Scene {
         this.add.text(game.config.width/2, 210, 'Autumn Plaxco  - Game Programmer, Level Designer, Music Composer', creditsConfig).setOrigin(0.5);
 
         creditsConfig.fontSize = '14px';
-        this.add.text(game.config.width/2, 254, 'Press SPACE to return to Main Menu\n', creditsConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, 254, 'Press SPACE to return to Main Menu', creditsConfig).setOrigin(0.5);
 
         //key inputs
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
